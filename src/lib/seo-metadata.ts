@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-export const SITE = "印刻万物 INKTOYS";
+export const SITE = "印刻万物 TOP3DGS";
+export const SITE_BRAND_EN = "TOP3DGS";
+export const SITE_BRAND_ZH = "印刻万物";
 export const SITE_URL = "https://top3dgs.com";
 export const SITE_KEYWORDS = [
   "3DGS",
@@ -14,12 +16,15 @@ export const SITE_KEYWORDS = [
   "3D 重建",
   "高斯泼溅工具",
   "高斯泼溅教程",
+  "TOP3DGS",
+  "印刻万物",
+  "top3dgs.com",
 ];
 export const DEFAULT_OG_IMAGE = {
   url: "/og-default.png",
   width: 1200,
   height: 630,
-  alt: "印刻万物 INKTOYS - 3DGS 内容枢纽",
+  alt: "印刻万物 TOP3DGS - 3DGS 内容枢纽",
 };
 
 /** 将中文描述截断到约 120 字以内，避免 meta 过长 */

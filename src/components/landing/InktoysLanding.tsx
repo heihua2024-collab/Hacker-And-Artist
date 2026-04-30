@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -25,10 +25,17 @@ const aboutCopy = {
     buildEyebrow: "我们如何建桥",
     useCasesEyebrow: "面向谁",
     capabilitiesEyebrow: "能力结构",
-    finalEyebrow: "印刻万物",
+    finalEyebrow: "印刻万物 TOP3DGS",
     finalCopy:
       "印刻万物为关注高斯泼溅、空间媒体和记忆场所未来的人建立连接。",
-    work: "联系 INKTOYS",
+    work: "联系 TOP3DGS",
+    contactTitle: "联系印刻万物",
+    contactIntro: "欢迎通过以下方式联系工作室，交流高斯泼溅项目、合作与内容共创。",
+    email: "邮箱",
+    wechat: "微信",
+    socials: "社交媒体",
+    searchHint: "搜索",
+    close: "关闭",
     bridgeTitle: "有些空间并没有消失。它们只是暂时无法被抵达。",
     bridgeBody:
       "我们收集、整理并解释高斯泼溅相关的项目、工具、案例与观点。目标不是替代创作，而是让更多人看懂这项技术如何改变空间的记录、传播与再次抵达。",
@@ -43,17 +50,25 @@ const aboutCopy = {
     eyebrow: "Gaussian Splatting / Knowledge Community",
     title: "Build a bridge back to the spaces in memory.",
     description:
-      "INKTOYS connects places that once existed, the people trying to understand them, and the growing body of Gaussian Splatting content.",
+      "TOP3DGS connects places that once existed, the people trying to understand them, and the growing body of Gaussian Splatting content.",
     primaryCta: "See the Bridge",
     contact: "Contact Studio",
     bridgeEyebrow: "The Bridge",
     buildEyebrow: "How We Build",
     useCasesEyebrow: "For Whom",
     capabilitiesEyebrow: "Capabilities",
-    finalEyebrow: "INKTOYS",
+    finalEyebrow: "TOP3DGS",
     finalCopy:
-      "INKTOYS builds a bridge for people who care about Gaussian Splatting, spatial media, and the future of remembering places.",
-    work: "Work with INKTOYS",
+      "TOP3DGS builds a bridge for people who care about Gaussian Splatting, spatial media, and the future of remembering places.",
+    work: "Work with TOP3DGS",
+    contactTitle: "Contact TOP3DGS",
+    contactIntro:
+      "Reach out for Gaussian Splatting projects, collaborations, and content partnerships.",
+    email: "Email",
+    wechat: "WeChat",
+    socials: "Social Media",
+    searchHint: "Search",
+    close: "Close",
     bridgeTitle:
       "Some places haven't disappeared. They just can't be reached for now.",
     bridgeBody:
@@ -67,6 +82,7 @@ const aboutCopy = {
 
 export function InktoysLanding() {
   const rootRef = useRef<HTMLElement>(null);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const { language } = useLanguage();
   const t = aboutCopy[language];
   const isZh = language === "zh";
@@ -145,9 +161,13 @@ export function InktoysLanding() {
             <a className="rounded-full bg-[#f7f4ed] px-7 py-4 text-sm font-medium text-[#080808] transition hover:bg-white" href="#bridge">
               {t.primaryCta}
             </a>
-            <a className="rounded-full border border-white/20 bg-white/[0.08] px-7 py-4 text-sm font-medium text-white backdrop-blur-xl transition hover:border-white/40 hover:bg-white/[0.14]" href="mailto:hello@inktoys.cn">
+            <button
+              type="button"
+              onClick={() => setIsContactOpen(true)}
+              className="rounded-full border border-white/20 bg-white/[0.08] px-7 py-4 text-left text-sm font-medium text-white backdrop-blur-xl transition hover:border-white/40 hover:bg-white/[0.14]"
+            >
               {t.contact}
-            </a>
+            </button>
           </div>
         </div>
       </section>
@@ -262,14 +282,89 @@ export function InktoysLanding() {
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-white/62">
             {t.finalCopy}
           </p>
-          <a
+          <button
+            type="button"
+            onClick={() => setIsContactOpen(true)}
             className="mt-10 inline-flex rounded-full bg-white px-8 py-4 text-sm font-medium text-black transition hover:scale-[1.02]"
-            href="mailto:hello@inktoys.cn"
           >
             {t.work}
-          </a>
+          </button>
         </Reveal>
       </section>
+      {isContactOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-dialog-title"
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/72 px-5 py-8 backdrop-blur-xl"
+          onClick={() => setIsContactOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-lg overflow-hidden rounded-[2rem] border border-white/14 bg-[#0b0b0b]/92 p-6 text-white shadow-[0_40px_140px_rgba(0,0,0,0.55)] sm:p-8"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#1e88e5]/20 blur-3xl" />
+            <div className="absolute -bottom-20 left-10 h-44 w-44 rounded-full bg-[#ffc94a]/12 blur-3xl" />
+            <div className="relative">
+              <div className="flex items-start justify-between gap-6">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.38em] text-white/38">
+                    TOP3DGS
+                  </p>
+                  <h2
+                    id="contact-dialog-title"
+                    className="mt-4 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl"
+                  >
+                    {t.contactTitle}
+                  </h2>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsContactOpen(false)}
+                  className="shrink-0 rounded-full border border-white/12 bg-white/[0.06] px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/62 transition hover:border-white/28 hover:text-white"
+                >
+                  {t.close}
+                </button>
+              </div>
+              <p className="mt-5 text-sm leading-7 text-white/58 sm:text-base">
+                {t.contactIntro}
+              </p>
+              <div className="mt-7 grid gap-3">
+                <a
+                  href="mailto:heihua2024@gmail.com"
+                  className="rounded-3xl border border-white/10 bg-white/[0.055] p-5 transition hover:border-white/24 hover:bg-white/[0.08]"
+                >
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/36">
+                    {t.email}
+                  </p>
+                  <p className="mt-2 break-words text-lg font-medium tracking-[-0.02em]">
+                    heihua2024@gmail.com
+                  </p>
+                </a>
+                <div className="rounded-3xl border border-white/10 bg-white/[0.055] p-5">
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/36">
+                    {t.wechat}
+                  </p>
+                  <p className="mt-2 text-lg font-medium tracking-[-0.02em]">
+                    inktoyslee
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-white/[0.055] p-5">
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/36">
+                    {t.socials}
+                  </p>
+                  <p className="mt-2 text-base leading-7 text-white/78">
+                    X / INS / YouTube / 小红书 / 微信公众号
+                  </p>
+                  <p className="mt-3 rounded-2xl bg-black/28 px-4 py-3 text-sm text-white/58">
+                    {t.searchHint}: 印刻万物inktoys
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

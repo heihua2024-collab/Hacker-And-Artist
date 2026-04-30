@@ -36,7 +36,7 @@ const structuredData = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       name: SITE,
-      alternateName: ["INKTOYS", "Top 3DGS"],
+      alternateName: ["TOP3DGS", "Top 3DGS", "Top3DGS", "INKTOYS"],
       url: SITE_URL,
       inLanguage: "zh-CN",
       publisher: {
@@ -94,11 +94,17 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="zh-CN"
+      lang="en"
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-[#050505]">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(()=>{const clean=()=>document.querySelectorAll('[data-cursor-ref]').forEach((el)=>el.removeAttribute('data-cursor-ref'));clean();new MutationObserver(clean).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['data-cursor-ref']});document.addEventListener('readystatechange',clean);})();",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

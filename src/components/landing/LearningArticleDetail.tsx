@@ -16,7 +16,7 @@ const copy = {
   },
   en: {
     eyebrow: "Extended notes",
-    crumbs: ["INKTOYS", "Learn", "Article"],
+    crumbs: ["TOP3DGS", "Learn", "Article"],
     relatedPath: "Related learning path",
     module: "Module",
     sources: "Sources",

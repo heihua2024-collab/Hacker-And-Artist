@@ -350,12 +350,12 @@ export const insights: InsightEntry[] = [
       en: "High-precision surveying, consumer visual capture, and hybrid routes are serving different budgets and risk boundaries.",
     },
     summary: {
-      zh: "这篇 INKTOYS 观察整理中国 3DGS 采集市场里的激光、纯视觉与融合方案：激光守住弱纹理和高精度场景，视觉方案以低成本和高效率切入常规消费级与中小预算项目。",
-      en: "This INKTOYS observation organizes LiDAR, visual-only, and hybrid 3DGS capture routes in China: LiDAR retains weak-texture and high-precision scenarios, while visual capture enters consumer and smaller-budget projects through lower cost and faster iteration.",
+      zh: "这篇印刻万物观察整理中国 3DGS 采集市场里的激光、纯视觉与融合方案：激光守住弱纹理和高精度场景，视觉方案以低成本和高效率切入常规消费级与中小预算项目。",
+      en: "This TOP3DGS observation organizes LiDAR, visual-only, and hybrid 3DGS capture routes in China: LiDAR retains weak-texture and high-precision scenarios, while visual capture enters consumer and smaller-budget projects through lower cost and faster iteration.",
     },
     category: "industry_signal",
     tags: ["capture", "reconstruction", "case_study"],
-    author: "INKTOYS 编辑部",
+    author: "印刻万物编辑部",
     publishedAt: "2026-04-29",
     readingMinutes: 9,
     body: [

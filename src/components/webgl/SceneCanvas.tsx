@@ -18,7 +18,13 @@ function BridgeParticles({ isMobile, isAmbient }: BridgeElementProps) {
   const pointsRef = useRef<THREE.Points>(null);
 
   const { positions, colors, seeds, lanes, depths, phases } = useMemo(() => {
-    const count = isAmbient ? 1800 : 4600;
+    const count = isAmbient
+      ? isMobile
+        ? 900
+        : 1800
+      : isMobile
+        ? 2200
+        : 4600;
     const positionArray = new Float32Array(count * 3);
     const colorArray = new Float32Array(count * 3);
     const seedArray = new Float32Array(count);
@@ -66,7 +72,7 @@ function BridgeParticles({ isMobile, isAmbient }: BridgeElementProps) {
       depths: depthArray,
       phases: phaseArray,
     };
-  }, [isAmbient]);
+  }, [isAmbient, isMobile]);
 
   useFrame(({ clock, pointer }) => {
     if (!pointsRef.current) return;
@@ -214,8 +220,8 @@ export function SceneCanvas({ mode = "full" }: SceneCanvasProps) {
   return (
     <Canvas
       camera={{ position: [0, 1.08, 6.65], fov: 42 }}
-      dpr={isAmbient ? [1, 1.15] : [1, 1.5]}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      dpr={isAmbient ? [1, 1.15] : [1, 1.25]}
+      gl={{ antialias: true, alpha: true, powerPreference: "default" }}
     >
       <Suspense fallback={null}>
         <ambientLight intensity={isAmbient ? 0.8 : 0.42} />

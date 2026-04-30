@@ -67,7 +67,7 @@ const copy = {
     eyebrow: "Compatibility Matrix",
     title: "Software × Gaussian Splatting Support Matrix",
     description:
-      "An objective look-up table from INKTOYS: 'Can the software I have actually render Gaussian Splatting files?' Every cell is sourced from real code or official docs, with traceable citations.",
+      "An objective look-up table from TOP3DGS: 'Can the software I have actually render Gaussian Splatting files?' Every cell is sourced from real code or official docs, with traceable citations.",
     legendTitle: "Coverage",
     legendStatTotal: (n: number) => `${n} verified`,
     legendNative: "Native",

@@ -34,25 +34,26 @@ export function NewsCard({
 
   const isHero = variant === "hero";
   const isFeatured = variant === "featured";
+  const formattedDate = formatDate(item.publishedAt, lang);
 
   return (
     <a
       href={item.sourceUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition hover:border-white/24 hover:bg-white/[0.075] sm:p-7 ${
+      className={`group relative flex h-full min-w-0 flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition hover:border-white/24 hover:bg-white/[0.075] sm:p-7 ${
         isHero ? "min-h-[24rem]" : isFeatured ? "min-h-[22rem]" : "min-h-[16rem]"
       }`}
     >
       <div className="absolute inset-x-8 top-8 h-24 rounded-full bg-white/[0.05] blur-3xl transition group-hover:bg-[#1e88e5]/12" />
       <div className="relative flex flex-1 flex-col">
-        <div className="flex items-center justify-between gap-3 text-[0.65rem] uppercase tracking-[0.32em] text-white/42">
+        <div className="flex min-w-0 items-center justify-between gap-3 text-[0.65rem] uppercase tracking-[0.28em] text-white/42 sm:tracking-[0.32em]">
           <span className="text-white/56">{categoryLabel(item.category, lang)}</span>
-          <span>{formatDate(item.publishedAt, lang)}</span>
+          <span>{formattedDate}</span>
         </div>
 
         <h3
-          className={`mt-5 font-semibold tracking-[-0.04em] text-white ${
+          className={`mt-5 break-words font-semibold tracking-[-0.04em] text-white [overflow-wrap:anywhere] ${
             isHero
               ? "text-3xl leading-tight sm:text-4xl"
               : isFeatured
@@ -64,7 +65,7 @@ export function NewsCard({
         </h3>
 
         <p
-          className={`mt-4 leading-7 text-white/68 ${
+          className={`mt-4 break-words leading-7 text-white/68 [overflow-wrap:anywhere] ${
             isHero
               ? "text-base sm:text-lg"
               : isFeatured

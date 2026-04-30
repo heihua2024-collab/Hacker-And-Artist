@@ -24,7 +24,7 @@ const copy = {
     eyebrow: "Daily Signal",
     title: "Gaussian Splatting & Spatial Media Updates",
     description:
-      "INKTOYS curates weekly updates across papers, tools, industry, community, and art—so you can stay on track without chasing every channel.",
+      "TOP3DGS curates weekly updates across papers, tools, industry, community, and art—so you can stay on track without chasing every channel.",
     all: "All",
     countLabel: (n: number) => `${n} updates`,
   },

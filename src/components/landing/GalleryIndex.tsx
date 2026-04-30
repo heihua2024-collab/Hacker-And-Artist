@@ -31,7 +31,7 @@ const copy = {
   },
   en: {
     eyebrow: "Gallery",
-    title: "Gaussian splats captured in-house at INKTOYS.",
+    title: "Gaussian splats captured in-house at TOP3DGS.",
     description:
       "Every scanned space we ship lives here as a rotatable, draggable instance. Not a paper showcase — the studio's working stock library, playable right in your browser.",
     countLabel: "pieces",
@@ -41,7 +41,7 @@ const copy = {
     allGalleries: "All galleries",
     featured: "Featured",
     enter: "Enter",
-    note: "All works captured, trained, and published via SuperSplat by INKTOYS.",
+    note: "All works captured, trained, and published via SuperSplat by TOP3DGS.",
   },
 } as const;
 

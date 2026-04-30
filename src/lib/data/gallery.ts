@@ -121,7 +121,7 @@ function exhibitionWork(args: {
     `访客可以在浏览器内 360° 漫游展览现场，重温作品布展、灯光与空间气场。${partNoteZh}`;
 
   const descEn =
-    `INKTOYS' Gaussian Splatting record of «${args.exhibition.en}» at ${args.gallery.en}. ` +
+    `TOP3DGS' Gaussian Splatting record of «${args.exhibition.en}» at ${args.gallery.en}. ` +
     `Drag, zoom, and walk through the exhibition right in your browser — artwork placement, lighting, and spatial atmosphere intact.${partNoteEn}`;
 
   return {

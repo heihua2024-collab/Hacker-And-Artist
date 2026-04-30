@@ -25,7 +25,7 @@ const copy = {
     back: "返回行业洞察",
   },
   en: {
-    crumbs: ["INKTOYS", "Insights"],
+    crumbs: ["TOP3DGS", "Insights"],
     author: "Author",
     published: "Published",
     minutes: "min read",

@@ -341,7 +341,7 @@ const understandGaussianSplatting: LearningPath = {
   ],
   callToAction: {
     zh: "学完之后，前往印刻万物的工具索引挑选一款平台，扫描你书桌上的第一件物品吧。",
-    en: "After this path, head over to the INKTOYS tool index, pick a platform, and scan the first object on your desk.",
+    en: "After this path, head over to the TOP3DGS tool index, pick a platform, and scan the first object on your desk.",
   },
   status: "live",
   verified: true,

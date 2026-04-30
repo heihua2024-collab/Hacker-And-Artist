@@ -128,7 +128,7 @@ const copy = {
     eyebrow: "Tools & Resources",
     title: "Gaussian Splatting Tools Index",
     description:
-      "Curated along the capture → training → editing → viewing → publishing workflow—tools the INKTOYS community thinks are worth knowing.",
+      "Curated along the capture → training → editing → viewing → publishing workflow—tools the TOP3DGS / 印刻万物 community thinks are worth knowing.",
     all: "All",
     countLabel: (n: number) => `${n} tools`,
     visit: "Visit",

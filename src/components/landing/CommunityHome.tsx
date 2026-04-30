@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/components/shared/LanguageProvider";
 import { NewsCard } from "@/components/landing/NewsCard";
 import {
@@ -18,7 +20,7 @@ import {
 } from "@/lib/data/tools";
 import { SplatPoster } from "@/components/landing/SplatEmbed";
 
-const AmbientScene = dynamic(
+const BridgeScene = dynamic(
   () =>
     import("@/components/webgl/SceneCanvas").then((module) => module.SceneCanvas),
   {
@@ -83,7 +85,7 @@ const copy = {
     heroTitle:
       "Explore Gaussian Splatting content, tools, and spatial media trends",
     heroDescription:
-      "INKTOYS aggregates tools, cases, tutorials, and trends in Gaussian Splatting to help creators understand the next expressive form of media.",
+      "TOP3DGS (印刻万物) aggregates tools, cases, tutorials, and trends in Gaussian Splatting to help creators understand the next expressive form of media.",
     searchPlaceholder: "Search tools, cases, tutorials...",
     search: "Search",
     leadStory: "Lead Story",
@@ -185,6 +187,12 @@ export function CommunityHome() {
   const { language } = useLanguage();
   const t = copy[language];
   const isZh = language === "zh";
+  const router = useRouter();
+  const [searchInput, setSearchInput] = useState("");
+  const submitSearch = (value: string) => {
+    const v = value.trim();
+    router.push(v ? `/search?q=${encodeURIComponent(v)}` : "/search");
+  };
   const toolCounts = tools.reduce(
     (acc, tool) => {
       acc[tool.category] += 1;
@@ -202,41 +210,74 @@ export function CommunityHome() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#050505] text-[#f7f4ed]">
       <section className="relative border-b border-white/10 px-5 pb-14 pt-24 sm:px-10 sm:pt-28 lg:px-16 lg:pt-32">
-        <div className="instant-bridge pointer-events-none absolute inset-0 z-0" />
-        <div className="pointer-events-none absolute inset-0 z-0 touch-none opacity-55 sm:opacity-35">
-          <AmbientScene mode="ambient" />
+        <div className="pointer-events-none absolute left-1/2 top-6 z-0 h-[38rem] w-[150vw] -translate-x-1/2 touch-none opacity-100 sm:top-0 sm:h-[48rem] sm:w-[124vw] sm:opacity-95 lg:top-4 lg:h-[54rem]">
+          <BridgeScene />
         </div>
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_72%_18%,rgba(30,136,229,0.18),transparent_28%),linear-gradient(180deg,rgba(5,5,5,0.48),#050505_78%)]" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_54%_36%,rgba(255,255,255,0.1),transparent_42%),linear-gradient(180deg,rgba(5,5,5,0.04)_0%,rgba(5,5,5,0.48)_64%,#050505_94%)] sm:bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.09),transparent_38%),linear-gradient(180deg,rgba(5,5,5,0.04)_0%,rgba(5,5,5,0.42)_68%,#050505_94%)]" />
         <div className="relative z-10">
-          <div className="grid gap-10 pt-6 lg:grid-cols-[0.95fr_1.05fr] lg:pt-10">
-            <div>
+          <div className="grid min-w-0 gap-10 pt-6 lg:grid-cols-[0.95fr_1.05fr] lg:pt-10">
+            <div className="min-w-0">
               <p className="text-xs uppercase tracking-[0.5em] text-white/42">
                 {t.eyebrow}
               </p>
-              <h1 className="mt-7 max-w-4xl text-5xl font-semibold leading-[0.96] tracking-[-0.07em] text-white sm:text-7xl lg:text-8xl">
+              <h1 className="mt-7 max-w-4xl break-words text-[3.15rem] font-semibold leading-[0.96] tracking-[-0.075em] text-white sm:text-7xl lg:text-8xl">
                 {t.heroTitle}
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-white/62">
                 {t.heroDescription}
               </p>
-              <div className="mt-8 flex max-w-2xl items-center gap-3 rounded-full border border-white/12 bg-white/[0.07] p-2 backdrop-blur-2xl">
-                <span className="pl-5 text-sm text-white/35">
-                  {t.searchPlaceholder}
+              <form
+                role="search"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  submitSearch(searchInput);
+                }}
+                className="mt-8 flex max-w-2xl items-center gap-2 rounded-full border border-white/12 bg-white/[0.07] p-2 backdrop-blur-2xl sm:gap-3"
+              >
+                <span aria-hidden className="pl-5 text-white/55">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="7" />
+                    <path d="m20 20-3.5-3.5" />
+                  </svg>
                 </span>
-                <span className="ml-auto rounded-full bg-[#f7f4ed] px-5 py-3 text-sm font-medium text-black">
+                <input
+                  type="search"
+                  value={searchInput}
+                  onChange={(event) => setSearchInput(event.target.value)}
+                  placeholder={t.searchPlaceholder}
+                  aria-label={t.searchPlaceholder}
+                  className="min-w-0 flex-1 bg-transparent px-1 py-2 text-sm text-white outline-none placeholder:text-white/35"
+                />
+                <button
+                  type="submit"
+                  className="ml-auto shrink-0 rounded-full bg-[#f7f4ed] px-4 py-3 text-sm font-medium text-black sm:px-5"
+                >
                   {t.search}
-                </span>
-              </div>
-              <div className="mt-5 sm:hidden">
+                </button>
+              </form>
+              <div className="relative z-20 mt-5 sm:hidden">
                 <p className="mb-3 text-xs uppercase tracking-[0.32em] text-white/32">
                   {t.quickAccess}
                 </p>
-                <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2">
+                <div className="flex flex-wrap gap-2 pb-3">
                   {navItems.map(([zh, en, href]) => (
                     <Link
                       key={href}
                       href={href}
-                      className="shrink-0 rounded-full border border-white/12 bg-white/[0.06] px-4 py-3 text-sm text-white/70 backdrop-blur-xl"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        router.push(href);
+                      }}
+                      className="relative z-20 rounded-full border border-white/12 bg-white/[0.06] px-4 py-3 text-sm text-white/70 backdrop-blur-xl transition active:scale-[0.98] active:border-white/28 active:text-white"
                     >
                       {isZh ? zh : en}
                     </Link>
@@ -244,13 +285,13 @@ export function CommunityHome() {
                 </div>
               </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid min-w-0 gap-4 sm:grid-cols-2">
               {featuredHero[0] ? (
                 <NewsCard item={featuredHero[0]} variant="hero" />
               ) : (
                 <EmptyCard label={t.leadStory} large />
               )}
-              <div className="grid gap-4">
+              <div className="grid min-w-0 gap-4">
                 {featuredHero[1] ? (
                   <NewsCard item={featuredHero[1]} variant="compact" />
                 ) : (
@@ -452,7 +493,7 @@ export function CommunityHome() {
 
       <footer className="border-t border-white/10 px-5 py-10 text-sm text-white/38 sm:px-10 lg:px-16">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <span>INKTOYS / 印刻万物</span>
+          <span>TOP3DGS / 印刻万物</span>
           <span>{t.footer}</span>
         </div>
       </footer>

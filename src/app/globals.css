@@ -24,83 +24,17 @@ body {
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 ::selection {
   background: rgba(255, 201, 74, 0.32);
   color: #fff;
-}
-
-.instant-bridge {
-  background:
-    radial-gradient(
-      ellipse at 62% 16%,
-      rgba(30, 136, 229, 0.16),
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 42% 22%,
-      rgba(255, 201, 74, 0.09),
-      transparent 30%
-    );
-  overflow: hidden;
-}
-
-.instant-bridge::before,
-.instant-bridge::after {
-  border: 1px solid rgba(247, 244, 237, 0.13);
-  border-color: rgba(247, 244, 237, 0.15) transparent transparent;
-  border-radius: 50%;
-  content: "";
-  height: 36rem;
-  left: 50%;
-  position: absolute;
-  top: -19rem;
-  transform: translateX(-50%) rotate(-3deg);
-  width: 115vw;
-}
-
-.instant-bridge::after {
-  border-color: rgba(30, 136, 229, 0.12) transparent transparent;
-  top: -16rem;
-  transform: translateX(-50%) rotate(4deg);
-  width: 98vw;
-}
-
-@media (max-width: 640px) {
-  .instant-bridge {
-    background:
-      radial-gradient(
-        ellipse at 58% 18%,
-        rgba(30, 136, 229, 0.26),
-        transparent 42%
-      ),
-      radial-gradient(
-        ellipse at 38% 28%,
-        rgba(255, 201, 74, 0.15),
-        transparent 36%
-      ),
-      radial-gradient(
-        ellipse at 70% 36%,
-        rgba(255, 77, 90, 0.12),
-        transparent 34%
-      );
-  }
-
-  .instant-bridge::before,
-  .instant-bridge::after {
-    border-color: rgba(247, 244, 237, 0.24) transparent transparent;
-    height: 24rem;
-    top: 3.5rem;
-    width: 150vw;
-  }
-
-  .instant-bridge::after {
-    border-color: rgba(30, 136, 229, 0.2) transparent transparent;
-    top: 6rem;
-    width: 125vw;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
