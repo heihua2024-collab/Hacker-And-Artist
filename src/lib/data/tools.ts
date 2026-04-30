@@ -1,0 +1,6292 @@
+/**
+ * 工具索引（首批 18 条）
+ * 来源：Gemini 调研 (2026-04-28) + URL 规范化清洗
+ */
+
+import type {
+  Bilingual,
+  LevelId,
+  SpaceTypeId,
+  TagId,
+} from "@/lib/taxonomy";
+
+export type ToolCategory =
+  | "capture"
+  | "training"
+  | "editing"
+  | "viewing"
+  | "publishing";
+
+export type ToolPricing =
+  | "free"
+  | "freemium"
+  | "subscription"
+  | "one-time"
+  | "enterprise";
+
+export type Platform =
+  | "iOS"
+  | "Android"
+  | "Web"
+  | "Windows"
+  | "macOS"
+  | "Linux";
+
+/** 区域归属——服务"全球分布"可视化，识别中日韩区域工具 */
+export type ToolRegion =
+  | "global"
+  | "china"
+  | "japan"
+  | "korea"
+  | "europe"
+  | "north-america"
+  | "other";
+
+/** Auto 抓取轨道——记录每条工具是从哪个候选源捕获的 */
+export type ToolDiscoverySource =
+  | "radiance-fields"
+  | "supersplat"
+  | "reddit"
+  | "x-twitter"
+  | "china-zone"
+  | "japan-korea-zone"
+  | "user-feedback"
+  | "user-workflow"
+  | "manual";
+
+export type Tool = {
+  name: string;
+  slug: string;
+  category: ToolCategory;
+  logoUrl: string | null;
+  homepageUrl: string;
+  repoUrl: string | null;
+  tagline: Bilingual;
+  description: Bilingual;
+  platforms: Platform[];
+  pricing: ToolPricing;
+  priceNote: string | null;
+  openSource: boolean;
+  license: string | null;
+  level: LevelId;
+  pros: Bilingual[];
+  cons: Bilingual[];
+  useCases: SpaceTypeId[];
+  tags: TagId[];
+  lastVerifiedAt: string;
+  verified: boolean;
+  sources: string[];
+
+  /** ===== 新字段（第二期工具表扩充，2026-04-29） ===== */
+  /** 厂商/作者/组织名（可空——例如开源个人项目）*/
+  vendor?: string | null;
+  /** 区域归属——决定它出现在"China zone / Japan-Korea zone / Global"等切片 */
+  region?: ToolRegion;
+  /** 来源 verbatim 引文（防幻觉硬证据，30-100 字英文/中文）*/
+  evidenceQuote?: string;
+  /** 活性最近检查日期（ISO 8601，如 "2026-04-29"）*/
+  freshnessCheckedAt?: string;
+  /** 活性信号——"v1.5 released 2026-03" / "latest commit 2026-04-12" / "Twitter 公告 2026-04-20" 等 */
+  freshnessSignal?: string;
+  /** 抓取轨道——便于审核员追溯该条候选来源 */
+  discoverySource?: ToolDiscoverySource;
+};
+
+export const toolCategories: {
+  id: ToolCategory;
+  label: Bilingual;
+  description: Bilingual;
+}[] = [
+  {
+    id: "capture",
+    label: { zh: "采集", en: "Capture" },
+    description: {
+      zh: "把真实空间转换成可训练的图像或视频数据。",
+      en: "Turn real-world spaces into trainable image or video data.",
+    },
+  },
+  {
+    id: "training",
+    label: { zh: "训练", en: "Training" },
+    description: {
+      zh: "把采集到的数据训练成高斯泼溅模型。",
+      en: "Convert captured data into Gaussian Splatting models.",
+    },
+  },
+  {
+    id: "editing",
+    label: { zh: "编辑", en: "Editing" },
+    description: {
+      zh: "清理、裁剪、上色与与传统资产融合。",
+      en: "Clean up, crop, recolor, and blend with traditional assets.",
+    },
+  },
+  {
+    id: "viewing",
+    label: { zh: "查看", en: "Viewing" },
+    description: {
+      zh: "把高斯模型放进网页、应用或空间设备里观看。",
+      en: "View Gaussian models on the web, apps, or spatial devices.",
+    },
+  },
+  {
+    id: "publishing",
+    label: { zh: "发布", en: "Publishing" },
+    description: {
+      zh: "把作品分发到云端、社交、地图或商业平台。",
+      en: "Distribute works to cloud, social, maps, or commercial platforms.",
+    },
+  },
+];
+
+export const pricingLabels: Record<ToolPricing, Bilingual> = {
+  free: { zh: "免费", en: "Free" },
+  freemium: { zh: "免费增值", en: "Freemium" },
+  subscription: { zh: "订阅制", en: "Subscription" },
+  "one-time": { zh: "一次买断", en: "One-time" },
+  enterprise: { zh: "企业版", en: "Enterprise" },
+};
+
+export const tools: Tool[] = [
+  {
+    name: "Polycam",
+    slug: "polycam",
+    category: "capture",
+    logoUrl: "https://poly.cam/favicon.ico",
+    homepageUrl: "https://poly.cam",
+    repoUrl: null,
+    tagline: {
+      zh: "行业领先的跨平台 3D 扫描与捕捉工具",
+      en: "Industry-leading cross-platform 3D scanning and capture tool",
+    },
+    description: {
+      zh: "Polycam 提供极其稳定的多模态捕捉体验，将传统摄影测量、LiDAR 与 3DGS 技术无缝融合。其极简的交互逻辑和强大的云端处理能力，使其成为空间数字化的首选基建工具。",
+      en: "Polycam offers an extremely stable multi-modal capture experience, seamlessly blending traditional photogrammetry, LiDAR, and 3DGS technologies. Its minimalist interaction logic and powerful cloud processing capabilities make it a premier infrastructure tool for spatial digitization.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "Pro 订阅 $14.99 / 月",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "极具包容性的多平台支持",
+        en: "Highly inclusive multi-platform support",
+      },
+      {
+        zh: "成熟的云端管线，无需本地算力",
+        en: "Mature cloud pipeline, no local compute required",
+      },
+    ],
+    cons: [
+      {
+        zh: "高阶格式导出被锁定在付费层",
+        en: "Advanced format exports are paywalled",
+      },
+      {
+        zh: "缺乏对训练过程的底层控制",
+        en: "Lacks low-level control over the training process",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "indoor_living",
+      "retail",
+    ],
+    tags: [
+      "capture",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://poly.cam",
+      "https://poly.cam/",
+      "https://radiancefields.com/platforms/polycam",
+    ],
+    vendor: "Polycam Inc.",
+    region: "north-america",
+    evidenceQuote: "From its humble origins as a capture app, Polycam has evolved into a cross-platform powerhouse, providing an array of capabilities including editing tools, drone mapping, and beyond.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF article index lists Polycam 3DGS updates through 2025–2026",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Luma AI",
+    slug: "luma-ai",
+    category: "capture",
+    logoUrl: "https://lumalabs.ai/favicon.ico",
+    homepageUrl: "https://lumalabs.ai",
+    repoUrl: null,
+    tagline: {
+      zh: "将尖端神经渲染技术带入移动设备",
+      en: "Bringing cutting-edge neural rendering to mobile devices",
+    },
+    description: {
+      zh: "Luma AI 是推动高斯泼溅走向大众视野的核心引擎。它擅长处理高反光表面与复杂光影，只需通过手机拍摄即可在云端重构出惊艳的空间模型。它不仅是工具，更是空间媒体的先锋平台。",
+      en: "Luma AI is the core engine driving Gaussian Splatting into the mainstream. It excels at handling highly reflective surfaces and complex lighting, reconstructing stunning spatial models in the cloud simply through mobile video capture. It is a pioneer platform for spatial media.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "免费拍摄；API 调用按量收费",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "卓越的反射与光影处理能力",
+        en: "Excellent reflection and lighting handling",
+      },
+      {
+        zh: "极高的渲染质量上限",
+        en: "Extremely high rendering quality ceiling",
+      },
+    ],
+    cons: [
+      {
+        zh: "高峰期云端处理等待时间较长",
+        en: "Long wait times for cloud processing during peak hours",
+      },
+      {
+        zh: "底层算法对用户而言是黑盒",
+        en: "Underlying algorithm is a black box to the user",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "retail",
+      "urban_outdoor",
+    ],
+    tags: [
+      "capture",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://lumalabs.ai",
+      "https://lumalabs.ai/",
+      "https://radiancefields.com/platforms/luma-ai",
+    ],
+    vendor: "Luma AI Inc.",
+    region: "north-america",
+    evidenceQuote: "Luma currently has three core products: Radiance field captures with Interactive Scenes, Generative AI through Genie, and highly stabilized video Flythroughs.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF platform page references 2024–2025 product lines; capture roadmap subject to vendor statements",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Scaniverse",
+    slug: "scaniverse",
+    category: "capture",
+    logoUrl: "https://scaniverse.com/favicon.ico",
+    homepageUrl: "https://scaniverse.com",
+    repoUrl: null,
+    tagline: {
+      zh: "完全免费的纯端侧极速扫描仪",
+      en: "Completely free, pure on-device rapid scanner",
+    },
+    description: {
+      zh: "Scaniverse 提供独树一帜的纯端侧高斯泼溅训练体验（Splatting on-device）。无需上传云端，数据完全保留在本地。这种即时计算的模式极大增强了户外与无网环境下的记录效率。",
+      en: "Scaniverse offers a unique pure on-device Gaussian Splatting training experience. No cloud upload is required; data remains strictly local. This immediate computation paradigm drastically enhances documentation efficiency in outdoor and offline environments.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+    ],
+    pricing: "free",
+    priceNote: "完全免费",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "保护隐私的端侧处理架构",
+        en: "Privacy-preserving on-device processing architecture",
+      },
+      {
+        zh: "完全免费，没有任何订阅门槛",
+        en: "Completely free, zero subscription barriers",
+      },
+    ],
+    cons: [
+      {
+        zh: "模型精细度受限于手机移动端算力",
+        en: "Model fidelity is constrained by mobile compute power",
+      },
+      {
+        zh: "不具备高阶编辑与微调工具",
+        en: "Lacks advanced editing and fine-tuning tools",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "natural_landscape",
+    ],
+    tags: [
+      "capture",
+      "slam",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://scaniverse.com",
+      "https://scaniverse.com/",
+      "https://radiancefields.com/platforms/scaniverse",
+    ],
+    vendor: "Niantic Inc.",
+    region: "north-america",
+    evidenceQuote: "Niantic Scaniverse - the only mobile app offering free, fast, unlimited on-device 3D Gaussian splatting.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Scaniverse 5.1 Released; open-source SPZ headlines on index",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "KIRI Engine",
+    slug: "kiri-engine",
+    category: "capture",
+    logoUrl: "https://www.kiriengine.app/favicon.ico",
+    homepageUrl: "https://www.kiriengine.app",
+    repoUrl: null,
+    tagline: {
+      zh: "面向 3D 创作者的全栈式扫描应用",
+      en: "Full-stack scanning application for 3D creators",
+    },
+    description: {
+      zh: "KIRI Engine 在传统摄影测量模型的基础上迅速跟进了 3DGS 技术。它对 Android 平台的支持尤为完善，并提供了丰富的网格重建与高斯场景双向导出能力，深受独立游戏开发者与建模师喜爱。",
+      en: "KIRI Engine rapidly adopted 3DGS technology alongside its traditional photogrammetry models. It offers exceptionally robust support for the Android platform and provides rich bi-directional export capabilities for both mesh reconstruction and Gaussian scenes, making it highly popular among indie game devs and modelers.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "Pro $14.99 / 月 或 $59.99 / 年",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "对 Android 阵营的支持度极高",
+        en: "Extremely high support level for the Android ecosystem",
+      },
+      {
+        zh: "同时提供出色的网格重建与高斯泼溅",
+        en: "Provides both excellent mesh reconstruction and Gaussian Splatting",
+      },
+    ],
+    cons: [
+      {
+        zh: "高阶分辨率渲染需消耗积分或订阅",
+        en: "High-res rendering consumes credits or requires subscription",
+      },
+      {
+        zh: "Web 端的交互界面略显拥挤",
+        en: "Web UI feels slightly cluttered",
+      },
+    ],
+    useCases: [
+      "retail",
+      "heritage",
+      "indoor_living",
+    ],
+    tags: [
+      "capture",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.kiriengine.app",
+      "https://kiriengine.app/",
+      "https://radiancefields.com/platforms/kiri-engine",
+    ],
+    vendor: "KIRI Innovations",
+    region: "china",
+    evidenceQuote: "We established KIRI Innovation with one purpose in mind - to bridge the gap between the physical world and the digital ones.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF news KIRI Engine 4.2 Ships 3DGS to Mesh 3.0 (indexed on platform page)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Gaussian Splatting (Inria)",
+    slug: "inria-gaussian-splatting",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
+    repoUrl: "https://github.com/graphdeco-inria/gaussian-splatting",
+    tagline: {
+      zh: "3DGS 技术的官方奠基实现",
+      en: "The official foundational implementation of 3DGS technology",
+    },
+    description: {
+      zh: "这是由 Inria 发布的原始论文代码库。作为整个技术生态的源头，它提供了标准的 CUDA 内核与训练管线。尽管对商用存在严格限制，它依然是学术研究与指标评测不可逾越的基准线。",
+      en: "This is the original paper codebase released by Inria. As the genesis of the entire tech ecosystem, it provides the standard CUDA kernels and training pipelines. Despite strict commercial use restrictions, it remains the insurmountable baseline for academic research and metric evaluation.",
+    },
+    platforms: [
+      "Windows",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: "仅限研究与非商业用途免费",
+    openSource: true,
+    license: "Inria Non-Commercial",
+    level: "expert",
+    pros: [
+      {
+        zh: "最正宗的算法实现与学术基准",
+        en: "The most orthodox algorithm implementation and academic baseline",
+      },
+      {
+        zh: "透明度高，无任何商业包装",
+        en: "High transparency, free of any commercial packaging",
+      },
+    ],
+    cons: [
+      {
+        zh: "严格的非商业协议限制了落地转化",
+        en: "Strict non-commercial license limits real-world application",
+      },
+      {
+        zh: "缺乏现代化的界面结构与开发生态支持",
+        en: "Lacks modern structural interfaces and dev ecosystem support",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "natural_landscape",
+    ],
+    tags: [
+      "training",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://github.com/graphdeco-inria/gaussian-splatting",
+    ],
+  },
+  {
+    name: "gsplat",
+    slug: "gsplat",
+    category: "training",
+    logoUrl: "https://docs.gsplat.studio/en/latest/_static/logo.png",
+    homepageUrl: "https://docs.gsplat.studio",
+    repoUrl: "https://github.com/nerfstudio-project/gsplat",
+    tagline: {
+      zh: "由 Nerfstudio 团队打造的高性能开源库",
+      en: "High-performance open-source library by the Nerfstudio team",
+    },
+    description: {
+      zh: "gsplat 提供了商业友好的纯开源 3DGS 替代方案。它拥有极度优化的 CUDA 后端和优雅的 PyTorch 接口。开发者可以非常轻松地将其融合入现有的 AI 视觉管线中，是目前商业化二次开发的首选引擎。",
+      en: "gsplat provides a commercially friendly, pure open-source alternative for 3DGS. It features an extremely optimized CUDA backend and an elegant PyTorch interface. Developers can easily fuse it into existing AI vision pipelines, making it the premier engine for commercial secondary development.",
+    },
+    platforms: [
+      "Windows",
+      "Linux",
+      "macOS",
+    ],
+    pricing: "free",
+    priceNote: "免费开源",
+    openSource: true,
+    license: "Apache-2.0",
+    level: "expert",
+    pros: [
+      {
+        zh: "极其友好的 Apache 2.0 开源协议",
+        en: "Extremely friendly Apache 2.0 open-source license",
+      },
+      {
+        zh: "顶级的 CUDA 性能优化，显存利用率高",
+        en: "Top-tier CUDA performance optimization, high VRAM efficiency",
+      },
+    ],
+    cons: [
+      {
+        zh: "纯代码实现，没有任何图形化界面",
+        en: "Pure code implementation, no graphical UI whatsoever",
+      },
+      {
+        zh: "需要较强的深度学习与 Python 基础",
+        en: "Requires strong deep learning and Python fundamentals",
+      },
+    ],
+    useCases: [
+      "medical_aesthetics",
+      "retail",
+    ],
+    tags: [
+      "training",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://github.com/nerfstudio-project/gsplat",
+    ],
+  },
+  {
+    name: "Postshot",
+    slug: "postshot",
+    category: "training",
+    logoUrl: "https://www.jawset.com/favicon.ico",
+    homepageUrl: "https://www.jawset.com",
+    repoUrl: null,
+    tagline: {
+      zh: "专为视觉创意人群打造的本地训练软件",
+      en: "Local training software built specifically for visual creatives",
+    },
+    description: {
+      zh: "Postshot 将复杂的 3DGS 训练过程封装进了一个优雅的本地图形界面中。它支持极速的本地渲染与实时视觉反馈，用户可以直接在界面中调整相机与数据集。它是影视后期与高端资产制作者的工作站利器。",
+      en: "Postshot encapsulates the complex 3DGS training process into an elegant local graphical interface. It supports lightning-fast local rendering and real-time visual feedback, allowing users to adjust cameras and datasets directly within the UI. It is the ultimate workstation tool for VFX and high-end asset creators.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "freemium",
+    priceNote: "个人免费；商业项目需付费许可",
+    openSource: false,
+    license: null,
+    level: "intermediate",
+    pros: [
+      {
+        zh: "极致的开箱即用体验与本地训练速度",
+        en: "Ultimate out-of-the-box experience and local training speed",
+      },
+      {
+        zh: "干净专业的图形交互界面，告别命令行",
+        en: "Clean and professional GUI, say goodbye to the command line",
+      },
+    ],
+    cons: [
+      {
+        zh: "强依赖 Nvidia 显卡，仅限 Windows 系统",
+        en: "Strongly reliant on Nvidia GPUs, strictly Windows only",
+      },
+      {
+        zh: "商业项目应用需支付较高昂的许可费用",
+        en: "Commercial project application requires a hefty license fee",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "heritage",
+    ],
+    tags: [
+      "training",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.jawset.com",
+      "https://www.jawset.com/",
+      "https://radiancefields.com/platforms/postshot",
+    ],
+    vendor: "Jawset",
+    region: "europe",
+    evidenceQuote: "Postshot is a German radiance field company, offering an intuitive and robust platform for both Neural Radiance Fields and 3D Gaussian Splatting.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Postshot Releases V1.0.324 in headlines list",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "SuperSplat",
+    slug: "supersplat",
+    category: "editing",
+    logoUrl: "https://playcanvas.com/favicon.ico",
+    homepageUrl: "https://playcanvas.com/supersplat/editor",
+    repoUrl: "https://github.com/playcanvas/supersplat",
+    tagline: {
+      zh: "纯网页端的高斯泼溅清理与裁切工具",
+      en: "Pure web-based Gaussian Splatting cleanup and cropping tool",
+    },
+    description: {
+      zh: "由 PlayCanvas 开发的 SuperSplat 是发布模型前不可或缺的「洗菜池」。通过直观的框选与球形刷，用户可以在浏览器内快速剔除场景中的悬浮噪点与无关环境。它极大地简化了模型轻量化的流程。",
+      en: "Developed by PlayCanvas, SuperSplat is the indispensable 'prep station' before publishing a model. Through intuitive box selections and spherical brushes, users can rapidly cull floating noise and irrelevant environments directly in the browser. It drastically simplifies the model optimization workflow.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "免费开源",
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "零安装门槛，纯粹的 Web 原生体验",
+        en: "Zero installation barrier, pure web-native experience",
+      },
+      {
+        zh: "针对噪点清理设计的交互逻辑极为高效",
+        en: "Interaction logic designed for noise cleanup is highly efficient",
+      },
+    ],
+    cons: [
+      {
+        zh: "处理 GB 级别的大模型时浏览器容易崩溃",
+        en: "Browser prone to crashing when handling GB-level massive models",
+      },
+      {
+        zh: "功能仅限于做减法，无法进行复杂合成",
+        en: "Functionality is strictly subtractive; cannot perform complex compositing",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "heritage",
+    ],
+    tags: [
+      "editing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://playcanvas.com/supersplat/editor",
+      "https://github.com/playcanvas/supersplat",
+      "https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/supersplat/",
+    ],
+    vendor: "PlayCanvas Ltd",
+    region: "global",
+    evidenceQuote: "The SuperSplat Editor is a free and open source tool for inspecting, editing, optimizing and publishing 3D Gaussian Splats.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "GitHub playcanvas/supersplat 仓库 commits 持续更新（以 github.com 为准）。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "Spline",
+    slug: "spline",
+    category: "editing",
+    logoUrl: "https://spline.design/favicon.ico",
+    homepageUrl: "https://spline.design",
+    repoUrl: null,
+    tagline: {
+      zh: "让 3DGS 完美融入现代 UI 设计的桥梁",
+      en: "The bridge that seamlessly integrates 3DGS into modern UI design",
+    },
+    description: {
+      zh: "Spline 前瞻性地在设计工具中引入了 3DGS 支持。高斯场景在这里不仅是一个静态素材，还可以与光照、传统多边形以及鼠标事件产生交互。它是将空间资产转化为互动网页的最优雅路径。",
+      en: "Spline forward-lookingly introduced 3DGS support into its design tool. Gaussian scenes here are not merely static assets; they can interact with lighting, traditional polygons, and mouse events. It is the most elegant path to transforming spatial assets into interactive web pages.",
+    },
+    platforms: [
+      "Web",
+      "macOS",
+      "Windows",
+    ],
+    pricing: "freemium",
+    priceNote: "团队协作与高级导出 $24 / 月",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "极低的学习曲线与出众的设计直觉",
+        en: "Extremely low learning curve and outstanding design intuition",
+      },
+      {
+        zh: "一键导出 React 组件与交互嵌入代码",
+        en: "One-click export of React components and interactive embed codes",
+      },
+    ],
+    cons: [
+      {
+        zh: "高密度高斯点堆叠动画时会引发性能下降",
+        en: "Performance drops when animating highly dense Gaussian point stacks",
+      },
+      {
+        zh: "商业闭源属性意味着生态扩展受官方限制",
+        en: "Commercial closed-source nature means ecosystem expansion is officially restricted",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+    ],
+    tags: [
+      "editing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://spline.design",
+      "https://spline.design/",
+      "https://radiancefields.com/platforms/spline",
+    ],
+    vendor: "Spline Design Inc.",
+    region: "global",
+    evidenceQuote: "Spline is a free 3D design platform that support Gaussian Splatting.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Spline Mirror 3DGS Support for Apple Vision Pro (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "PlayCanvas Editor",
+    slug: "playcanvas-editor",
+    category: "editing",
+    logoUrl: "https://playcanvas.com/favicon.ico",
+    homepageUrl: "https://playcanvas.com",
+    repoUrl: null,
+    tagline: {
+      zh: "支持原生 3DGS 的轻量级云端游戏引擎",
+      en: "Lightweight cloud game engine supporting native 3DGS",
+    },
+    description: {
+      zh: "PlayCanvas 在引擎底层深度整合了高斯渲染管线。开发者可以如同操作传统模型一样，为 3DGS 赋予物理碰撞体、脚本逻辑和后期特效。它是开发空间互动游戏或复杂商业展示的首选 H5 引擎。",
+      en: "PlayCanvas deeply integrated the Gaussian rendering pipeline at the engine level. Developers can assign physics colliders, script logic, and post-effects to 3DGS just like traditional models. It is the premier H5 engine for developing spatial interactive games or complex commercial displays.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "公开仓库免费；私有项目按订阅付费",
+    openSource: false,
+    license: null,
+    level: "expert",
+    pros: [
+      {
+        zh: "拥有完整的游戏级开发管线与系统组件",
+        en: "Features a complete game-grade development pipeline and system components",
+      },
+      {
+        zh: "支持多人在云端进行实时协同编辑",
+        en: "Supports multi-user real-time collaborative editing in the cloud",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要扎实的 JavaScript 编程基础",
+        en: "Requires a solid JavaScript programming foundation",
+      },
+      {
+        zh: "整体界面交互偏重，不适合纯查阅",
+        en: "The entire UI interaction is relatively heavy, unsuitable for simple viewing",
+      },
+    ],
+    useCases: [
+      "medical_aesthetics",
+      "retail",
+    ],
+    tags: [
+      "editing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://playcanvas.com",
+    ],
+  },
+  {
+    name: "Blender 3DGS Add-on",
+    slug: "blender-3dgs-addon",
+    category: "editing",
+    logoUrl: "https://www.blender.org/wp-content/themes/bthree/assets/images/favicon.ico",
+    homepageUrl: "https://github.com/ReshotAI/blender-3dgs",
+    repoUrl: "https://github.com/ReshotAI/blender-3dgs",
+    tagline: {
+      zh: "将高斯模型引入开源三维 DCC 的连接件",
+      en: "The connector bringing Gaussian models into the open-source 3D DCC",
+    },
+    description: {
+      zh: "通过一系列社区开源插件，Blender 现已能够原生导入并编辑高斯模型。它允许数字艺术家使用熟悉的 Blender 工具集对 Splat 进行修剪、着色甚至动画处理，是资产融合与高端视觉创作的必经之路。",
+      en: "Through community open-source add-ons, Blender can now natively import and edit Gaussian models. It lets digital artists use familiar Blender toolsets to trim, color, and even animate Splats, a requisite path for asset fusion and high-end visual creation.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: "开源插件，通常免费",
+    openSource: true,
+    license: "GPL-3.0",
+    level: "expert",
+    pros: [
+      {
+        zh: "能够与 Blender 强大的几何节点和动画系统结合",
+        en: "Able to integrate with Blender's powerful geometry nodes and animation system",
+      },
+      {
+        zh: "支持与传统 Mesh 网格资产混合渲染",
+        en: "Supports mixed rendering with traditional Mesh assets",
+      },
+    ],
+    cons: [
+      {
+        zh: "渲染机制有别于传统管线，存在光影适配难题",
+        en: "Rendering mechanism differs from traditional pipelines, posing lighting adaptation challenges",
+      },
+      {
+        zh: "数千万点的高斯模型可能让视口卡顿",
+        en: "Viewport may stutter when handling Gaussian models with tens of millions of points",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "heritage",
+    ],
+    tags: [
+      "editing",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: false,
+    sources: [
+      "https://github.com/ReshotAI/blender-3dgs",
+    ],
+  },
+  {
+    name: "Luma Web Library",
+    slug: "luma-web-library",
+    category: "viewing",
+    logoUrl: "https://lumalabs.ai/favicon.ico",
+    homepageUrl: "https://lumalabs.ai",
+    repoUrl: "https://www.npmjs.com/package/@lumaai/luma-web",
+    tagline: {
+      zh: "高度优化的 Luma 官方渲染包",
+      en: "Highly optimized official rendering package by Luma",
+    },
+    description: {
+      zh: "针对 Luma 平台生成的格式化模型，该官方 NPM 包提供了顶级的 WebGL 渲染体验。它支持自适应细节层级加载（LOD），使开发者能够在网页端以极低的带宽占用呈现丝滑流动的空间场景。",
+      en: "Tailored for formatted models generated on the Luma platform, this official NPM package provides a top-tier WebGL rendering experience. It supports adaptive Level of Detail (LOD) loading, enabling smooth spatial scenes with minimal bandwidth.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "MIT 库，依赖 Luma 生成资源",
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "渲染极度平滑，对带宽压力极小",
+        en: "Extremely smooth rendering, minimal bandwidth pressure",
+      },
+      {
+        zh: "封装完善的 Web Components，接入迅速",
+        en: "Well-encapsulated Web Components for rapid integration",
+      },
+    ],
+    cons: [
+      {
+        zh: "强绑定 Luma 服务，缺乏对通用格式的支持",
+        en: "Strongly tied to Luma services, lacks support for standard universal formats",
+      },
+      {
+        zh: "底层代码定制化空间较小",
+        en: "Limited room for low-level code customization",
+      },
+    ],
+    useCases: [
+      "retail",
+      "art_gallery",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://www.npmjs.com/package/@lumaai/luma-web",
+    ],
+  },
+  {
+    name: "GaussianSplats3D (Three.js)",
+    slug: "three-gaussian-splatting",
+    category: "viewing",
+    logoUrl: "https://threejs.org/files/favicon.ico",
+    homepageUrl: "https://github.com/mkkellogg/GaussianSplats3D",
+    repoUrl: "https://github.com/mkkellogg/GaussianSplats3D",
+    tagline: {
+      zh: "Three.js 生态内最主流的 3DGS 渲染库",
+      en: "The most mainstream 3DGS rendering library within the Three.js ecosystem",
+    },
+    description: {
+      zh: "这是将高斯模型引入自定义 Web 前端开发的核心组件库。它不仅支持多种开源格式，还利用 WebWorkers 实现了多线程排序计算，是开发独立空间交互网站的开源首选架构。",
+      en: "This is the core component library for bringing Gaussian models into custom Web frontend development. It supports various open-source formats and uses WebWorkers for multi-threaded sorting—the premier open-source architecture for independent spatial sites.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "免费开源",
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "与 Three.js 技术栈完美融合",
+        en: "Perfect integration with the Three.js tech stack",
+      },
+      {
+        zh: "社区高度活跃，持续迭代压缩与渲染特性",
+        en: "Highly active community, continuously iterating compression and rendering features",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要开发者具备前端与三维图形学知识",
+        en: "Requires developers to have some frontend and 3D graphics knowledge",
+      },
+      {
+        zh: "面对未优化的巨型 PLY 文件依然存在性能瓶颈",
+        en: "Performance bottlenecks remain with unoptimized giant PLY files",
+      },
+    ],
+    useCases: [
+      "medical_aesthetics",
+      "retail",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/mkkellogg/GaussianSplats3D",
+      "https://raw.githubusercontent.com/mkkellogg/GaussianSplats3D/main/README.md",
+      "https://projects.markkellogg.org/threejs/demo_gaussian_splats_3d.php",
+    ],
+    vendor: "individual: Mark Kellogg",
+    region: "north-america",
+    evidenceQuote: "This renderer will work with the `.ply` files generated by the INRIA project, standard `.splat` files, or my own custom `.ksplat` files",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "README 声明仓库不再积极开发；提交历史以 GitHub 为准。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "antimatter15/splat",
+    slug: "antimatter15-splat",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://antimatter15.com/splat/",
+    repoUrl: "https://github.com/antimatter15/splat",
+    tagline: {
+      zh: "极简主义的开源 3DGS Web 查看器先驱",
+      en: "The minimalist open-source 3DGS Web viewer pioneer",
+    },
+    description: {
+      zh: "作为早期社区的标志性「数字遗迹」，antimatter15 用极其轻量的代码揭示了高斯渲染在 WebGL 上的底层实现。它极简、纯粹，对希望深入学习渲染机制的开发者而言是绝佳的教学范本。",
+      en: "As a landmark 'digital relic' from the early community, antimatter15 revealed the low-level implementation of Gaussian rendering on WebGL with extremely lightweight code. Minimalist, pure, an excellent pedagogical template for studying rendering mechanisms.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "免费开源",
+    openSource: true,
+    license: "MIT",
+    level: "expert",
+    pros: [
+      {
+        zh: "代码结构极其精简，是拆解学习的绝佳素材",
+        en: "Extremely concise code structure, perfect for dissection and learning",
+      },
+      {
+        zh: "无任何外部依赖包的纯净实现",
+        en: "Pure implementation without any external dependencies",
+      },
+    ],
+    cons: [
+      {
+        zh: "项目代码已停止活跃维护更新",
+        en: "Project code is no longer actively maintained or updated",
+      },
+      {
+        zh: "缺失现代压缩格式与 WebGPU 加速支持",
+        en: "Lacks parsing for modern compression formats and WebGPU acceleration support",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "natural_landscape",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/antimatter15/splat",
+      "https://antimatter15.com/splat/",
+      "https://raw.githubusercontent.com/antimatter15/splat/main/README.md",
+    ],
+    vendor: "individual: Kevin Kwok",
+    region: "north-america",
+    evidenceQuote: "This is a WebGL implementation of a real-time renderer for 3D Gaussian Splatting for Real-Time Radiance Field Rendering, a recently developed technique for taking a set of pictures and generating a photorealistic navigable 3D scene out of it.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "以 GitHub antimatter15/splat 提交历史为准；README 指向 Spark 作为进阶替代。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "Babylon.js Splat",
+    slug: "babylonjs-splat",
+    category: "viewing",
+    logoUrl: "https://www.babylonjs.com/favicon.ico",
+    homepageUrl: "https://www.babylonjs.com",
+    repoUrl: "https://github.com/BabylonJS/Babylon.js",
+    tagline: {
+      zh: "企业级前端 3D 引擎的原生级支持",
+      en: "Native-level support from the enterprise-grade frontend 3D engine",
+    },
+    description: {
+      zh: "Babylon.js 官方迅速构建了对 3DGS 的内置支持。凭借其强大的工程化能力与稳定性，高斯渲染现在可以顺畅地融入复杂的企业级数据可视化或虚拟展厅项目中，享受引擎级别的后处理光效加持。",
+      en: "Babylon.js officially built-in support for 3DGS. With its powerful engineering capabilities and stability, Gaussian rendering now smoothly integrates into complex enterprise data visualization or virtual showroom projects with engine-level post-processing.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "免费开源引擎",
+    openSource: true,
+    license: "Apache-2.0",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "企业级的引擎稳定性与官方长期维护保障",
+        en: "Enterprise-grade engine stability with official long-term maintenance guarantee",
+      },
+      {
+        zh: "能够利用 Babylon 优秀的材质与光影系统",
+        en: "Able to utilize Babylon's excellent material and lighting systems",
+      },
+    ],
+    cons: [
+      {
+        zh: "整体引擎框架较重，单纯渲染需求性价比低",
+        en: "Overall engine framework is heavy; not cost-effective for simple rendering needs",
+      },
+      {
+        zh: "相关独立教程与专门 Splat 社区沉淀较少",
+        en: "Fewer independent tutorials and specific Splat community resources",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://www.babylonjs.com",
+    ],
+  },
+  {
+    name: "Luma Web Platform",
+    slug: "luma-web-platform",
+    category: "publishing",
+    logoUrl: "https://lumalabs.ai/favicon.ico",
+    homepageUrl: "https://lumalabs.ai",
+    repoUrl: null,
+    tagline: {
+      zh: "优雅零阻力的 3D 媒体发布与分享中心",
+      en: "Elegant, zero-friction 3D media publishing and sharing hub",
+    },
+    description: {
+      zh: "Luma 构建了一个类似「空间 Instagram」的云端发布生态。通过它，创作者可以获得即插即用的短链接和嵌入代码，甚至能在浏览器内直接渲染平滑的运镜视频。它是作品触达受众最高效的通道。",
+      en: "Luma has built a cloud publishing ecosystem akin to a 'Spatial Instagram'. Creators get plug-and-play short links and embed codes, and can even render smooth camera-path videos directly in the browser. It is the most efficient channel for reaching an audience.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "免费托管；商业白标需联系",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "传播链路极短，高度自适应社交媒体与网页嵌入",
+        en: "Extremely short distribution chain, highly adaptive to social media and web embeds",
+      },
+      {
+        zh: "自带直观且强大的网页端运镜渲染工具",
+        en: "Comes with an intuitive and powerful web-based camera path rendering tool",
+      },
+    ],
+    cons: [
+      {
+        zh: "强平台锁定，数据格式闭源独立",
+        en: "Strong platform lock-in, data formats are closed and proprietary",
+      },
+      {
+        zh: "缺乏面向复杂交互的二次开发接口",
+        en: "Lacks secondary development APIs for complex interactions",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "retail",
+    ],
+    tags: [
+      "publishing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://lumalabs.ai",
+    ],
+  },
+  {
+    name: "Scaniverse Cloud",
+    slug: "scaniverse-cloud",
+    category: "publishing",
+    logoUrl: "https://scaniverse.com/favicon.ico",
+    homepageUrl: "https://scaniverse.com/map",
+    repoUrl: null,
+    tagline: {
+      zh: "基于真实地理位置的 3D 记忆发布网络",
+      en: "Location-based 3D memory publishing network",
+    },
+    description: {
+      zh: "依托 Niantic 的真实世界元宇宙愿景，Scaniverse 将云端发布与全球三维数字地图紧密结合。你的高斯作品不仅是一个隔离的链接，更是一个被精确锚定在地球某个角落的数字坐标空间。",
+      en: "Backed by Niantic's real-world metaverse vision, Scaniverse tightly integrates cloud publishing with a global 3D digital map. Your Gaussian creations are not isolated links, but digital coordinate spaces accurately anchored to specific corners of the Earth.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "公开建图免费且不限量",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "赋予空间模型极强的现实地理属性",
+        en: "Endows spatial models with strong real-world geographic attributes",
+      },
+      {
+        zh: "全免费的云存储与极佳的移动端同步",
+        en: "Completely free cloud storage and excellent mobile synchronization",
+      },
+    ],
+    cons: [
+      {
+        zh: "为保障在线加载，模型会经过一定压缩",
+        en: "Models undergo some compression to ensure online loading",
+      },
+      {
+        zh: "完全不适合私有化与敏感商业资产托管",
+        en: "Completely unsuitable for privatized or sensitive commercial asset hosting",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "natural_landscape",
+    ],
+    tags: [
+      "publishing",
+      "dataset",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://scaniverse.com/map",
+    ],
+  },
+  {
+    name: "Polycam Explore",
+    slug: "polycam-explore",
+    category: "publishing",
+    logoUrl: "https://poly.cam/favicon.ico",
+    homepageUrl: "https://poly.cam/explore",
+    repoUrl: null,
+    tagline: {
+      zh: "海量三维空间资产的商业展示橱窗",
+      en: "The commercial display window for massive 3D spatial assets",
+    },
+    description: {
+      zh: "Polycam 的 Web 端更注重空间资产的实用性。它为公开与私有模型提供了详尽的尺寸测量、视点标注和评审流。对于数字建筑、遗迹存档和商业交付而言，它是极其规范的平台枢纽。",
+      en: "Polycam's Web platform focuses heavily on the utility of spatial assets. It provides detailed dimension measurements, viewpoint annotations, and review flows for both public and private models. For digital architecture, heritage archiving, and commercial deliveries, it is a highly standardized platform hub.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "公开探索免费；高级标注需 Pro",
+    openSource: false,
+    license: null,
+    level: "beginner",
+    pros: [
+      {
+        zh: "内置强大的测量与协作标注工具",
+        en: "Built-in powerful measurement and collaborative annotation tools",
+      },
+      {
+        zh: "SEO 结构极佳，便于创作者获得搜索曝光",
+        en: "Excellent SEO structure, facilitating search engine exposure for creators",
+      },
+    ],
+    cons: [
+      {
+        zh: "查看器界面较重工具感，缺乏艺术留白",
+        en: "Viewer UI feels heavy and utilitarian, lacking artistic whitespace",
+      },
+      {
+        zh: "高频商业嵌入会受订阅档位限制",
+        en: "High-frequency commercial embed calls are throttled by subscription tiers",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "indoor_living",
+    ],
+    tags: [
+      "publishing",
+      "dataset",
+    ],
+    lastVerifiedAt: "2026-04-28",
+    verified: true,
+    sources: [
+      "https://poly.cam/explore",
+    ],
+  },
+  {
+    name: "Adobe Lightroom",
+    slug: "adobe-lightroom",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.adobe.com/products/photoshop-lightroom.html",
+    repoUrl: null,
+    tagline: {
+      zh: "面向桌面、网页与移动端的照片编辑与整理。",
+      en: "Photo editing and organizing for desktop, web, and mobile.",
+    },
+    description: {
+      zh: "Lightroom 提供星标、色标、筛选与批量调整，可将子集导出到磁盘文件夹，供 COLMAP 或 3DGS 管线读取。该工具属于 3DGS 工作流的采集前置——照片筛选/降噪阶段，非 3DGS 核心工具。",
+      en: "Lightroom rates, filters, and batch-adjusts stills, then exports subsets to disk folders for photogrammetry or splat training prep. It is a capture/editing helper, not a 3DGS optimizer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Web",
+      "iOS",
+      "Android",
+    ],
+    pricing: "subscription",
+    priceNote: "摄影计划与存储档位以 Adobe 定价页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "Adobe 页面标题写明照片编辑与整理，并覆盖桌面、网页与移动端",
+        en: "Adobe positioning covers editing plus organizing across desktop, web, and mobile",
+      },
+      {
+        zh: "支持元数据与旗标筛选，可将入选照片导出到目标目录结构",
+        en: "Metadata and pick flags help export curated folders for downstream tools",
+      },
+      {
+        zh: "批量同步编辑可减少同场景曝光不一致带来的匹配噪声",
+        en: "Synced edits reduce exposure mismatch across bursts for feature matching",
+      },
+    ],
+    cons: [
+      {
+        zh: "订阅与云存储策略需与团队数据驻留要求对齐",
+        en: "Subscription and cloud storage policies must fit data residency needs",
+      },
+      {
+        zh: "复杂合成与逐像素修图通常仍需 Photoshop 等工具补充",
+        en: "Heavy compositing or pixel work often still needs Photoshop-class tools",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "retail",
+      "indoor_living",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.adobe.com/products/photoshop-lightroom.html",
+      "https://en.wikipedia.org/wiki/Adobe_Lightroom",
+    ],
+    vendor: "Adobe Inc.",
+    region: "global",
+    evidenceQuote: "Get Lightroom - Photo editing and organizing for desktop, web, and mobile",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Adobe marketing page fetched 2026-04-29",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Adobe Premiere Pro",
+    slug: "adobe-premiere-pro",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.adobe.com/products/premiere.html",
+    repoUrl: null,
+    tagline: {
+      zh: "Creative Cloud 下的行业常见非线性视频剪辑应用。",
+      en: "Industry-standard NLE distributed through Adobe Creative Cloud.",
+    },
+    description: {
+      zh: "Premiere Pro 用于时间线剪辑、生成代理、裁切与导出中间编码，便于后续抽帧或与其他工具衔接。该工具属于 3DGS 工作流的采集前置——视频清理阶段，非 3DGS 核心工具。",
+      en: "Premiere Pro edits timelines, builds proxies, trims footage, and exports mezzanine codecs before frame extraction or photogrammetry. It is an editing-stage helper, not a Gaussian splat trainer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "subscription",
+    priceNote: "订阅价格与套餐以 Adobe 官网与购物车为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "与 After Effects、Media Encoder 等 Adobe 组件共享 Creative Cloud 工作流",
+        en: "Integrates with After Effects and Media Encoder under Creative Cloud",
+      },
+      {
+        zh: "时间线可组织多机位与标记，便于批量导出片段或静帧",
+        en: "Timeline supports multicam and markers for batch exports or still grabs",
+      },
+      {
+        zh: "广泛使用的教程与插件生态，便于团队标准化导出预设",
+        en: "Large tutorial and plug-in ecosystem for standardized export presets",
+      },
+    ],
+    cons: [
+      {
+        zh: "订阅制长期成本需纳入制片预算；离线激活与席位管理依企业协议而定",
+        en: "Subscription pricing adds OPEX; enterprise seat management varies by contract",
+      },
+      {
+        zh: "具体可用编解码器受操作系统与 Adobe 版本影响，跨平台需验证导出设置",
+        en: "Available codecs depend on OS and build—validate export settings per platform",
+      },
+    ],
+    useCases: [
+      "retail",
+      "art_gallery",
+      "urban_outdoor",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.adobe.com/products/premiere.html",
+      "https://en.wikipedia.org/wiki/Adobe_Premiere_Pro",
+    ],
+    vendor: "Adobe Inc.",
+    region: "global",
+    evidenceQuote: "Adobe Premiere (formerly Adobe Premiere Pro) is a video editing application developed by Adobe and is distributed as part of the Adobe Creative Cloud suite.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Wikipedia lists stable release 26.0 / January 2026 as of 2026-04-29 fetch",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Agisoft Metashape",
+    slug: "agisoft-metashape",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.agisoft.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "商业 SfM/摄影测量套件，标准版支持 COLMAP 导出服务 3DGS。",
+      en: "Agisoft Metashape is a leading Structure from Motion (SfM) tool known for its ease of use and flexibility.",
+    },
+    description: {
+      zh: "Metashape 从航空或地面影像生成密集点云与网格，并可导出 COLMAP 兼容结果以对接 nerfstudio、Postshot 等训练器。Radiance Fields 报道标准许可证已包含 COLMAP 导出。提供 GUI 与批处理模式，适合测绘与文化遗产项目。",
+      en: "Metashape produces dense point clouds and meshes from aerial or ground imagery with COLMAP exports for splatting trainers. Radiance Fields notes COLMAP export availability on the standard license. It ships GUI and batch workflows.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "one-time",
+    priceNote: "永久许可证标价见 Agisoft 在线商店；升级策略以订单页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 报道 Metashape adds COLMAP Export to Standard License。",
+        en: "Radiancefields.com documents COLMAP export on standard licenses.",
+      },
+      {
+        zh: "官方提供多平台安装包下载页。",
+        en: "The vendor publishes installers for multiple desktop OSes.",
+      },
+      {
+        zh: "支持空三、DEM、正射影像等完整摄影测量输出。",
+        en: "Supports ortho mosaics and DEMs beyond splat prep.",
+      },
+    ],
+    cons: [
+      {
+        zh: "商业许可证费用显著高于开源 COLMAP。",
+        en: "Commercial license fees exceed open-source COLMAP.",
+      },
+      {
+        zh: "大规模项目需要高配 CPU/GPU 与存储。",
+        en: "Large projects need high CPU/GPU and storage.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "park",
+      "real_estate",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.agisoft.com/",
+      "https://radiancefields.com/platforms/agisoft-metashape",
+    ],
+    vendor: "Agisoft LLC",
+    region: "europe",
+    evidenceQuote: "Agisoft Metashape is a leading Structure from Motion (SfM) tool known for its ease of use and flexibility.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Agisoft Metashape adds COLMAP Export to Standard License (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "ANNX Studio",
+    slug: "annx-studio",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.annx.studio/",
+    repoUrl: null,
+    tagline: {
+      zh: "数字孪生方案，整合 Gaussian Splatting 与 NeRF。",
+      en: "ANNX is an innovative digital twin solution that enhances EMX's cutting-edge CDT technology by integrating AI technologies such as Gaussian Splatting and NeRF, taking it to the next level.",
+    },
+    description: {
+      zh: "ANNX Studio 将 Gaussian Splatting 与 NeRF 集成到 EMX CDT 数字孪生流程，用于 Windows 与 macOS 客户端。Radiance Fields 报道 360 相机支持、时尚行业合作等更新。许可与行业模板以官网为准。",
+      en: "ANNX Studio integrates splatting and NeRF into EMX digital-twin workflows with Windows and macOS builds. Radiance Fields covers 360 camera support and fashion partnerships. Licensing is defined on annx.studio.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "subscription",
+    priceNote: "Pro 功能与时间限定促销见 RF 新闻；以官网为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 列出 AnnxStudio Exits Beta With v1.1.0 等标题。",
+        en: "Radiancefields.com lists AnnxStudio v1.1.0 headlines.",
+      },
+      {
+        zh: "公开材料支持 360 相机输入（RF 新闻）。",
+        en: "RF posts announce 360 camera support.",
+      },
+      {
+        zh: "同时声明 splat 与 NeRF 能力（RF 引文）。",
+        en: "Vendor quote names both splatting and NeRF integrations.",
+      },
+    ],
+    cons: [
+      {
+        zh: "主要面向数字孪生与行业解决方案，非通用手机扫描 App。",
+        en: "Targets digital-twin solutions rather than casual mobile capture.",
+      },
+      {
+        zh: "部分功能与 EMX CDT 技术栈绑定。",
+        en: "Some features depend on the EMX CDT stack.",
+      },
+    ],
+    useCases: [
+      "real_estate",
+      "retail",
+      "performance",
+    ],
+    tags: [
+      "editing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.annx.studio/",
+      "https://radiancefields.com/platforms/annx-studio",
+    ],
+    vendor: "ANNX",
+    region: "korea",
+    evidenceQuote: "ANNX is an innovative digital twin solution that enhances EMX's cutting-edge CDT technology by integrating AI technologies such as Gaussian Splatting and NeRF, taking it to the next level.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF AnnxStudio Exits Beta With v1.1.0, Opening Pro Features Through January (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Arrival.Space",
+    slug: "arrival-space",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://arrival.space/",
+    repoUrl: "https://github.com/arrival-space/spz-js",
+    tagline: {
+      zh: "社交化 Web 三维空间，创建与讨论 Gaussian Splats 等内容。",
+      en: "Arrival.Space is an award-winning social 3D platform that enables people to create, connect, share, and discuss Gaussian Splats and other next-gen content on the immersive web.",
+    },
+    description: {
+      zh: "Arrival.Space 让用户在浏览器中创建空间、上传 splat 与多种媒体，并支持访客以头像进入。Radiance Fields 功能列表提到 SuperSplat 集成、SPZ 上传与 Apple Vision Pro 支持。部分客户端组件以开源仓库形式发布。",
+      en: "Arrival.Space hosts multi-user splat spaces in the browser with media overlays. Radiance Fields highlights SuperSplat integration, SPZ uploads, and Vision Pro support. Some client libraries ship on GitHub.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "PRO 功能列表见官网；具体价格以账户页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 记录 Arrival.Space Releases V.81 等版本新闻。",
+        en: "Radiancefields.com tracks releases such as V.81.",
+      },
+      {
+        zh: "公开 GitHub 仓库提供 spz-js 端口（RF 功能列表引用）。",
+        en: "GitHub hosts spz-js ports referenced by RF.",
+      },
+      {
+        zh: "支持多场景互联与空间音频供应商集成（RF 长文）。",
+        en: "RF copy notes multi-space linking and spatial audio integrations.",
+      },
+    ],
+    cons: [
+      {
+        zh: "社交与托管依赖平台账户政策。",
+        en: "Social features depend on platform account policies.",
+      },
+      {
+        zh: "大型 splat 数据集对网络带宽要求高。",
+        en: "Large splat datasets demand high bandwidth.",
+      },
+    ],
+    useCases: [
+      "event",
+      "education",
+      "performance",
+    ],
+    tags: [
+      "publishing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://arrival.space/",
+      "https://radiancefields.com/platforms/arrival-space",
+    ],
+    vendor: "Arrival.Space",
+    region: "europe",
+    evidenceQuote: "Arrival.Space is an award-winning social 3D platform that enables people to create, connect, share, and discuss Gaussian Splats and other next-gen content on the immersive web.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Arrival.Space Releases V.81 (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Blurry",
+    slug: "blurry",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://www.useblurry.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "浏览器内托管、分享与嵌入 3DGS 模型。",
+      en: "Blurry is the best way to host, share, and embed your 3DGS models to view in browser.",
+    },
+    description: {
+      zh: "Blurry 面向需要在网页中发布与嵌入三维高斯内容的团队，提供托管与分享链路。Radiance Fields 曾报道其增加 LOD 流式传输等功能。定价与带宽策略需查阅官网。适合营销页、商品展示等以链接分发的场景。",
+      en: "Blurry hosts and embeds 3D Gaussian splatting scenes for browser viewing. Radiance Fields covered features such as LOD streaming. Pricing and bandwidth limits must be read on useblurry.com.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "subscription",
+    priceNote: "具体月费以官网定价页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "产品聚焦浏览器内嵌入与分享链路。",
+        en: "Product focuses on browser embedding and share links.",
+      },
+      {
+        zh: "Radiance Fields 新闻含 Blurry Adds Level of Detail Streaming 标题。",
+        en: "Radiancefields.com lists a LOD streaming headline for Blurry.",
+      },
+      {
+        zh: "无需安装桌面客户端即可向访客分发。",
+        en: "Distribution is link-based without a desktop viewer requirement for visitors.",
+      },
+    ],
+    cons: [
+      {
+        zh: "托管型产品，模型需上传至供应商基础设施。",
+        en: "Hosted SaaS: assets upload to vendor infrastructure.",
+      },
+      {
+        zh: "订阅费用随流量与功能档变化。",
+        en: "Subscription cost scales with traffic and tier.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "real_estate",
+      "event",
+    ],
+    tags: [
+      "publishing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.useblurry.com/",
+      "https://radiancefields.com/platforms/blurry",
+    ],
+    vendor: "Blurry",
+    region: "north-america",
+    evidenceQuote: "Blurry is the best way to host, share, and embed your 3DGS models to view in browser.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Blurry Adds Level of Detail Streaming (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Brush",
+    slug: "brush",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://github.com/ArthurBrussee/brush",
+    repoUrl: "https://github.com/ArthurBrussee/brush",
+    tagline: {
+      zh: "本地与浏览器内训练 Radiance Field（3DGS），跨 Mac / Windows 等。",
+      en: "Brush is a locally training Radiance Field platform, capable of rapid training on both Mac and Windows.",
+    },
+    description: {
+      zh: "Brush 是面向 3D Gaussian Splatting 等 Radiance Field 方法的开源训练工具，代码托管在 GitHub。Radiance Fields 介绍其支持在 Mac 与 Windows 上本地训练，并提到浏览器与 WebGPU 相关路径。适合需要在本地或实验环境中跑通训练管线、并愿意跟进开源仓库更新的用户。",
+      en: "Brush is an open-source radiance-field trainer oriented around Gaussian splatting workflows, hosted on GitHub. Radiance Fields describes local training on Mac and Windows and mentions browser/WebGPU directions. It targets users who can follow a moving open-source repo and run training locally.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "Apache-2.0",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "源代码在 GitHub 公开，可审查提交历史。",
+        en: "Source code is public on GitHub with visible commit history.",
+      },
+      {
+        zh: "Radiance Fields 页列出 Brush Releases V0.3 等站内新闻标题。",
+        en: "Radiancefields.com lists headline posts such as Brush Releases V0.3.",
+      },
+      {
+        zh: "README 描述支持 COLMAP transforms 等常见数据布局（以仓库文档为准）。",
+        en: "The README discusses COLMAP-style datasets per the repository docs.",
+      },
+    ],
+    cons: [
+      {
+        zh: "实验性项目，API 与参数可能随版本变化。",
+        en: "Experimental project: APIs and flags can change between releases.",
+      },
+      {
+        zh: "训练性能依赖 GPU 与浏览器 WebGPU 支持情况。",
+        en: "Training performance depends on GPU and WebGPU availability.",
+      },
+    ],
+    useCases: [
+      "education",
+      "heritage",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/ArthurBrussee/brush",
+      "https://radiancefields.com/platforms/brush",
+    ],
+    vendor: "Arthur Brussee",
+    region: "europe",
+    evidenceQuote: "Brush is a locally training Radiance Field platform, capable of rapid training on both Mac and Windows.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF headlines include Brush Releases V0.3",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "BSD Studio",
+    slug: "bsd-studio",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://www.bsd3dgs.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "基于 3DGS 的本地重建与查看，支持文件夹/视频/多源空三导入。",
+      en: "Local 3DGS reconstruction with simplified workflow and built-in viewer.",
+    },
+    description: {
+      zh: "BSD Studio 在中文官网描述基于三维高斯泼溅的本地重建流程，页面列出照片、视频、全景视频与点云等输入形态，并提及与 Colmap、部分第三方空三成果导入相关的文案。内置查看器与导出能力在方案表中分级展示，应以当前安装版本与账号权益为准。",
+      en: "BSD Studio markets a local 3DGS reconstruction workflow on its Chinese site, listing multiple input modes and third-party SfM compatibility claims. Viewer and export limits are tiered; confirm against the installed build.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "freemium",
+    priceNote: "基础版标注免费；年度版标注 ¥1299 / 年（以官网为准）",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网写明支持将文件夹、视频、图片等拖入导入",
+        en: "Site states drag-in import for folders, video, and images",
+      },
+      {
+        zh: "官网方案页列出基础版与年度版功能差异条目",
+        en: "Pricing section lists feature differences between tiers",
+      },
+    ],
+    cons: [
+      {
+        zh: "基础版方案表标注成果导出能力受限（以页面为准）",
+        en: "Free tier table indicates export limitations (per site)",
+      },
+      {
+        zh: "厂商工商登记全称未在首页直接公示",
+        en: "Legal entity name is not shown on the landing page",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "retail",
+      "heritage",
+    ],
+    tags: [
+      "training",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.bsd3dgs.com/",
+      "https://www.bsd3dgs.com/",
+    ],
+    vendor: "BSD Studio（官网未公示工商登记全称）",
+    region: "china",
+    evidenceQuote: "基于尖端 3DGS （高斯泼溅）技术，让复杂场景的数字化从未如此简单、精准与快速。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "官网展示基础版与年度版方案（页面可访问日 2026-04-29）",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "Cesium ion / CesiumJS",
+    slug: "cesium",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://cesium.com/",
+    repoUrl: "https://github.com/CesiumGS/cesium",
+    tagline: {
+      zh: "在 CesiumJS、Unreal 与 ion 中流式发布带 LOD 的 3DGS。",
+      en: "Cesium has rolled out 3D Gaussian splat support with hierarchical level of detail (LOD) across its core stack, including CesiumJS, Cesium for Unreal, and Cesium ion.",
+    },
+    description: {
+      zh: "Cesium 将 3D Gaussian splats 作为 3D Tiles 与 glTF KHR 扩展的一部分进行流式加载，可在全球尺度场景中与传统地形、影像共存。开发者可通过 CesiumJS 或 Unreal 插件消费 ion 上的 tileset。开源组件遵循 Apache-2.0，而 ion 托管为商业服务。",
+      en: "Cesium streams Gaussian splats via 3D Tiles and Khronos glTF extensions alongside terrain and imagery. CesiumJS and Cesium for Unreal consume ion-hosted tilesets. Open runtimes use Apache-2.0 while ion hosting is a managed service.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+    ],
+    pricing: "freemium",
+    priceNote: "ion 社区账户可免费上传有限数据；企业功能另计",
+    openSource: true,
+    license: "Apache-2.0",
+    level: "expert",
+    pros: [
+      {
+        zh: "CesiumJS 与 Cesium for Unreal 开源仓库在 GitHub 可查。",
+        en: "CesiumJS and Unreal runtimes are open on GitHub.",
+      },
+      {
+        zh: "Radiance Fields 2026-04-28 文章引用 cesium.com 官方博客说明 LOD。",
+        en: "Radiance Fields (Apr 28, 2026) links the official Cesium blog on splat LOD.",
+      },
+      {
+        zh: "可与 Cesium World Terrain、Photorealistic Tiles 等同框合成。",
+        en: "Composes with Cesium World Terrain and photorealistic tilesets.",
+      },
+    ],
+    cons: [
+      {
+        zh: "大规模 ion 生产管线需要配置 API 与存储配额。",
+        en: "Large ion pipelines require API keys and storage quotas.",
+      },
+      {
+        zh: "运行时需支持 WebGL2/WebGPU 与扩展着色器路径。",
+        en: "Runtimes need capable GPUs and shader paths.",
+      },
+    ],
+    useCases: [
+      "real_estate",
+      "park",
+      "heritage",
+    ],
+    tags: [
+      "publishing",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://cesium.com/",
+      "https://radiancefields.com/cesium-adds-hierarchical-lod-for-gaussian-splats-to-3d-tiles-cesiumjs-and-cesium-for-unreal",
+    ],
+    vendor: "Cesium GS, Inc.",
+    region: "north-america",
+    evidenceQuote: "Cesium has rolled out 3D Gaussian splat support with hierarchical level of detail (LOD) across its core stack, including CesiumJS, Cesium for Unreal, and Cesium ion.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF article dated Apr 28, 2026; links cesium.com blog 2026-04-27",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Chaos V-Ray",
+    slug: "chaos-v-ray",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://www.chaos.com/vray",
+    repoUrl: null,
+    tagline: {
+      zh: "V-Ray 7 等版本支持导入与渲染 Gaussian Splatting 数据。",
+      en: "Chaos develops 3D visualization technology for architecture, engineering, construction, product design, manufacturing, and media and entertainment.",
+    },
+    description: {
+      zh: "V-Ray 在 AEC 与媒体娱乐流程中用于最终像素渲染。Radiance Fields 说明 V-Ray 7 Beta 可导入 Gaussian Splatting 训练的 PLY，并在 3ds Max、SketchUp、Revit、Cinema 4D 等主机中逐步铺开。需要在已授权的 DCC 内安装对应 V-Ray 插件。",
+      en: "V-Ray renders production frames for AEC and entertainment pipelines. Radiance Fields states V-Ray 7 beta imports Gaussian splatting-trained PLY files across multiple host apps. Active V-Ray licenses are required per host.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "subscription",
+    priceNote: "V-Ray Solo/Premium/Enterprise 订阅见 chaos.com",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "Radiance Fields 报道 Chaos V-Ray 7 Brings 3D Gaussian Splatting to Revit。",
+        en: "Radiancefields.com covers Revit splat support.",
+      },
+      {
+        zh: "同一 splat 资产可在多种 DCC 中检视（RF 长文列主机列表）。",
+        en: "RF copy lists multiple DCC hosts for splat review.",
+      },
+      {
+        zh: "支持将 splat 显示为点预览以降低视口负载（RF 长文）。",
+        en: "RF notes viewport point preview modes.",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要 Chaos 商业订阅与兼容宿主软件。",
+        en: "Requires paid Chaos licenses plus host applications.",
+      },
+      {
+        zh: "各主机插件版本号不同步，需分别更新。",
+        en: "Host plugins version independently; updates vary.",
+      },
+    ],
+    useCases: [
+      "real_estate",
+      "heritage",
+      "performance",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.chaos.com/vray",
+      "https://radiancefields.com/platforms/chaos-v-ray",
+    ],
+    vendor: "Chaos Software Ltd.",
+    region: "europe",
+    evidenceQuote: "Chaos develops 3D visualization technology for architecture, engineering, construction, product design, manufacturing, and media and entertainment.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Chaos V-Ray 7 Brings 3D Gaussian Splatting to Revit (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "COLMAP",
+    slug: "colmap",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://github.com/colmap/colmap",
+    repoUrl: "https://github.com/colmap/colmap",
+    tagline: {
+      zh: "开源 SfM 与多视图立体视觉管线，为 3DGS/NeRF 常用前置。",
+      en: "COLMAP - Structure-from-Motion and Multi-View Stereo.",
+    },
+    description: {
+      zh: "COLMAP 从多张照片估计相机参数并生成稀疏点云与稠密深度，为 Gaussian Splatting 与 NeRF 等后续训练提供标准输入。可本地运行，支持命令行与 GUI。Radiance Fields 曾报道 COLMAP 4.0 等大版本。适合需要完全掌控数据准备流程的技术用户。",
+      en: "COLMAP estimates camera poses and dense geometry from image sets, feeding standard COLMAP exports into splatting or NeRF trainers. It ships CLI and GUI binaries. Radiance Fields covered releases such as COLMAP 4.0. Expect a technical, desktop-focused workflow.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "BSD-3-Clause",
+    level: "expert",
+    pros: [
+      {
+        zh: "GitHub 发布页提供各平台二进制与源码。",
+        en: "GitHub releases ship binaries and source archives.",
+      },
+      {
+        zh: "Radiance Fields 报道 COLMAP 4.0 Introduces Major Performance and Infrastructure Updates。",
+        en: "Radiancefields.com documents COLMAP 4.0 release news.",
+      },
+      {
+        zh: "输出格式被 nerfstudio、Postshot 等生态广泛消费。",
+        en: "Export formats are consumed by trainers such as nerfstudio and Postshot.",
+      },
+    ],
+    cons: [
+      {
+        zh: "参数与命令行选项多，需要阅读文档。",
+        en: "Large CLI surface area requires reading the docs.",
+      },
+      {
+        zh: "大规模数据集对 CPU/GPU 与磁盘 I/O 要求高。",
+        en: "Large datasets stress CPU/GPU and disk I/O.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "real_estate",
+      "park",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/colmap/colmap",
+      "https://radiancefields.com/platforms/colmap",
+    ],
+    vendor: "COLMAP contributors",
+    region: "global",
+    evidenceQuote: "COLMAP - Structure-from-Motion and Multi-View Stereo.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF COLMAP 4.0 Introduces Major Performance and Infrastructure Updates",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "DaVinci Resolve",
+    slug: "davinci-resolve",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.blackmagicdesign.com/products/davinciresolve",
+    repoUrl: null,
+    tagline: {
+      zh: "Blackmagic 旗下集剪辑、调色、Fusion 特效与 Fairlight 音频于一体的后期软件。",
+      en: "All-in-one editorial, color, Fusion VFX, Fairlight audio, and still photo finishing from Blackmagic.",
+    },
+    description: {
+      zh: "DaVinci Resolve 可在单一时间线中完成代理生成、镜头整理、降噪与调色，再导出中间片或静帧序列供三维重建使用。该工具属于 3DGS 工作流的采集前置——视频清理阶段，非 3DGS 核心工具。",
+      en: "DaVinci Resolve handles offline/online editorial, noise reduction, color, and deliverables before exporting mezzanine clips or stills for photogrammetry. It is an editing-stage helper, not a 3DGS trainer or splat viewer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "freemium",
+    priceNote: "免费版与 Studio 并存；Studio 官网标价约 295 USD（以页面为准）",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网写明整合剪辑、调色、视觉特效、动态图形与音频后期于同一应用",
+        en: "Marketing copy bundles edit, color, VFX, motion graphics, and audio post in one app",
+      },
+      {
+        zh: "支持在单管线内处理摄像机原始素材并导出高质量中间结果",
+        en: "Can work camera-original media and export high-quality intermediates in one stack",
+      },
+      {
+        zh: "Fusion 与 Fairlight 模块可在同一工程内完成合成与声画同步，减少往返",
+        en: "Fusion and Fairlight reduce round-trips for compositing and sound sync",
+      },
+    ],
+    cons: [
+      {
+        zh: "完整高级功能需购买 Studio 许可证；团队多用户协作依赖 Blackmagic Cloud 等附加服务",
+        en: "Advanced capabilities require Studio; multi-user workflows may need cloud services",
+      },
+      {
+        zh: "节点调色与 Fusion 节点图学习成本高，对仅需简单裁切的团队可能过重",
+        en: "Node grading and Fusion graphs are heavy if you only need trims or proxies",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "retail",
+      "heritage",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.blackmagicdesign.com/products/davinciresolve",
+      "https://en.wikipedia.org/wiki/DaVinci_Resolve",
+    ],
+    vendor: "Blackmagic Design Pty Ltd",
+    region: "global",
+    evidenceQuote: "DaVinci Resolve is the world’s only solution that combines editing, color correction, visual effects, motion graphics, audio post production and now photo editing all in one software tool!",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Product page lists DaVinci Resolve 21 marketing copy 2026-04-29",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Dioramix",
+    slug: "dioramix",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://dioramix.eu/",
+    repoUrl: null,
+    tagline: {
+      zh: "浏览器内将 splat/mesh 组织成可演示的「幻灯片式」三维叙事（Babylon.js / WebGPU）。",
+      en: "Dioramix is a new browser based editor being developed by Olli Huttunen that treats the Gaussian Splat as a stage, not a destination.",
+    },
+    description: {
+      zh: "Dioramix 在本地浏览器中加载 PLY、SPZ、SOG 与 GLB/OBJ 等格式，创建相机「幻灯片」、热点与嵌入式媒体，并导出离线 ZIP。Radiance Fields 说明其基于 Babylon.js WebGPU，且 2026-04 时公开 beta 仍待邀请。",
+      en: "Dioramix authors browser-side presentations from splats and meshes with Babylon.js WebGPU, exporting offline ZIP bundles. Radiance Fields (Apr 2026) states a public beta is still pending invitation-only sandboxes.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "公开 beta，2026-04 仍在排队邀请制",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 说明导出为自包含 ZIP，可在任意静态主机部署。",
+        en: "Radiance Fields notes self-contained ZIP exports for static hosting.",
+      },
+      {
+        zh: "支持 PLY、SPZ、SOG 与 GLB/OBJ（RF 文列举）。",
+        en: "RF lists PLY, SPZ, SOG, GLB, and OBJ ingestion.",
+      },
+      {
+        zh: "默认本地处理，文章称不上传服务器。",
+        en: "The RF article claims local-only processing without server uploads.",
+      },
+    ],
+    cons: [
+      {
+        zh: "2026-04 时公开 beta 仍未全面开放，需要邀请 sandbox。",
+        en: "As of Apr 2026, public beta remained invite-gated.",
+      },
+      {
+        zh: "重度场景依赖浏览器 WebGPU 实现与内存。",
+        en: "Heavy scenes depend on WebGPU support and RAM.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "education",
+      "performance",
+    ],
+    tags: [
+      "editing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://dioramix.eu/",
+      "https://radiancefields.com/olli-huttunen-announces-dioramix",
+    ],
+    vendor: "Olli Huttunen",
+    region: "europe",
+    evidenceQuote: "Dioramix is a new browser based editor being developed by Olli Huttunen that treats the Gaussian Splat as a stage, not a destination.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF article Apr 28, 2026",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "DIVSHOT",
+    slug: "divshot",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://github.com/fenghuayumo/DIVSHOT",
+    repoUrl: "https://github.com/fenghuayumo/DIVSHOT",
+    tagline: {
+      zh: "国人开源的 Windows 向 3DGS 训练与编辑客户端，GitHub Releases 分发。",
+      en: "Chinese-developed desktop 3DGS trainer/editor distributed via GitHub Releases.",
+    },
+    description: {
+      zh: "DIVSHOT 在中文教程中被描述为基于 Gaussian Splatting 的实时渲染与编辑客户端，并提到与 SuperSplat 出现后的功能扩展关系。GitHub 仓库提供 Releases 下载入口。训练轮数与导出格式以对应版本说明为准。",
+      en: "DIVSHOT is documented in Chinese tutorials as a Gaussian Splatting training and editing client with GitHub Releases builds. Training iterations and export formats depend on the release notes.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: null,
+    level: "intermediate",
+    pros: [
+      {
+        zh: "GitHub Releases 提供可下载的安装包列表",
+        en: "GitHub Releases lists downloadable installers",
+      },
+      {
+        zh: "中文教程逐步给出导入图片与导出菜单路径",
+        en: "A Chinese tutorial lists import and export menu paths",
+      },
+    ],
+    cons: [
+      {
+        zh: "仓库根目录 LICENSE 需在浏览器中人工打开核对",
+        en: "Root LICENSE file must be checked manually",
+      },
+      {
+        zh: "教程提示部分版本存在启动失败需换版本的现象",
+        en: "Tutorial notes some builds fail to launch until downgrading",
+      },
+    ],
+    useCases: [
+      "indoor_living",
+      "retail",
+      "heritage",
+    ],
+    tags: [
+      "training",
+      "editing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/fenghuayumo/DIVSHOT",
+      "https://www.hangge.com/blog/cache/detail_4970.html",
+    ],
+    vendor: "fenghuayumo（独立开发者）",
+    region: "china",
+    evidenceQuote: "本文介绍的 DIVSHOT 就是一款国人开发的免费的 3DGS 训练软件。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "中文教程 2026-04-21；Releases 以 GitHub 为准",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "DJI Terra",
+    slug: "dji-terra",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://enterprise.dji.com/cn/dji-terra",
+    repoUrl: null,
+    tagline: {
+      zh: "大疆行业应用三维重建软件，FAQ 描述 3D Gaussian Splatting 与 TerraGS 扩展。",
+      en: "DJI enterprise photogrammetry app; FAQ documents 3DGS and TerraGS for CesiumJS.",
+    },
+    description: {
+      zh: "DJI Terra 在英文 FAQ 中说明 Gaussian Splatting 重建速度、硬件要求，以及 TerraGS 三维高斯泼溅在 CesiumJS 中的加载模块。中文路径站点在抓取时正文主要为英文。试用申请与同页购买咨询表单以官网为准。",
+      en: "DJI Terra FAQs document Gaussian Splatting reconstruction FAQs and a TerraGS extension for CesiumJS. The CN URL served English copy in this capture.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "enterprise",
+    priceNote: "标准版/旗舰版/集群版通过经销商订购；FAQ 描述试用限制",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "FAQ 写明 TerraGS 扩展由 DJI Terra 团队开发",
+        en: "FAQ states TerraGS is built by the DJI Terra team",
+      },
+      {
+        zh: "FAQ 列出 Gaussian Splatting 与传统网格清晰度的对比段落",
+        en: "FAQ includes a GS vs mesh clarity comparison section",
+      },
+    ],
+    cons: [
+      {
+        zh: "cn 路径 FAQ 正文为英文，需 PDF 手册补中文引文",
+        en: "CN FAQ content is English; Chinese PDFs needed for CN quotes",
+      },
+      {
+        zh: "试用条款限制照片数量与 LiDAR 数据大小",
+        en: "Trial terms cap photo count and LiDAR data size",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "natural_landscape",
+      "heritage",
+    ],
+    tags: [
+      "training",
+      "capture",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://enterprise.dji.com/cn/dji-terra",
+      "https://enterprise.dji.com/cn/dji-terra/faq",
+    ],
+    vendor: "深圳市大疆创新科技有限公司",
+    region: "china",
+    evidenceQuote: "TerraGS 3D Gaussian Splatting Extension for CesiumJS is a 3DGS rendering module developed by the DJI Terra team as an extension for the CesiumJS engine.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "FAQ 页可访问 2026-04-29",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "FFmpeg",
+    slug: "ffmpeg",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://ffmpeg.org",
+    repoUrl: "https://github.com/FFmpeg/FFmpeg",
+    tagline: {
+      zh: "命令行多媒体处理套件，含 libavcodec、libavfilter 等库。",
+      en: "CLI multimedia suite with libavcodec, libavformat, libavfilter, and more.",
+    },
+    description: {
+      zh: "FFmpeg 通过 ffmpeg 可执行文件与滤镜图完成转码、缩放、裁剪、拼接与抽帧等操作，教程与脚本常以它为预处理步骤。该工具属于 3DGS 工作流的采集前置——视频帧导出阶段，非 3DGS 核心工具。",
+      en: "FFmpeg provides the `ffmpeg` CLI and libraries for transcoding, scaling, trimming, and exporting frame sequences—common in 3DGS capture prep. It is not a Gaussian splat trainer or viewer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "LGPL-2.1-or-later / GPL-2.0-or-later (build-dependent)",
+    level: "expert",
+    pros: [
+      {
+        zh: "维基条目写明涵盖转码、裁剪拼接、缩放与后期类滤镜，可脚本化批处理",
+        en: "Encyclopedia summary lists transcoding, trim/concat, scaling, and effects via filters",
+      },
+      {
+        zh: "同一生态提供 ffprobe 用于输出容器与流技术参数，便于写死抽帧参数",
+        en: "Ships ffprobe for stream metadata, stabilizing downstream frame-export scripts",
+      },
+      {
+        zh: "可导出 PNG、JPEG 等图像序列作为 COLMAP 或 3DGS 管线输入",
+        en: "Can emit PNG/JPEG sequences as inputs to SfM or 3DGS pipelines",
+      },
+    ],
+    cons: [
+      {
+        zh: "命令行与滤镜语法需要维护文档化脚本，团队协作需约定版本与编译选项",
+        en: "CLI and filter graphs require maintained scripts; teams must pin builds/options",
+      },
+      {
+        zh: "启用特定编解码器或硬件路径时，许可与二进制分发条款因编译配置而异",
+        en: "Codec enablement and redistribution terms vary with build configuration",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "urban_outdoor",
+      "natural_landscape",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://ffmpeg.org",
+      "https://en.wikipedia.org/wiki/FFmpeg",
+    ],
+    vendor: "FFmpeg project",
+    region: "global",
+    evidenceQuote: "FFmpeg is a free and open-source software project consisting of a suite of libraries and programs for handling video, audio, and other multimedia files and streams.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Wikipedia article fetched 2026-04-29; ffmpeg.org release cadence see official site",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "AirVis",
+    slug: "gaussiansplatting-app",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://rocklandtechnologies.com/airvis",
+    repoUrl: null,
+    tagline: {
+      zh: "基于 Object Capture 与 Gaussian Splats 的移动端三维捕获与沉浸式查看。",
+      en: "Capture, explore, and share immersive 3D creations using Object Capture and Gaussian Splats across mobile and mixed reality devices.",
+    },
+    description: {
+      zh: "AirVis 由 Rockland Technologies 提供，面向手机与混合现实设备：用户可用设备拍摄三维内容，以沉浸式方式浏览，并在官网所列应用商店渠道分发。官网写明采用 Object Capture 与 Gaussian Splats 相关工作流；具体导出格式与订阅边界以各商店说明为准。",
+      en: "AirVis is a commercial app from Rockland Technologies for creating 3D captures on phones and related devices, viewing them immersively, and sharing via the store links listed on its site. The marketing site names Object Capture and Gaussian Splats. Export limits and pricing are defined by the mobile and XR store listings, not reproduced here.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+    ],
+    pricing: "freemium",
+    priceNote: "具体 Pro 档位与各平台 IAP 以 App Store / Google Play / Meta 商店为准 [需进一步核实]",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "官网提供 App Store、Google Play、Meta Horizon Store 链接",
+        en: "Official site links to App Store, Google Play, and Meta Horizon Store listings",
+      },
+      {
+        zh: "官网文案写明支持 Object Capture 与 Gaussian Splats",
+        en: "Marketing copy explicitly mentions Object Capture and Gaussian Splats",
+      },
+      {
+        zh: "同页列出面向创作者与团队的定位语句",
+        en: "Same page states positioning for creators, explorers, and teams",
+      },
+    ],
+    cons: [
+      {
+        zh: "闭源应用，训练与重建管线细节未在官网公开为可审计代码",
+        en: "Closed-source app; reconstruction pipeline details are not published as auditable code",
+      },
+      {
+        zh: "免费与付费档功能边界依赖各应用商店的 IAP 描述",
+        en: "Free vs paid feature boundaries depend on each store IAP description",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+      "art_gallery",
+    ],
+    tags: [
+      "capture",
+      "viewing",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://rocklandtechnologies.com/airvis",
+      "https://apps.apple.com/us/app/airvis/id6737998221",
+    ],
+    vendor: "Rockland Technologies Inc.",
+    region: "north-america",
+    evidenceQuote: "AirVis lets you create 3D captures with your device, view them in an immersive way, and share them across supported platforms.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Developer site and store listings fetched in task run 2026-04-29",
+    discoverySource: "reddit",
+  },
+  {
+    name: "Gauzilla",
+    slug: "gauzilla",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://gauzilla.xyz/",
+    repoUrl: null,
+    tagline: {
+      zh: "基于浏览器的 3DGS 编辑与查看，无需安装。",
+      en: "Gauzilla Pro is a 3DGS viewer & editor, with no installation required.",
+    },
+    description: {
+      zh: "Gauzilla 在浏览器中加载与编辑三维高斯场景，Radiance Fields 摘要强调免安装。公开材料还区分开源 Basic 版本与 Pro 测试计划，并提到 WebGPU 与分割等功能。适合需要快速在网页内做对象级编辑与导出的用户。",
+      en: "Gauzilla loads and edits Gaussian splatting scenes in the browser without installers, per Radiance Fields. Vendor materials differentiate an open Basic tier and a Pro beta with WebGPU-heavy features. Confirm licensing on gauzilla.xyz.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "Basic 开源；Pro 为付费测试档，详见官网",
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "主要交互在浏览器内完成，无需本地安装。",
+        en: "Authoring is browser-based without a mandatory desktop install.",
+      },
+      {
+        zh: "Radiance Fields 新闻索引 Gauzilla Pro adds Editing Features。",
+        en: "Radiancefields.com references Gauzilla Pro editing headlines.",
+      },
+      {
+        zh: "公开页面描述 WebGPU 与 ViT 分割等能力（RF 长文）。",
+        en: "RF long-form copy mentions WebGPU paths and ViT segmentation.",
+      },
+    ],
+    cons: [
+      {
+        zh: "Pro 功能可能处于 waitlist 或测试阶段。",
+        en: "Pro capabilities may remain waitlisted or beta-gated.",
+      },
+      {
+        zh: "重度场景依赖浏览器 WebGPU 与内存。",
+        en: "Heavy scenes depend on browser WebGPU and RAM.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "education",
+      "heritage",
+    ],
+    tags: [
+      "editing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://gauzilla.xyz/",
+      "https://radiancefields.com/platforms/gauzilla",
+    ],
+    vendor: "Gauzilla",
+    region: "europe",
+    evidenceQuote: "Gauzilla Pro is a 3DGS viewer & editor, with no installation required.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Gauzilla Pro adds Editing Features (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Gracia",
+    slug: "gracia-3d-flow",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://gracia.ai/",
+    repoUrl: "https://github.com/gracia-labs/web-sdk",
+    tagline: {
+      zh: "4D Gaussian Splatting 体积视频端到端基础设施，云端处理与 VR/WebXR 分发。",
+      en: "End-to-end infrastructure for 4DGS volumetric video: cloud processing and VR/WebXR distribution.",
+    },
+    description: {
+      zh: "Gracia 面向影视、广告与 XR 活动，提供基于 4D Gaussian Splatting 的体积视频生产与发布。官网描述云端端到端自动化处理管线，并支持在 Meta Quest、Pico、PCVR 以及 WebXR 与桌面 2D 上体验内容；公开提供 Web SDK 仓库以便开发者集成。引擎侧插件在官网上多标注为开发中，以当前页面为准。",
+      en: "Gracia provides an end-to-end pipeline for 4D Gaussian Splatting volumetric video, including cloud processing and distribution to VR headsets, PCVR, and WebXR or 2D streaming. A public GitHub repository hosts the Gracia Web SDK. Engine plugins are listed on the site with several marked as in development.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+      "macOS",
+    ],
+    pricing: "enterprise",
+    priceNote: "[需进一步核实] 官网未列出公开价目；联系表单获取合作信息",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网声明支持 WebXR 下流式播放 4DGS 内容（标注带宽与头显系统要求）",
+        en: "Site states 4DGS streaming in WebXR with bitrate and headset OS requirements listed.",
+      },
+      {
+        zh: "Radiance Fields 条目描述覆盖美欧英加日等地的拍摄合作与云端处理",
+        en: "Radiance Fields profile lists capture partnerships across US, EU, UK, Canada, and Japan plus cloud processing.",
+      },
+      {
+        zh: "公开 GitHub 仓库 gracia-labs/web-sdk 供 Web 集成查阅",
+        en: "Public GitHub repo gracia-labs/web-sdk is available for Web integration.",
+      },
+    ],
+    cons: [
+      {
+        zh: "官网列出的多款 DCC/引擎插件仍标注为开发中",
+        en: "Several DCC/engine plugins on the homepage are marked as in development.",
+      },
+      {
+        zh: "WebXR 流式场景对网络带宽与设备型号有硬性说明（如 80+ Mbps、Quest 系统版本）",
+        en: "WebXR streaming lists hard requirements such as 80+ Mbps internet and specific Quest OS versions.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "art_gallery",
+      "urban_outdoor",
+    ],
+    tags: [
+      "publishing",
+      "viewing",
+      "training",
+      "real_time",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://gracia.ai/",
+      "https://radiancefields.com/platforms/gracia",
+      "https://github.com/gracia-labs/web-sdk",
+    ],
+    vendor: "Gracia AI, Inc. / GRACIA AI LTD",
+    region: "europe",
+    evidenceQuote: "Gracia is the world's first platform with free-viewpoint photorealistic VR experiences with Gaussian Splatting",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Site footer © 2026; RF platform page lists multiple 2025–2026 headlines",
+    discoverySource: "x-twitter",
+  },
+  {
+    name: "Gracia",
+    slug: "gracia",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://gracia.ai/",
+    repoUrl: null,
+    tagline: {
+      zh: "4D Gaussian Splatting volumetric 内容与 VR/WebXR 分发。",
+      en: "Gracia is the world's first platform with free-viewpoint photorealistic VR experiences with Gaussian Splatting",
+    },
+    description: {
+      zh: "Gracia 分发 4D Gaussian Splatting 内容到独立 VR、PC VR 与 WebXR 浏览器。Radiance Fields 长文列出 Unity/Unreal 插件与主题乐园等案例。适合需要沉浸式播放 volumetric 视频的团队。",
+      en: "Gracia streams 4D Gaussian splatting content to Quest, Pico, PC VR, and WebXR. Radiance Fields documents Unity/Unreal plugins and venue case studies. Playback tiers are defined on gracia.ai.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+    ],
+    pricing: "subscription",
+    priceNote: "内容分发与插件许可以官网与商店为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 报道 Gracia Launches Dynamic Gaussian Splatting 等里程碑。",
+        en: "Radiancefields.com covers dynamic splatting launches.",
+      },
+      {
+        zh: "公开材料列出 Quest 3/3S、Pico 4 Ultra 等头显。",
+        en: "Marketing copy lists Quest 3/3S and Pico 4 Ultra support.",
+      },
+      {
+        zh: "提供 Unity 与 Unreal 插件下载（RF 长文）。",
+        en: "RF copy references Unity and Unreal plugins.",
+      },
+    ],
+    cons: [
+      {
+        zh: "播放端需要兼容的头显或 WebXR 浏览器。",
+        en: "Playback requires supported headsets or WebXR browsers.",
+      },
+      {
+        zh: "4D 内容体积与带宽需求高于静态 splat。",
+        en: "4D assets demand higher bandwidth than static splats.",
+      },
+    ],
+    useCases: [
+      "performance",
+      "event",
+      "park",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://gracia.ai/",
+      "https://radiancefields.com/platforms/gracia",
+    ],
+    vendor: "Gracia",
+    region: "europe",
+    evidenceQuote: "Gracia is the world's first platform with free-viewpoint photorealistic VR experiences with Gaussian Splatting",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Gracia Launches 4DGS Experience at PortAventura Park (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Graswald",
+    slug: "graswald",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://graswald.ai/",
+    repoUrl: null,
+    tagline: {
+      zh: "用高斯泼溅从视频/图像生成逼真三维并用于 Web/AR。",
+      en: "graswald.ai uses the power of gaussian splatting to turn videos and images of real-world objects into photorealistic 3D models.",
+    },
+    description: {
+      zh: "Graswald 面向电商与产品可视化，将视频与静态图重建为 Gaussian Splatting 表示，并支持在网页与 AR 链路分发。Radiance Fields 以「3DGS and Ecommerce Platform」为标题报道。账户与导出条款见 graswald.ai。",
+      en: "Graswald targets ecommerce by turning product videos and stills into Gaussian splatting assets for web and AR playback. Radiance Fields headlines it as a 3DGS ecommerce platform. Pricing is listed on the vendor site.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "subscription",
+    priceNote: "企业向方案，具体报价需联系销售",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "公开材料强调电商与 AR 展示链路。",
+        en: "Vendor messaging highlights ecommerce and AR outputs.",
+      },
+      {
+        zh: "Radiance Fields 提供 Graswald.ai: 3DGS and Ecommerce Platform 报道。",
+        en: "Radiancefields.com ran a Graswald ecommerce headline.",
+      },
+      {
+        zh: "输入形态包含视频与图像（RF 引文）。",
+        en: "Inputs include video and images per the RF quote.",
+      },
+    ],
+    cons: [
+      {
+        zh: "主要面向商业客户，非完全免费工具。",
+        en: "Targets commercial users rather than a fully free stack.",
+      },
+      {
+        zh: "重建质量依赖采集布光与相机运动。",
+        en: "Output quality depends on capture lighting and motion.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "event",
+      "education",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://graswald.ai/",
+      "https://radiancefields.com/platforms/graswald",
+    ],
+    vendor: "Graswald GmbH",
+    region: "europe",
+    evidenceQuote: "graswald.ai uses the power of gaussian splatting to turn videos and images of real-world objects into photorealistic 3D models.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Graswald.ai: 3DGS and Ecommerce Platform (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "HandBrake",
+    slug: "handbrake",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://handbrake.fr",
+    repoUrl: "https://github.com/HandBrake/HandBrake",
+    tagline: {
+      zh: "志愿者维护的开源视频转码器，面向常见分发编码。",
+      en: "Volunteer-built open-source transcoder targeting modern, widely supported codecs.",
+    },
+    description: {
+      zh: "HandBrake 将多种来源视频转为 H.264/H.265 等常见编码，便于在统一编码后再做抽帧或下游处理。该工具属于 3DGS 工作流的采集前置——视频帧导出阶段，非 3DGS 核心工具。",
+      en: "HandBrake transcodes camera or edit exports into common delivery codecs before frame extraction or photogrammetry prep. It is capture-adjacent, not a 3DGS training or splat renderer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "GPL-2.0",
+    level: "beginner",
+    pros: [
+      {
+        zh: "官网写明可将几乎任意格式转为多种现代、广泛支持的编码",
+        en: "Marketing site states conversion from nearly any format to modern codecs",
+      },
+      {
+        zh: "提供 Windows、macOS、Linux 构建与固定版本号下载入口",
+        en: "Ships official builds for Windows, macOS, and Linux with versioned downloads",
+      },
+      {
+        zh: "适合在抽帧前统一容器与编码，减少播放器或脚本端兼容问题",
+        en: "Useful to normalize containers/codecs before scripted frame exports",
+      },
+    ],
+    cons: [
+      {
+        zh: "预设偏向分发与归档场景，专业中间片（如某些 RAW/EXR 管线）需其他工具衔接",
+        en: "Presets target delivery; specialist mezzanine or EXR pipelines need other apps",
+      },
+      {
+        zh: "复杂滤镜链仍可能需要改用命令行 FFmpeg 以获得逐参数控制",
+        en: "Complex filter graphs may still require CLI FFmpeg for full control",
+      },
+    ],
+    useCases: [
+      "retail",
+      "urban_outdoor",
+      "natural_landscape",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://handbrake.fr",
+      "https://en.wikipedia.org/wiki/HandBrake",
+    ],
+    vendor: "HandBrake community",
+    region: "global",
+    evidenceQuote: "HandBrake is a open-source tool, built by volunteers, for converting video from nearly any format to a selection of modern, widely supported codecs.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Site lists HandBrake 1.11.1 macOS download 2026-04-29 fetch",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "华为河图 Cyberverse",
+    slug: "huawei-cyberverse",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://www.huaweicloud.com/product/live/dspace.html",
+    repoUrl: null,
+    tagline: {
+      zh: "华为云承载的河图 Cyberverse，面向空间计算、虚实融合与大规模地图能力。",
+      en: "Huawei Cloud Hetu Cyberverse for spatial computing and large-scale mapping.",
+    },
+    description: {
+      zh: "华为云河图 Cyberverse 页面描述面向数字孪生与 AR 场景的产品优势，列出厘米级定位与一度级定姿、毫米级三维识别、虚实遮挡渲染，以及每平方公里数十亿信息点级别的地图自动化生产等要点。集成方式与计费需查阅华为云对应产品文档。",
+      en: "The Huawei Cloud Hetu Cyberverse page lists AR and digital-twin oriented capabilities such as 6DoF localization, millimeter-level 3D recognition, occlusion-aware rendering, and large-scale mapping production claims.",
+    },
+    platforms: [
+      "Web",
+      "Android",
+    ],
+    pricing: "enterprise",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "华为云产品页列出 6DoF 与大规模地图构建等条目",
+        en: "Product page lists 6DoF and large-scale mapping bullets",
+      },
+      {
+        zh: "同页给出文旅、商圈等应用场景标题",
+        en: "Page includes scenario headings such as culture and retail",
+      },
+    ],
+    cons: [
+      {
+        zh: "阶段 2 未在抓取环境完成 API 清单与计费页全量核对",
+        en: "API catalog and pricing pages were not fully verified here",
+      },
+      {
+        zh: "部分能力依赖端侧设备与网络条件",
+        en: "Some capabilities depend on device and network conditions",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "retail",
+      "urban_outdoor",
+    ],
+    tags: [
+      "publishing",
+      "slam",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.huaweicloud.com/product/live/dspace.html",
+      "https://www.huaweicloud.com/product/live/dspace.html",
+    ],
+    vendor: "华为技术有限公司",
+    region: "china",
+    evidenceQuote: "河图（Cyberverse）致力打造地球级的、不断演进的，与现实无缝融合的数字新世界。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "华为云页面可访问；页脚显示 ©2026",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "Hugin",
+    slug: "hugin",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://hugin.sourceforge.io/",
+    repoUrl: "https://hg.code.sf.net/p/hugin/hugin",
+    tagline: {
+      zh: "基于 Panorama Tools 生态的开源全景拼接与 HDR 合成前端。",
+      en: "Open-source panorama stitcher and HDR merger built on the Panorama Tools stack.",
+    },
+    description: {
+      zh: "Hugin 通过控制点匹配与优化将多张照片对齐，输出多种投影（含等距圆柱），可作为球面或广角采集的前置拼接步骤。该工具属于 3DGS 工作流的采集前置——全景/HDR 拼接阶段，非 3DGS 核心工具。",
+      en: "Hugin matches control points, optimizes transforms, and exports projections including equirectangular—useful prep for spherical capture plates. It is not a Gaussian splat trainer or viewer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "GPL-2.0+",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "维基条目写明跨平台开源，并支持控制点、优化预览与多种地图投影输出",
+        en: "Encyclopedia notes cross-platform OSS with control points, preview, and projections",
+      },
+      {
+        zh: "与 Enblend、Enfuse 等工具链衔接，可处理 HDR 与曝光包围",
+        en: "Pairs with Enblend/Enfuse for HDR and exposure-bracketed stacks",
+      },
+      {
+        zh: "可自建批处理与脚本化输出，适合需要可重复参数集的研究流程",
+        en: "Supports scripted batches for reproducible research workflows",
+      },
+    ],
+    cons: [
+      {
+        zh: "交互与术语门槛高于一键商用拼接器，需要理解控制点与镜头模型",
+        en: "Steeper learning curve than turnkey stitchers; needs lens model literacy",
+      },
+      {
+        zh: "GUI 与文档以英文为主，中文资料分散",
+        en: "Primary docs are English-first; localized guides vary in quality",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "natural_landscape",
+      "urban_outdoor",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://hugin.sourceforge.io/",
+      "https://en.wikipedia.org/wiki/Hugin_(software)",
+    ],
+    vendor: "Hugin project",
+    region: "global",
+    evidenceQuote: "Hugin is a cross-platform open source panorama photo stitching and HDR merging program developed by Pablo d'Angelo and others.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Wikipedia lists stable release 2025.0.1 / 13 December 2025 as of 2026-04-29",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "影石 Insta360",
+    slug: "insta360",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.insta360.com/cn",
+    repoUrl: null,
+    tagline: {
+      zh: "消费级全景相机作为 3DGS 采集端，可与下游训练软件组合完成实景重建。",
+      en: "Consumer 360 cameras as capture hardware paired with downstream 3DGS training stacks.",
+    },
+    description: {
+      zh: "影石 Insta360 提供多型号全景与运动相机产品线，用于获取全景影像素材。三维高斯泼溅工作流通常在 PC 端训练软件中完成；公开行业稿曾以 ONE RS 等设备为例描述与 3DGS 训练衔接。支持的导出格式与分辨率以各型号说明书为准。",
+      en: "Insta360 sells consumer 360 cameras that output panoramic footage for downstream photogrammetry or 3DGS training pipelines on PCs. Supported export formats depend on the camera model documentation.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+      "Windows",
+      "macOS",
+    ],
+    pricing: "one-time",
+    priceNote: "硬件一次性购买；不同型号价格见官网商城",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "官网提供多型号全景相机参数与商城购买入口",
+        en: "Official site lists multiple 360 camera models with specs",
+      },
+      {
+        zh: "行业技术文章给出将 Insta360 全景素材接入 3DGS 训练的示例链路",
+        en: "A third-party industry article documents a 3DGS workflow using Insta360 footage",
+      },
+    ],
+    cons: [
+      {
+        zh: "本条 evidenceQuote 目前来自第三方行业稿，非影石官网逐字句",
+        en: "The evidence quote currently comes from a third-party article, not Insta360 official copy",
+      },
+      {
+        zh: "全景视频转 3DGS 仍需在 PC 端训练软件中完成",
+        en: "Panoramic footage still requires desktop training software for 3DGS",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "natural_landscape",
+      "urban_outdoor",
+    ],
+    tags: [
+      "capture",
+      "outdoor",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.insta360.com/cn",
+      "https://www.hdsl3d.com/?jslc/140.html",
+    ],
+    vendor: "影石创新科技股份有限公司",
+    region: "china",
+    evidenceQuote: "海德斯路通过反复验证，最终选用影石Insta360 ONE RS全景相机作为采集终端，其四大核心优势与3DGS技术深度契合",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "影石官网可访问；行业稿日期 2025-06-16",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "IZUTSUYA",
+    slug: "izutsuya",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://izutsuya.io/",
+    repoUrl: null,
+    tagline: {
+      zh: "日本团队以 Gaussian Splatting 进行实物 3D/4D 扫描，并提供 4dgs.jp 免费浏览器查看器。",
+      en: "Japanese studio capturing real objects with Gaussian Splatting and offering the free 4dgs.jp browser viewer for 3DGS/4DGS/PCD.",
+    },
+    description: {
+      zh: "株式会社 IZUTSUYA 在公司官网写明以 Gaussian Splatting 对实物做高精度扫描并制作 3D 数据，同时运营 4dgs.jp 上的免费查看器，面向 4DGS、3DGS 与 PCD 数据。日文公告还描述了 4DGS 查看器对 .splatv 等形式与 WebGL/WebGPU 显示的支持。适合需要日文本地服务商与浏览器端 splat 预览链路的用户对照评估。",
+      en: "IZUTSUYA states on its corporate site that it scans real objects using Gaussian Splatting to produce high-quality 3D data, and it runs a free viewer at 4dgs.jp for 4DGS, 3DGS, and point clouds. Japanese release posts describe browser-based 4DGS viewing features including .splatv-related workflows. Useful as a documented Japan-based vendor plus a public splat viewer entry point.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "enterprise",
+    priceNote: "扫描与项目报价为商务洽谈，官网未列公开价目表",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网日文直接写明 Gaussian Splatting 扫描工作流",
+        en: "Corporate site explicitly describes Gaussian Splatting-based scanning",
+      },
+      {
+        zh: "4dgs.jp 页面写明提供 4DGS/3DGS/PCD 向け無料ビューワー",
+        en: "4dgs.jp states a free viewer for 4DGS, 3DGS, and PCD data",
+      },
+      {
+        zh: "2025-10-26 日文新闻稿记载 4DGS 专用浏览器查看器公开",
+        en: "Japanese post dated 2025-10-26 documents a public 4DGS browser viewer",
+      },
+    ],
+    cons: [
+      {
+        zh: "主要为企业向扫描与内容制作，个人用户定价与自助流程需在询价中确认",
+        en: "B2B-oriented capture; consumer pricing and self-serve scope need sales confirmation",
+      },
+      {
+        zh: "公开页面未给出与第三方工具链的完整兼容矩阵",
+        en: "No full public compatibility matrix versus third-party tools",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "retail",
+      "urban_outdoor",
+    ],
+    tags: [
+      "capture",
+      "viewing",
+      "cultural_heritage",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://izutsuya.io/",
+      "https://4dgs.jp/ja/",
+      "https://izutsuya.io/2025/10/26/4d-gaussian-splatting/",
+    ],
+    vendor: "株式会社 IZUTSUYA",
+    region: "japan",
+    evidenceQuote: "4Dガウシアンスプラッティング(4DGS)、3Dガウシアンスプラッティング(3DGS)、PCDデータ向け無料ビューワーツールです。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "2025-10-26 开发博客发布 4DGS 查看器；2026-04 官网 News 栏仍有更新条目",
+    discoverySource: "japan-korea-zone",
+  },
+  {
+    name: "Remy",
+    slug: "kiri-remy",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.kiriengine.app/",
+    repoUrl: null,
+    tagline: {
+      zh: "KIRI Innovations 推出的视频转三维空间记录应用，与 KIRI Engine 同属一家公司。",
+      en: "KIRI Innovations Remy app for video-to-3D memory; same company as KIRI Engine.",
+    },
+    description: {
+      zh: "公开搜狐号文章介绍麒砺创新在华为开发者大会展示 Remy，描述其通过拍摄视频生成三维空间记录，并结合鸿蒙系统能力在手机端查看。主产品条目见 Track A 的 kiri-engine；本条覆盖 Remy 子产品。上架范围与时间以应用市场公示为准。",
+      en: "A Sohu repost introduces Remy at Huawei Developer Conference as a video-to-3D memory app with on-phone viewing via HarmonyOS capabilities. See the KIRI Engine entry for the main product line.",
+    },
+    platforms: [
+      "Android",
+    ],
+    pricing: "freemium",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "搜狐稿写明由麒砺创新开发并在 HDC2025 展示",
+        en: "Sohu article names KIRI and HDC2025 demo context",
+      },
+      {
+        zh: "同稿描述视频拍摄生成三维空间记录的产品形态",
+        en: "Article describes video capture to 3D spatial memory",
+      },
+    ],
+    cons: [
+      {
+        zh: "应用商店版本号与功能需以 AppGallery 当前页为准",
+        en: "AppGallery listing must be checked for build features",
+      },
+      {
+        zh: "阶段 2 未在设备上实测 3D 导出格式清单",
+        en: "Export formats were not device-tested here",
+      },
+    ],
+    useCases: [
+      "indoor_living",
+      "retail",
+      "art_gallery",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.sohu.com/a/918606414_100153148",
+      "https://www.kiriengine.app/",
+    ],
+    vendor: "麒砺创新技术（深圳）有限公司（KIRI Innovations）",
+    region: "china",
+    evidenceQuote: "Remy是一款通过拍摄视频生成逼真3D空间的全新记录工具。它巧妙地将KIRI多年的技术积累与华为鸿蒙系统强大的3D图像能力相融合，在手机端实现了3D影像的查看，极大地降低3D创作的成本和门槛。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "搜狐稿 2025-06-20 发布；后续上架以市场为准",
+    discoverySource: "user-feedback",
+  },
+  {
+    name: "LichtFeld Studio",
+    slug: "lichtfeld-studio",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://mrnerf.github.io/lichtfeld-studio-web/",
+    repoUrl: null,
+    tagline: {
+      zh: "开源本地 Radiance Field / 3DGS 训练与工具（Web 入口）。",
+      en: "Where reality and the digital world blend.",
+    },
+    description: {
+      zh: "LichtFeld Studio 通过 Web 门户分发训练工具与文档，面向希望自行训练 Gaussian Splatting 等 Radiance Field 表示的用户。Radiance Fields 站内新闻列出 0.5.x 版本线。适合能自行准备数据集与 GPU 环境的技术用户；赞助与授权信息见项目页面。",
+      en: "LichtFeld Studio distributes training tooling via a web portal for splatting-centric radiance-field workflows. Radiance Fields tracks 0.5.x releases. Expect a technical setup; confirm licensing on the project site.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: null,
+    level: "expert",
+    pros: [
+      {
+        zh: "Radiance Fields 列出 LichtFeld Studio Releases v0.5.2 等标题。",
+        en: "Radiancefields.com lists releases such as v0.5.2.",
+      },
+      {
+        zh: "公开 Web 入口便于获取发行说明。",
+        en: "A public web portal hosts release notes.",
+      },
+      {
+        zh: "与 Volinga 等赞助关系在 RF 新闻中披露。",
+        en: "Sponsorship updates appear in Radiance Fields posts.",
+      },
+    ],
+    cons: [
+      {
+        zh: "许可证字段需在仓库中核对 COPYING 文件 [unverified]。",
+        en: "License string must be verified in the repository COPYING file.",
+      },
+      {
+        zh: "需要本地 GPU 与数据预处理，不适合零基础手机一键流程。",
+        en: "Requires local GPU prep unsuitable for one-tap mobile capture.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "education",
+      "performance",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://mrnerf.github.io/lichtfeld-studio-web/",
+      "https://radiancefields.com/platforms/lichtfeld-studio",
+    ],
+    vendor: "LichtFeld Studio contributors",
+    region: "europe",
+    evidenceQuote: "Where reality and the digital world blend.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF LichtFeld Studio Releases v0.5.2 (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Volurama (Lifecast)",
+    slug: "lifecast-volurama",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://volurama.com/",
+    repoUrl: "https://github.com/fbriggs/lifecast_public",
+    tagline: {
+      zh: "Windows/Mac 图形界面，用 iPhone 视频训练静态场景 NeRF/相关管线。",
+      en: "Lifecast's main product is Volurama - a Windows/Mac GUI for the NeRF engine for reconstructing static scenes from iPhone video input.",
+    },
+    description: {
+      zh: "Volurama 将 iPhone 捕获的视频导入桌面 GUI，以 NeRF 引擎训练静态场景。Radiance Fields 提到 TinyCudaNN 加速与 Y Combinator 背景。GitHub 上的 lifecast_public 仓库提供部分开源组件，与商业 GUI 需区分。",
+      en: "Volurama trains static NeRF scenes from iPhone video via a Windows/macOS GUI. Radiance Fields references TinyCudaNN acceleration and YC backing. GitHub hosts lifecast_public code separate from the commercial GUI.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "freemium",
+    priceNote: "具体许可证与试用策略以 volurama.com 为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "同时提供 Windows 与 macOS GUI（RF 引文）。",
+        en: "Ships Windows and macOS GUIs per the RF quote.",
+      },
+      {
+        zh: "GitHub 存在 lifecast_public 开源仓库供审查渲染组件。",
+        en: "GitHub hosts lifecast_public for inspecting open components.",
+      },
+      {
+        zh: "Radiance Fields 记录 TinyCudaNN 与 Mac GPU 训练相关更新。",
+        en: "RF posts discuss TinyCudaNN and Mac training updates.",
+      },
+    ],
+    cons: [
+      {
+        zh: "核心管线为 NeRF，与 3DGS 输出格式不同。",
+        en: "Core pipeline is NeRF, not Gaussian splat exports.",
+      },
+      {
+        zh: "开源仓库与商业 GUI 功能集合不一致。",
+        en: "Open repo features do not equal the full commercial GUI.",
+      },
+    ],
+    useCases: [
+      "education",
+      "performance",
+      "event",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://volurama.com/",
+      "https://radiancefields.com/platforms/lifecast-volurama",
+    ],
+    vendor: "Lifecast Inc.",
+    region: "north-america",
+    evidenceQuote: "Lifecast's main product is Volurama - a Windows/Mac GUI for the NeRF engine for reconstructing static scenes from iPhone video input.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "null [unverified] dated release",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Lumina 3D",
+    slug: "lumina3d",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.reddit.com/r/GaussianSplatting/comments/1swkm2e/lumina_3d_capture_gaussian_splat_datasets_on/",
+    repoUrl: null,
+    tagline: {
+      zh: "面向 iPhone Pro 采集高斯泼溅数据集的 Beta 应用（Reddit 帖子标题描述）。",
+      en: "Beta iPhone Pro capture app for Gaussian splat datasets per Reddit thread title.",
+    },
+    description: {
+      zh: "公开 Reddit 线程标题提到 Lumina 3D 在 iPhone Pro 上采集 Gaussian Splat 数据集。讨论区还出现 TestFlight 相关线索。正式功能、定价与上架时间应以 App Store 或开发者公告为准；当前处于 closed beta。",
+      en: "A Reddit thread title references Lumina 3D capturing Gaussian splat datasets on iPhone Pro. TestFlight is mentioned in community discussion. Treat as closed beta until a public store listing exists.",
+    },
+    platforms: [
+      "iOS",
+    ],
+    pricing: "freemium",
+    priceNote: "closed beta，2026-04 仍在内测",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Reddit 帖子标题直接包含 Lumina 3D 与 iPhone Pro 关键词",
+        en: "Thread title names Lumina 3D and iPhone Pro",
+      },
+      {
+        zh: "TikTok 账号 @deluva3d 作为第二条来源线索",
+        en: "TikTok handle @deluva3d provides a second clue",
+      },
+    ],
+    cons: [
+      {
+        zh: "阶段 2 未能拉取 Reddit 正文全文做逐字核对",
+        en: "Full Reddit post body was not fetched for verbatim check",
+      },
+      {
+        zh: "无公开稳定官网域名，仅社区链接",
+        en: "No stable marketing site URL beyond community links",
+      },
+    ],
+    useCases: [
+      "indoor_living",
+      "art_gallery",
+      "retail",
+    ],
+    tags: [
+      "capture",
+      "tutorial",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: false,
+    sources: [
+      "https://www.reddit.com/r/GaussianSplatting/comments/1swkm2e/lumina_3d_capture_gaussian_splat_datasets_on/",
+      "https://www.tiktok.com/@deluva3d",
+    ],
+    vendor: "Deluva（未核工商登记名）",
+    region: "china",
+    evidenceQuote: "Lumina 3D —> Capture Gaussian Splat Datasets on iPhone Pro",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "社区 beta；需跟进 App Store 上架",
+    discoverySource: "user-feedback",
+  },
+  {
+    name: "Mapmost 3DGS",
+    slug: "mapmost-3dgs",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://www.mapmost.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "Mapmost 3DGS Builder 与 WebGL SDK 组合，用于大场景高斯泼溅展示与数字孪生底座。",
+      en: "Mapmost 3DGS Builder plus WebGL SDK for large-scene splat viewing and digital twins.",
+    },
+    description: {
+      zh: "Mapmost 官网导航列出 Mapmost 3DGS Builder、Mapmost SDK for WebGL 等产品名称。中文技术社区文章描述 Builder 与 SDK 的组合用于大场景三维高斯泼溅方案。部署形态、API 数量与授权模式需以商务沟通与文档为准。",
+      en: "Mapmost lists 3DGS Builder and a WebGL SDK on its site. A Chinese tech article describes pairing them for large-scene 3DGS. Licensing and deployment require vendor confirmation.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+    ],
+    pricing: "enterprise",
+    priceNote: "官网提供电话咨询与试用入口",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "官网导航列出 Mapmost 3DGS Builder 产品线名称",
+        en: "Site navigation names Mapmost 3DGS Builder",
+      },
+      {
+        zh: "掘金文章给出 Builder 与 WebGL SDK 的组合表述",
+        en: "A Juejin article states the Builder + WebGL SDK bundle",
+      },
+    ],
+    cons: [
+      {
+        zh: "本条 evidenceQuote 来自掘金而非官网正文",
+        en: "Evidence quote is from Juejin, not the corporate landing hero",
+      },
+      {
+        zh: "阶段 2 未实测 100 km² 场景加载指标",
+        en: "100 km² performance claim was not benchmarked here",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "heritage",
+      "retail",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.mapmost.com/",
+      "https://juejin.cn/post/7583325900295208960",
+    ],
+    vendor: "园测信息科技股份有限公司",
+    region: "china",
+    evidenceQuote: "Mapmost 3DGS Builder与Mapmost SDK for WebGL共同构成了完整的大场景3D高斯泼溅解决方案。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "掘金文章 2025-12-15；官网页脚 2002–2026",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "MetalSplatter",
+    slug: "metalsplatter",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://github.com/scier/MetalSplatter",
+    repoUrl: "https://github.com/scier/MetalSplatter",
+    tagline: {
+      zh: "Apple Vision Pro 上免费查看 3DGS 文件的 VR 应用。",
+      en: "Metalsplatter is a free iOS VR app, made for the Apple Vision Pro to explore 3DGS files.",
+    },
+    description: {
+      zh: "MetalSplatter 在 visionOS 设备上加载高斯泼溅数据并提供沉浸式浏览，代码以 Swift/Metal 实现并开源。Radiance Fields 记录 1.0 发布新闻。适合已有 splat 资产且需要在 Vision Pro 内审阅的用户。文件格式支持范围以 README 为准。",
+      en: "MetalSplatter renders Gaussian splatting scenes on Apple Vision Pro with open Swift/Metal sources. Radiance Fields notes a 1.0 release story. Supported file formats are defined in the GitHub README.",
+    },
+    platforms: [
+      "iOS",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "GitHub 仓库公开，可审计 Metal 渲染路径。",
+        en: "GitHub hosts the Metal renderer source.",
+      },
+      {
+        zh: "Radiance Fields 列出 MetalSplatter Releases V1.0 新闻。",
+        en: "Radiancefields.com documents a V1.0 release article.",
+      },
+      {
+        zh: "针对 visionOS 设备优化，而非通用 Windows 查看器。",
+        en: "Targets visionOS rather than desktop Windows viewers.",
+      },
+    ],
+    cons: [
+      {
+        zh: "仅覆盖 Apple Vision Pro / visionOS 生态。",
+        en: "Limited to Apple Vision Pro / visionOS hardware.",
+      },
+      {
+        zh: "需要用户自行准备兼容的 splat 文件。",
+        en: "Users must supply compatible splat assets.",
+      },
+    ],
+    useCases: [
+      "performance",
+      "art_gallery",
+      "education",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/scier/MetalSplatter",
+      "https://radiancefields.com/platforms/metalsplatter",
+    ],
+    vendor: "Sean Cier",
+    region: "north-america",
+    evidenceQuote: "Metalsplatter is a free iOS VR app, made for the Apple Vision Pro to explore 3DGS files.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF MetalSplatter Releases V1.0 headlines",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "MipMap",
+    slug: "mipmap",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://www.mipmap3d.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "面向测绘与全景设备的桌面端三维重建，中国官网提供 Desktop 等下载入口。",
+      en: "Drone surveying and 3D reconstruction desktop tools with China official site.",
+    },
+    description: {
+      zh: "MipMap 在中国官网提供桌面端下载与登录工作区入口，页面提示可在中国站与国际站之间切换。公开定位包括建筑、矿业与测量等方向的影像与三维重建应用，具体功能与授权以官网下载页及账户权限为准。",
+      en: "MipMap lists a China official site with desktop downloads and login. Positioning references surveying-style workflows; capabilities depend on the downloaded build and account entitlements.",
+    },
+    platforms: [
+      "Windows",
+      "Web",
+    ],
+    pricing: "enterprise",
+    priceNote: "需登录与试用表单；具体报价以销售沟通为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "中国官网提供 Desktop 下载入口页面",
+        en: "China site exposes a Desktop download entry page",
+      },
+      {
+        zh: "站点导航包含「星空之境」等内容板块链接",
+        en: "Site navigation includes links such as the Starry Sky section",
+      },
+    ],
+    cons: [
+      {
+        zh: "阶段 2 未在抓取环境完成登录后工作区全量核验",
+        en: "Post-login workspace was not fully verified in the capture environment",
+      },
+      {
+        zh: "ICP 备案主体与「北京」备注需人工对照公示信息",
+        en: "ICP entity vs Beijing note needs manual registry cross-check",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "heritage",
+      "natural_landscape",
+    ],
+    tags: [
+      "training",
+      "outdoor",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.mipmap3d.com/",
+      "https://www.mipmap3d.com/download/desktop",
+    ],
+    vendor: "MipMap（中国官网 mipmap3d.com 展示；工商登记全称待核）",
+    region: "china",
+    evidenceQuote: "当前访问为MipMap中国官网，是否需要跳转到MipMap国际官网获取更流畅的体验？",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "官网 2026 年仍可访问；版本以下载页为准",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "モノスタジオ",
+    slug: "monogram-japan",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://mono-studio.jp/",
+    repoUrl: null,
+    tagline: {
+      zh: "日本 Mono Studio 提供 VR/AR 向け 3D 数据制作与 3D 扫描等服务。",
+      en: "Mono Studio (Japan) offers 3D data production and 3D scanning for VR/AR and related use cases.",
+    },
+    description: {
+      zh: "株式会社モノスタジオ在日文官网 Service 中写明提供面向 VR、AR、MMD、3D 打印的 3D 数据制作与 3D 扫描服务，并运营 Artec Eva 等非接触扫描仪租赁。公开检索范围内官网未出现「ガウシアンスプラッティング」固定表述，与 3DGS 的关系需在具体项目中向供应商确认是否采用该管线。",
+      en: "Mono Studio’s Japanese site states 3D data creation and 3D scanning services for VR, AR, MMD, and 3D printing, plus rental of non-contact scanners such as Artec Eva. Public pages checked on 2026-04-29 did not contain the exact term Gaussian Splatting; confirm per project whether 3DGS is used internally.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Web",
+    ],
+    pricing: "enterprise",
+    priceNote: "商务报价，官网未列标准价",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "日文官网写明提供 3D 数据作成与 3D スキャン服务",
+        en: "Japanese site lists 3D data creation and 3D scanning services",
+      },
+      {
+        zh: "公开提供 Artec Eva 等非接触型 3D 扫描仪租赁信息",
+        en: "Publicly advertises rental of non-contact 3D scanners including Artec Eva",
+      },
+    ],
+    cons: [
+      {
+        zh: "官网检索范围内未出现 Gaussian Splatting 的明确日文表述",
+        en: "No explicit Gaussian Splatting wording found on the checked corporate pages",
+      },
+      {
+        zh: "主要为项目制 B2B 服务，非自助式单一 App 产品",
+        en: "Primarily project-based B2B services rather than a single self-serve app",
+      },
+    ],
+    useCases: [
+      "retail",
+      "art_gallery",
+      "indoor_living",
+    ],
+    tags: [
+      "capture",
+      "spatial_media",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://mono-studio.jp/",
+      "https://mono-studio.jp/column/163/",
+    ],
+    vendor: "株式会社モノスタジオ",
+    region: "japan",
+    evidenceQuote: "VRやAR、MMD、3Dプリンターに対応の3Dデータ作成/3Dスキャンサービスです。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "官网结构与专栏 163 在抓取时可访问",
+    discoverySource: "japan-korea-zone",
+  },
+  {
+    name: "nerfstudio",
+    slug: "nerfstudio",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://docs.nerf.studio/",
+    repoUrl: "https://github.com/nerfstudio-project/nerfstudio",
+    tagline: {
+      zh: "开源 Radiance Field 训练管线，含 Splatfacto 等 3DGS 方法。",
+      en: "Nerfstudio is an open-source project developed at UC Berkeley, led by students from the Kanazawa group and other collaborators",
+    },
+    description: {
+      zh: "nerfstudio 提供统一的命令行与配置框架，用于训练 NeRF、Splatfacto 等多种 Radiance Field 方法，并附带 Viser 网页查看器。文档站列出可插拔方法与外部方法注册流程。适合研究与工程团队在同一仓库内对比算法。需要本地 GPU 与 Python 环境。",
+      en: "Nerfstudio provides a unified training stack for multiple radiance-field methods including splatting via Splatfacto, plus the Viser viewer. Documentation lists implemented methods and extension points. Expect a Python toolchain and local GPU resources.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "Apache-2.0",
+    level: "expert",
+    pros: [
+      {
+        zh: "GitHub 仓库公开，提交与 issue 可追溯。",
+        en: "GitHub repository is public with traceable commits.",
+      },
+      {
+        zh: "文档站列出 Splatfacto 等方法专页。",
+        en: "docs.nerf.studio publishes method pages such as Splatfacto.",
+      },
+      {
+        zh: "Radiance Fields 新闻索引 gsplat、GsplatViewer 等关联更新。",
+        en: "Radiancefields.com indexes gsplat-related headlines tied to the project.",
+      },
+    ],
+    cons: [
+      {
+        zh: "依赖 Python/CUDA 栈，环境配置步骤较多。",
+        en: "Requires Python/CUDA setup with many moving dependencies.",
+      },
+      {
+        zh: "默认面向研究与进阶用户，非一键手机应用。",
+        en: "Targets researchers/engineers, not a one-tap mobile app.",
+      },
+    ],
+    useCases: [
+      "education",
+      "heritage",
+      "performance",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://docs.nerf.studio/",
+      "https://radiancefields.com/platforms/nerfstudio",
+    ],
+    vendor: "nerfstudio project / BAIR collaborators",
+    region: "north-america",
+    evidenceQuote: "Nerfstudio is an open-source project developed at UC Berkeley, led by students from the Kanazawa group and other collaborators",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF gsplat / GsplatViewer / 3DGUT headlines 2025–2026",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "网易瑶台",
+    slug: "netease-yaotai",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://yaotai.163.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "网易伏羲沉浸式活动平台，浏览器参会，面向元宇宙活动与展会场景。",
+      en: "NetEase Fuxi immersive events platform with browser-based participation.",
+    },
+    description: {
+      zh: "网易瑶台在网易伏羲介绍页中被描述为沉浸式活动平台，列出屏幕共享、嵌入式 PPT 播放、实时翻译、多分会场切换与一站式活动管理等功能。参会方式描述为浏览器打开活动网址并输入参会码。与三维高斯泼溅的关系需参考单独业务稿件。",
+      en: "NetEase Yaotai is described on the Fuxi tag page as an immersive events platform listing screen sharing, embedded decks, translation, breakout rooms, and end-to-end event management. The page does not spell out 3DGS in technical terms.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "enterprise",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "网易伏羲标签页列出数十项活动功能条目",
+        en: "Fuxi tag page enumerates dozens of event feature bullets",
+      },
+      {
+        zh: "说明浏览器输入参会码即可参会",
+        en: "States browser access with an attendee code",
+      },
+    ],
+    cons: [
+      {
+        zh: "主站 yaotai.163.com 在部分环境出现静态资源加载报错",
+        en: "Portal site may fail CSS preload in some environments",
+      },
+      {
+        zh: "该标签页未给出按 MAU 计量的公开运营数据",
+        en: "Tag page does not cite public MAU statistics",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "retail",
+      "indoor_living",
+    ],
+    tags: [
+      "publishing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://fuxi.163.com/tags/52",
+      "https://yaotai.163.com/",
+    ],
+    vendor: "网易伏羲",
+    region: "china",
+    evidenceQuote: "网易瑶台是网易伏羲旗下沉浸式活动平台，致力于用人工智能和科技创新打造全新的线上活动模式。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "标签页介绍更新于 2022-09-26",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "Scaniverse Pro",
+    slug: "niantic-scaniverse-pro",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.nianticspatial.com/pricing",
+    repoUrl: null,
+    tagline: {
+      zh: "Niantic Spatial 定价页中的 Pro 档：标价约 50 USD/月并含商业使用权说明。",
+      en: "Pro tier on Niantic Spatial pricing: about USD 50 per month with commercial rights listed.",
+    },
+    description: {
+      zh: "定价页列出 Pro 档标价为每月 50 美元（页内同时给出按年计费的美元单价），并在特性列表中写明在 Plus 基础上增加席位上限与 Commercial rights。同一页面说明 Free、Plus、Pro 的月度 credits 与移动采集、360° 相机高斯等能力边界。本条仅描述订阅档位，不等同于整站 scaniverse 产品长文；与 tools.ts 中 scaniverse 条目并存时需避免字段重复。",
+      en: "The pricing page lists Pro at USD 50 per month (with an annual per-month figure) and bullets that add seat caps and commercial rights on top of Plus. It also documents monthly credits and capture features. This entry is the Pro plan factsheet, not the full Scaniverse product narrative; dedupe against tools.ts scaniverse if needed.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+      "Web",
+    ],
+    pricing: "subscription",
+    priceNote: "定价页：Pro 档标价 50 USD/月；含约 105000 月度 credits 等（以 nianticspatial.com/pricing 当期为准）。",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "定价页将 Pro 档标价写为每月 50 美元并列出 25 个用户席位上限。",
+        en: "Pricing page shows Pro at USD 50 per month and up to 25 user seats.",
+      },
+      {
+        zh: "定价页在 Pro 特性下列出 Commercial rights。",
+        en: "Pricing page lists Commercial rights under Pro features.",
+      },
+      {
+        zh: "定价页写明 Pro 月度 credits 为 105000。",
+        en: "Pricing page states 105,000 monthly credits on Pro.",
+      },
+    ],
+    cons: [
+      {
+        zh: "定价页写明 credits 不跨月结转。",
+        en: "Pricing FAQ states credits do not roll month to month.",
+      },
+      {
+        zh: "360° 视频生成高斯等功能限定在 Plus/Pro 且通过 Scaniverse Web 处理（见 FAQ）。",
+        en: "FAQ limits 360° Gaussian generation to Plus/Pro and Scaniverse Web processing.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "real_estate",
+      "event",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.nianticspatial.com/pricing",
+      "https://scaniverse.nianticspatial.com/signin",
+      "https://www.nianticspatial.com/capture",
+    ],
+    vendor: "Niantic Spatial, Inc.",
+    region: "north-america",
+    evidenceQuote: "Pro $50 per month",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "定价页 2026-04-29 可访问；价格以官网为准。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "Niantic SPZ reference library",
+    slug: "niantic-spz-reference",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://github.com/nianticlabs/spz",
+    repoUrl: "https://github.com/nianticlabs/spz",
+    tagline: {
+      zh: "Niantic 开源的 .spz 压缩高斯格式参考实现（C++ / TS WASM / Python）。",
+      en: "Niantic open reference codecs for the compressed .spz Gaussian splat format.",
+    },
+    description: {
+      zh: "README 将 spz 扩展名格式描述为压缩三维高斯泼溅，并说明 C++ 库仅依赖 libz。同一文档给出坐标系约定、版本 4 头结构与 Python 绑定安装步骤。PlayCanvas SplatTransform 文档将 spz 列为可读取的 Niantic 压缩格式，便于与 Web 交付链互操作。",
+      en: "The README defines `.spz` as a compressed Gaussian splat format and ships a libz-only C++ core plus WASM and Python bindings. It documents coordinate conventions and header layout. PlayCanvas SplatTransform lists `.spz` as an input format, linking the codec to web delivery pipelines.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "MIT",
+    level: "expert",
+    pros: [
+      {
+        zh: "README 写明 spz 编码相对对应 ply 约 10 倍体积缩减（原文用语）。",
+        en: "README states SPZ-encoded splats are typically about 10x smaller than matching PLY files.",
+      },
+      {
+        zh: "根目录 LICENSE 为 MIT，版权方为 Niantic Labs。",
+        en: "Root LICENSE file is MIT with Niantic Labs copyright.",
+      },
+      {
+        zh: "PlayCanvas SplatTransform 手册格式表包含 spz 扩展名行。",
+        en: "PlayCanvas SplatTransform manual format table includes a `.spz` row.",
+      },
+    ],
+    cons: [
+      {
+        zh: "TypeScript WASM 路径需本机配置 Emscripten 再 cmake 构建。",
+        en: "TypeScript WASM builds require installing Emscripten before CMake builds.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "heritage",
+      "natural_landscape",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/nianticlabs/spz",
+      "https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/splat-transform/",
+      "https://raw.githubusercontent.com/nianticlabs/spz/main/README.md",
+    ],
+    vendor: "Niantic Labs",
+    region: "north-america",
+    evidenceQuote: ".spz is a file format for compressed 3D gaussian splats. This directory contains a C++ library for saving and loading data in the .spz format.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "GitHub nianticlabs/spz 持续提交；格式版本 4 见 README。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "NUBIGON",
+    slug: "nubigon",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://www.nubigon.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "AEC 与数字遗产领域的实景采集软件，已增加 Gaussian Splatting 支持。",
+      en: "Cutting-edge software solutions for reality capture in AEC and Digital Heritage.",
+    },
+    description: {
+      zh: "NUBIGON 为测绘与文化遗产团队提供点云与网格可视化，Radiance Fields 宣布其加入 Gaussian Splatting 支持以审阅实景模型。客户端为桌面应用，许可与模块以 nubigon.com 为准。",
+      en: "NUBIGON visualizes massive point clouds and meshes for AEC and heritage. Radiance Fields announced Gaussian splatting support for reviewing reality captures. Licensing is desktop-based per nubigon.com.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "enterprise",
+    priceNote: "商业许可询价；以销售联系页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "Radiance Fields 发布 NUBIGON adds Gaussian Splatting Support 标题。",
+        en: "Radiancefields.com announces splatting support.",
+      },
+      {
+        zh: "产品定位同时覆盖 AEC 与数字遗产垂直场景（RF 引文）。",
+        en: "Vendor quote targets AEC and digital heritage verticals.",
+      },
+      {
+        zh: "与大型点云数据集兼容的历史较长（供应商定位）。",
+        en: "Vendor history focuses on large point-cloud datasets.",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要商业许可证与 Windows 工作站。",
+        en: "Requires commercial licenses and Windows workstations.",
+      },
+      {
+        zh: "Splat 功能为后期增量，需核对版本发行说明。",
+        en: "Splatting features arrived in a later release—check release notes.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "real_estate",
+      "park",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.nubigon.com/",
+      "https://radiancefields.com/platforms/nubigon",
+    ],
+    vendor: "NUBIGON Inc.",
+    region: "north-america",
+    evidenceQuote: "Cutting-edge software solutions for reality capture in AEC and Digital Heritage.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF NUBIGON adds Gaussian Splatting Support (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "StorySplat Viewer (octobits slug TBD)",
+    slug: "octobits-splat-viewer",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://github.com/storysplat/storysplat-viewer",
+    repoUrl: "https://github.com/storysplat/storysplat-viewer",
+    tagline: {
+      zh: "基于 PlayCanvas 的 StorySplat 场景 npm 查看器，支持 HTML 导出与嵌入（npm 页描述）。",
+      en: "PlayCanvas-based StorySplat viewer npm package with HTML export and embedding.",
+    },
+    description: {
+      zh: "npm 页将包名 storysplat-viewer 描述为面向 StorySplat 场景的 PlayCanvas 三维查看器，并提到 HTML 导出与动态嵌入。README 进一步说明可加载 splat、ply、sog 等扩展名并列出热点、音频、LOD 等能力。阶段 2 keep 列表 slug 为 octobits-splat-viewer；公开检索未找到同名仓库，本条暂绑定 storysplat/storysplat-viewer；Opus 若确认其它产品请替换主页与厂商字段。",
+      en: "The npm listing describes storysplat-viewer as a PlayCanvas 3D viewer for StorySplat scenes with HTML export and embedding. The README advertises loaders for splat, ply, and sog files plus features like hotspots and LOD. The keep slug was octobits-splat-viewer; no public repo matched that string, so this record points at storysplat/storysplat-viewer until Opus confirms.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "npm 包 MIT；StorySplat 云服务若有计费以官网为准 [需进一步核实]。",
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "npm 页写明许可证为 MIT。",
+        en: "npm package page lists the MIT license.",
+      },
+      {
+        zh: "README 声明支持 splat、ply、sog 等扩展名加载（见仓库首页）。",
+        en: "README advertises loading `.splat`, `.ply`, and `.sog` formats.",
+      },
+      {
+        zh: "npm 周下载量在 npmjs.com 页面展示（数值随时间变化）。",
+        en: "Weekly download counts appear on the npmjs.com package page (time-varying).",
+      },
+    ],
+    cons: [
+      {
+        zh: "keep 列表名称 octobits 与 storysplat 仓库名不一致，需人工确认是否为同一产品。",
+        en: "Keep slug octobits does not match the storysplat repo name; confirm identity.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "event",
+      "education",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+      "publishing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.npmjs.com/package/storysplat-viewer",
+      "https://github.com/storysplat/storysplat-viewer",
+      "https://raw.githubusercontent.com/storysplat/storysplat-viewer/main/README.md",
+    ],
+    vendor: "StorySplat",
+    region: "global",
+    evidenceQuote: "PlayCanvas-based 3D viewer for StorySplat scenes - HTML export & dynamic embedding",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "npm 显示 2026-04-29 仍有新版本发布记录（以 npmjs.com 为准）。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "OpenCV",
+    slug: "opencv-camera-calibration",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://opencv.org",
+    repoUrl: "https://github.com/opencv/opencv",
+    tagline: {
+      zh: "开源计算机视觉库，提供棋盘格检测、calibrateCamera 与去畸变等标定 API。",
+      en: "Open-source CV library with chessboard detection, calibrateCamera, and undistort APIs.",
+    },
+    description: {
+      zh: "OpenCV 的 calib3d 模块可用棋盘格角点与 calibrateCamera 估计内参与畸变系数，并用 undistort 预处理输入图像；需自行编写脚本或封装。该工具属于 3DGS 工作流的采集前置——相机几何标定阶段，非 3DGS 核心工具。",
+      en: "OpenCV calib3d finds chessboard corners, estimates intrinsics and distortion, and undistorts plates before SfM or splat training—requires custom code. It is capture-pipeline math, not a splat trainer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "Apache-2.0",
+    level: "expert",
+    pros: [
+      {
+        zh: "官方教程列出径向/切向畸变、内参外参与 undistort 流程，并给出 Python 示例",
+        en: "Official tutorial covers distortion models, intrinsics/extrinsics, and undistort samples",
+      },
+      {
+        zh: "维基条目说明跨平台 Apache-2.0 许可与实时视觉定位",
+        en: "Encyclopedia notes Apache-2.0 licensing and real-time vision focus",
+      },
+      {
+        zh: "可与 NumPy 等库批处理多帧标定板图像并输出矩阵到 COLMAP 等工具",
+        en: "Pairs with NumPy to batch-export matrices into COLMAP-class pipelines",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要采集足够数量与姿态分布的标定板图像，否则参数不稳定",
+        en: "Needs diverse calibration captures; otherwise intrinsics are unstable",
+      },
+      {
+        zh: "非开箱 GUI，工程团队需维护脚本、版本与相机型号记录",
+        en: "Not a turnkey GUI—teams must maintain scripts, versions, and camera records",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "urban_outdoor",
+      "indoor_living",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
+      "https://en.wikipedia.org/wiki/OpenCV",
+    ],
+    vendor: "OpenCV.org",
+    region: "global",
+    evidenceQuote: "In this section, we will learn about types of distortion caused by cameras, how to find the intrinsic and extrinsic properties of a camera, how to undistort images based off these properties",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "OpenCV 4.x tutorial fetched 2026-04-29; Wikipedia stable release 4.13.0 as of fetch",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Parallax 3D",
+    slug: "parallax-3d",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://parallax3d.dev/",
+    repoUrl: null,
+    tagline: {
+      zh: "云端从普通照片生成高保真 3DGS 模型。",
+      en: "Parallax uses cutting-edge Gaussian Splatting technology to create stunning, high-fidelity 3D models from ordinary photos.",
+    },
+    description: {
+      zh: "Parallax 3D 将用户上传的照片在云端重建为 Gaussian Splatting 表示，适合无本地 GPU 的团队。Radiance Fields 以「Cloud Based 3DGS」为标题报道。账户、额度与导出格式以服务商当期页面为准。",
+      en: "Parallax 3D reconstructs uploaded photos into Gaussian splatting models in the cloud. Radiance Fields headlines it as cloud-based 3DGS. Quotas and export formats must be verified on parallax3d.dev.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "subscription",
+    priceNote: "云端按套餐计费，具体价格以结账页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "交互以 Web 控制台为主，无需安装桌面训练器。",
+        en: "Primary workflow is a web console without a local trainer install.",
+      },
+      {
+        zh: "Radiance Fields 发布 Parallax 3D: Cloud Based 3DGS 报道。",
+        en: "Radiancefields.com ran a Cloud Based 3DGS article.",
+      },
+      {
+        zh: "定位照片输入，适合营销素材批量处理。",
+        en: "Photo-first input suits marketing stills pipelines.",
+      },
+    ],
+    cons: [
+      {
+        zh: "依赖上传原始照片到供应商云。",
+        en: "Requires uploading source photos to vendor cloud storage.",
+      },
+      {
+        zh: "重建时间与队列受账户档位影响。",
+        en: "Queue time depends on subscription tier.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "real_estate",
+      "event",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://parallax3d.dev/",
+      "https://radiancefields.com/platforms/parallax-3d",
+    ],
+    vendor: "Parallax 3D",
+    region: "north-america",
+    evidenceQuote: "Parallax uses cutting-edge Gaussian Splatting technology to create stunning, high-fidelity 3D models from ordinary photos.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Parallax 3D: Cloud Based 3DGS (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Photo Mechanic",
+    slug: "photo-mechanic",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.camerabits.com",
+    repoUrl: null,
+    tagline: {
+      zh: "高速浏览、筛选与 IPTC 元数据写入的照片前端工具。",
+      en: "Fast ingest, culling, and IPTC metadata tagging for photo workflows.",
+    },
+    description: {
+      zh: "Photo Mechanic 在导入后快速预览与打标，并批量写入说明、关键词与版权等 IPTC 字段，再将选定照片导出到目标路径供重建管线读取。该工具属于 3DGS 工作流的采集前置——照片筛选/降噪阶段，非 3DGS 核心工具。",
+      en: "Photo Mechanic ingests cards, previews frames, applies IPTC metadata, and exports picks to target folders before photogrammetry. It is a culling/editing helper, not a splat trainer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "one-time",
+    priceNote: "许可证与升级政策以 Camera Bits 订单页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网强调从存储卡到筛选赢家的高速流程，并支持导出交付",
+        en: "Vendor copy stresses fast ingest-to-pick workflows plus export/delivery",
+      },
+      {
+        zh: "维基条目写明支持 IPTC 元数据标注，可与 Lightroom 等后续工具衔接",
+        en: "Encyclopedia notes IPTC tagging alongside dedicated editors like Lightroom",
+      },
+      {
+        zh: "适合在大量连拍中快速筛图，再仅对入选帧运行重建",
+        en: "Speeds culling on large bursts before running reconstruction on winners",
+      },
+    ],
+    cons: [
+      {
+        zh: "维基稳定版字段可能滞后，购买前应以厂商下载页版本号为准",
+        en: "Wikipedia release infobox may lag vendor download pages",
+      },
+      {
+        zh: "深度像素编辑仍需配合 Photoshop 或其他编辑器",
+        en: "Pixel-level retouching still needs Photoshop-class tools",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "urban_outdoor",
+      "retail",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.camerabits.com",
+      "https://en.wikipedia.org/wiki/Photo_Mechanic",
+    ],
+    vendor: "Camera Bits, Inc.",
+    region: "global",
+    evidenceQuote: "Photo Mechanic supports the initial capture of photos from the camera, previewing and making selections, and tagging each photo with various types of IPTC metadata such as captions, keywords, and copyright notices.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Camera Bits homepage marketing copy fetched 2026-04-29",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "PlayCanvas Engine",
+    slug: "playcanvas-engine",
+    category: "publishing",
+    logoUrl: "https://playcanvas.com/favicon.ico",
+    homepageUrl: "https://github.com/playcanvas/engine",
+    repoUrl: "https://github.com/playcanvas/engine",
+    tagline: {
+      zh: "开源 WebGL/WebGPU 运行时，手册含 GSplat 集成与发布路径。",
+      en: "Open-source WebGL/WebGPU/WebXR runtime with documented GSplat integration for web apps.",
+    },
+    description: {
+      zh: "PlayCanvas Engine 是 MIT 许可的浏览器端 3D 运行时，官方用户手册设有 Gaussian Splatting 专章（创建、查看、编辑、构建应用）。开发者将 GSplat 作为资源载入工程后可与脚本、物理与 UI 组合发布。站内 engines.ts 中已有 slug 为 playcanvas 的矩阵行描述引擎层 splat 能力；本条从工具/库视角补充与 SuperSplat、splat-transform 同一生态的接入说明，不重复引擎矩阵字段。",
+      en: "PlayCanvas Engine is the MIT-licensed browser 3D runtime; the manual includes a Gaussian Splatting section (create, view, edit, build). GSplat assets can be loaded into projects alongside scripts and physics. engines.ts already has a playcanvas row for engine-level splat support; this tool entry documents the library workflow next to SuperSplat and splat-transform without duplicating matrix fields.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "引擎 MIT 开源；PlayCanvas 云服务与私有项目订阅单独计价（见 playcanvas.com）。",
+    openSource: true,
+    license: "MIT",
+    level: "expert",
+    pros: [
+      {
+        zh: "GitHub 仓库 About 文案明确列出 WebGL、WebGPU、WebXR、glTF。",
+        en: "GitHub About text lists WebGL, WebGPU, WebXR, and glTF.",
+      },
+      {
+        zh: "developer.playcanvas.com 提供独立 Gaussian Splatting 手册章节。",
+        en: "developer.playcanvas.com hosts a dedicated Gaussian Splatting manual section.",
+      },
+      {
+        zh: "releases 页面可核对引擎版本与变更说明。",
+        en: "GitHub releases list versioned engine changes.",
+      },
+    ],
+    cons: [
+      {
+        zh: "完整交互应用需编写脚本与工程结构，不单次点击即用查看器。",
+        en: "Shipping an interactive app requires project setup and scripting beyond a one-click viewer.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "performance",
+      "education",
+    ],
+    tags: [
+      "publishing",
+      "web_rendering",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/playcanvas/engine",
+      "https://developer.playcanvas.com/user-manual/gaussian-splatting/",
+      "https://github.com/playcanvas/engine/releases",
+    ],
+    vendor: "PlayCanvas Ltd",
+    region: "global",
+    evidenceQuote: "Powerful web graphics runtime built on WebGL, WebGPU, WebXR and glTF",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "GitHub playcanvas/engine 仓库持续发布 release（以 github.com 为准）。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "点映 Pointcosm",
+    slug: "pointcosm",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://www.pointcosm.cn/",
+    repoUrl: null,
+    tagline: {
+      zh: "以点映世界——把照片或视频变成 3D 的中文 Web 端高斯泼溅重建服务。",
+      en: "A point reflecting the world — Chinese web-based 3DGS reconstruction service that turns photos or videos into 3D.",
+    },
+    description: {
+      zh: "点映 Pointcosm 是一家位于中国的 3D Gaussian Splatting 云服务商，主打浏览器端的端到端体验：用户上传照片或视频，由其云端管线完成重建并直接在 Web 上预览与分享。官网首页采用「以点映世界」作为品牌主张，强调以高性价比的价格提供高效、稳定的重建与分享能力。资源、客户、价格三个分区在主导航中并列。",
+      en: "Pointcosm is a China-based 3D Gaussian Splatting cloud service whose homepage positions itself as「A point reflecting the world」. It offers a fully web-based pipeline that converts uploaded photos or videos into shareable 3DGS reconstructions, marketing efficient and stable reconstruction at competitive pricing.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "首页设有「免费试用」入口，详细分档需登录后核对",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "全 Web 流程，从上传、重建到分享均在浏览器内完成",
+        en: "End-to-end workflow runs in the browser without local installs",
+      },
+      {
+        zh: "支持照片和视频两种输入形态",
+        en: "Accepts both photo collections and video footage as input",
+      },
+      {
+        zh: "首页主张以高性价比价格提供高效、稳定的重建与分享服务",
+        en: "Positions itself on cost-efficient, stable reconstruction and sharing",
+      },
+    ],
+    cons: [
+      {
+        zh: "目前可见为简体中文站点，未提供官方英文界面",
+        en: "Site is presented in Simplified Chinese only; no official English UI observed",
+      },
+      {
+        zh: "具体定价档位需登录后查看，公开页面未列出每月生成上限或并发数",
+        en: "Detailed pricing tiers require login; public page does not list monthly quotas or concurrency",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "urban_outdoor",
+      "retail",
+      "indoor_living",
+    ],
+    tags: [
+      "training",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.pointcosm.cn/",
+      "https://www.facebook.com/groups/3dgaussiansplatting/posts/1968528880367368/",
+    ],
+    vendor: "点映数字科技（工商全称待核）",
+    region: "china",
+    evidenceQuote: "为您提供我们最好的 3D Gaussian Splatting 重建服务，让您以极具性价比的价格获得高效、稳定的重建和分享等服务，一切尽在 WEB 上。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "2026-04-29 由用户提供首页截图核对，主导航与 hero 文案一致",
+    discoverySource: "user-feedback",
+  },
+  {
+    name: "Portality",
+    slug: "portality",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://portality.ai/",
+    repoUrl: null,
+    tagline: {
+      zh: "基于 WebGL2 的浏览器端 3DGS 渲染器，含 GPU bitonic sort。",
+      en: "Portality is a WebGL2 implementation of a browser-based renderer for Gaussian Splatting.",
+    },
+    description: {
+      zh: "Portality 在支持 WebGL2 的浏览器中渲染 Gaussian Splatting 场景，Radiance Fields 文案强调 GPU bitonic sort 与较流畅的相机运动。提供在线 viewer 子域，也可将静态资源托管在自有服务器。适合需要在广泛浏览器上嵌入只读查看器的团队。",
+      en: "Portality renders Gaussian splatting in WebGL2 browsers with a GPU bitonic sort path, per Radiance Fields. Hosted demos live on viewer.portality.ai; static hosting is documented. It targets embeddable read-only viewers.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "面向 WebGL2，覆盖多数现代桌面与移动浏览器。",
+        en: "Targets WebGL2-capable desktop and mobile browsers.",
+      },
+      {
+        zh: "Radiance Fields 专文介绍 Portality WebGL2 Gaussian Splat Viewer。",
+        en: "Radiancefields.com published a dedicated Portality viewer article.",
+      },
+      {
+        zh: "公开 viewer 子域可直接加载示例 splat。",
+        en: "viewer.portality.ai hosts live demos.",
+      },
+    ],
+    cons: [
+      {
+        zh: "不支持 WebGL2 的环境无法运行。",
+        en: "Unsupported on browsers without WebGL2.",
+      },
+      {
+        zh: "排序与带宽开销随 splat 数量上升。",
+        en: "Sorting cost grows with splat counts.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "education",
+      "event",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://portality.ai/",
+      "https://radiancefields.com/platforms/portality",
+    ],
+    vendor: "Portality",
+    region: "global",
+    evidenceQuote: "Portality is a WebGL2 implementation of a browser-based renderer for Gaussian Splatting.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "null [unverified] dated release on RF page",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "PTGui",
+    slug: "ptgui",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.ptgui.com",
+    repoUrl: null,
+    tagline: {
+      zh: "商业级全景拼接，支持多行图像与球形全景。",
+      en: "Commercial panorama stitcher with multi-row and spherical workflows.",
+    },
+    description: {
+      zh: "PTGui 将多视角重叠照片对齐并融合为柱面或球形全景，可输出等距圆柱等投影，作为球面采集或预览资产的前置步骤。该工具属于 3DGS 工作流的采集前置——全景/HDR 拼接阶段，非 3DGS 核心工具。",
+      en: "PTGui aligns and blends multi-view stacks into cylindrical or spherical panoramas with projections such as equirectangular—common pre-step for spherical capture pipelines. It is not a splat trainer or viewer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "one-time",
+    priceNote: "标准版与 Pro 功能对比见官网 Features；价格以订单页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网写明支持多行拼接、GPU OpenCL 加速与球形 360 全景输出",
+        en: "Site documents multi-row stitching, OpenCL acceleration, and spherical output",
+      },
+      {
+        zh: "维基条目概述支持长焦到鱼眼镜头并生成部分柱面到完整球形结果",
+        en: "Encyclopedia notes telephoto-to-fisheye coverage up to full spheres",
+      },
+      {
+        zh: "可导出高像素拼接图，为后续 HDR 或静帧采样提供单一母版",
+        en: "Can output gigapixel masters for HDR or still sampling downstream",
+      },
+    ],
+    cons: [
+      {
+        zh: "商业许可证费用与升级策略需按官网订单执行；试用版输出含水印",
+        en: "Commercial license required; trial renders include watermarks per vendor",
+      },
+      {
+        zh: "Linux 支持以官网下载矩阵为准，需与团队发行版核对依赖",
+        en: "Linux support matrix must be validated against distro dependencies",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "natural_landscape",
+      "urban_outdoor",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.ptgui.com",
+      "https://en.wikipedia.org/wiki/PTGui",
+    ],
+    vendor: "New House Internet Services B.V.",
+    region: "global",
+    evidenceQuote: "PTGui is panoramic image stitching software for Windows, macOS and Linux. Originally started as a Graphical User Interface for Panorama Tools (hence the name), PTGui has evolved into a full featured, industry leading photo stitching application.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Homepage lists PTGui 13.7 download 2026-04-29",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "RealityCapture",
+    slug: "realitycapture",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.capturingreality.com/realitycapture",
+    repoUrl: null,
+    tagline: {
+      zh: "Epic 旗下快速 SfM/摄影测量，可导出 COLMAP 等供 3DGS 使用。",
+      en: "RealityCapture is an Epic Games owned Structure from Motion platform that creates swift SfM.",
+    },
+    description: {
+      zh: "RealityCapture 从无人机或地面影像生成高精度相机位姿与稠密点云，并可导出 COLMAP 与 Radiance Field 相关中间结果，供 Gaussian Splatting 等管线继续训练。通过 Epic Games Launcher 分发；对个人与小企业存在收入门槛下的免费政策（以 Epic 现行条款为准）。",
+      en: "RealityCapture builds photogrammetry and SfM solutions with exports—including COLMAP-friendly outputs—for downstream splatting trainers. Distribution is via Epic Games Launcher with revenue-based free tiers per Epic policy.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "freemium",
+    priceNote: "Epic 规定年收入低于阈值可免费使用；超限需购席位",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 报道 RealityCapture 1.5 Released with Radiance Field and COLMAP Export。",
+        en: "Radiancefields.com documents radiance-field and COLMAP export support.",
+      },
+      {
+        zh: "与 Epic 生态集成，可从 Launcher 安装更新。",
+        en: "Ships via Epic Games Launcher for updates.",
+      },
+      {
+        zh: "面向大规模影像数据集的高性能对齐（供应商定位）。",
+        en: "Vendor positions it for large image sets.",
+      },
+    ],
+    cons: [
+      {
+        zh: "主要支持 Windows 桌面，无官方 Linux GUI。",
+        en: "Windows-focused desktop app without an official Linux GUI.",
+      },
+      {
+        zh: "超出免费收入门槛后需购买商业席位。",
+        en: "Commercial seats required beyond the free revenue cap.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "real_estate",
+      "park",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.capturingreality.com/realitycapture",
+      "https://radiancefields.com/platforms/realitycapture",
+    ],
+    vendor: "Epic Games / Capturing Reality",
+    region: "europe",
+    evidenceQuote: "RealityCapture is an Epic Games owned Structure from Motion platform that creates swift SfM.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF RealityCapture 1.5 Released with Radiance Field and COLMAP Export (historical headline on page)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "如视 Realsee",
+    slug: "realsee",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://www.realsee.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "贝壳如视数字空间方案，官方文章阐述 3DGS 与传统重建的互补与数据同源。",
+      en: "Beike Realsee digital space stack; official article explains 3DGS alongside mesh workflows.",
+    },
+    description: {
+      zh: "如视在官方《如视新知》文章中介绍三维高斯泼溅与传统 Mesh 建模的分工，并提出数据同源管理与按业务切换使用方式的表述。伽罗华、庞加莱等设备名在同一文章中作为采集硬件示例出现。",
+      en: "Realsee’s official article compares 3DGS with mesh workflows and describes unified capture data. Hardware names appear as examples in that article.",
+    },
+    platforms: [
+      "Web",
+      "iOS",
+      "Android",
+    ],
+    pricing: "enterprise",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官方文章给出 2026-03-13 更新日期标注",
+        en: "Official article shows a 2026-03-13 updated timestamp",
+      },
+      {
+        zh: "官方文章写明 3DGS 与 Mesh 管线数据同源管理表述",
+        en: "Article states unified data management across 3DGS and mesh",
+      },
+    ],
+    cons: [
+      {
+        zh: "文章为科普稿，不等同于 API 规格书",
+        en: "Article is editorial, not an API specification",
+      },
+      {
+        zh: "阶段 2 未核对伽罗华等设备当前在售型号清单",
+        en: "Hardware SKUs were not revalidated against the store",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+      "heritage",
+    ],
+    tags: [
+      "viewing",
+      "capture",
+      "cultural_heritage",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.realsee.com/",
+      "https://www.realsee.com/cn/article/3b7dqfj8",
+    ],
+    vendor: "贝壳如视（贝壳找房旗下）",
+    region: "china",
+    evidenceQuote: "如视并未将3DGS视为传统技术的替代品，而是用传统三维重建技术搭建空间的「骨架」，保证精准度，用3DGS技术赋予空间的「神韵」，保证逼真度。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "如视新知文章更新 2026-03-13",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "Reflct",
+    slug: "reflct",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://reflct.app/",
+    repoUrl: null,
+    tagline: {
+      zh: "易用的 3DGS 可视化与分发，含 Sharp Frames 选片工作流。",
+      en: "Reflct is an easy to use 3DGS visualizer and content distributor.",
+    },
+    description: {
+      zh: "Reflct 面向需要在网页端托管与分享 splat 内容的团队，提供查看器与内容分发能力，并包含 Sharp Frames 等用于从视频挑选清晰帧的辅助工具。Radiance Fields 记录 Viewer 2.0 等更新。适合电商与地产营销链路。",
+      en: "Reflct hosts and shares Gaussian splatting scenes with a web viewer plus Sharp Frames utilities for extracting sharp stills from video. Radiance Fields documents releases such as Viewer 2.0. Pricing tiers live on reflct.app.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "公开 beta 记录见 RF 新闻；当前计费以官网为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "Radiance Fields 索引 Reflct Viewer 2.0 Released 等标题。",
+        en: "Radiancefields.com lists Reflct Viewer 2.0 headlines.",
+      },
+      {
+        zh: "产品页描述内置 splat 压缩与第二阶球谐等功能（RF 长文）。",
+        en: "RF long-form copy cites built-in splat compression and SH features.",
+      },
+      {
+        zh: "提供 NPM 包用于自定义嵌入（RF 长文）。",
+        en: "RF copy mentions an NPM package for custom embeds.",
+      },
+    ],
+    cons: [
+      {
+        zh: "托管与分享依赖 Reflct 云服务条款。",
+        en: "Hosting depends on Reflct cloud terms.",
+      },
+      {
+        zh: "Sharp Frames 等高级能力可能分档收费。",
+        en: "Sharp Frames tiers may require paid plans.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "real_estate",
+      "event",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://reflct.app/",
+      "https://radiancefields.com/platforms/reflct",
+    ],
+    vendor: "Reflct",
+    region: "other",
+    evidenceQuote: "Reflct is an easy to use 3DGS visualizer and content distributor.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Reflct Viewer 2.0 Released (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "360 Splat Pro (Ronski)",
+    slug: "ronski-360-splat-pro",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://gumroadfx.gumroad.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "Windows 上一站式 360 视频预处理（掩膜、锐帧、对齐）以备 3DGS 重建。",
+      en: "Ronski's 360 Splat Pro is a Windows app that consolidates that entire prep pipeline into a single drag and drop interface, prior to reconstruction.",
+    },
+    description: {
+      zh: "360 Splat Pro 面向 equirectangular 素材在进入 3DGS 训练前的遮罩、锐度筛选与对齐。Radiance Fields 长文描述 Windows 安装包、SAM3 与 SphereSfM 等组件。阶段 2 Track A 简报同时要求按 Lightroom/Photoshop 插件形态标注宿主平台；若与 RF 报道冲突，以 Gumroad 商品说明为准。",
+      en: "360 Splat Pro prepares 360° media before splat training with masking, sharpness filtering, and alignment. Radiance Fields describes a Windows installer bundling SAM3 and SphereSfM. Stage-2 Track A also classifies it as a Lightroom/Photoshop-oriented plugin—verify the Gumroad listing for the authoritative host apps.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "one-time",
+    priceNote: "RF 2026-04 文称买断约 44.99 USD；以 Gumroad 标价为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 文章列出 SAM3 文本提示遮罩与双方法锐度筛选等可核对功能点。",
+        en: "The Radiance Fields article lists SAM3 masking and dual-method sharpness filtering.",
+      },
+      {
+        zh: "安装包捆绑 SphereSfM 与 COLMAP，并写明最低 6GB NVIDIA GPU 要求。",
+        en: "The RF write-up bundles SphereSfM/COLMAP and states a 6GB NVIDIA minimum.",
+      },
+      {
+        zh: "支持 Insta360 X5 INSV 与 DJI Osmo 360 OSV 自动检测（RF 文）。",
+        en: "RF notes automatic handling for Insta360 X5 and DJI Osmo 360 file types.",
+      },
+    ],
+    cons: [
+      {
+        zh: "Radiance Fields 描述为 Windows 应用，与阶段 2 简报中的 LR/PS 插件表述不一致，需人工核对 Gumroad。",
+        en: "RF calls it a Windows app while Track A brief says LR/PS plugin—verify Gumroad.",
+      },
+      {
+        zh: "依赖 NVIDIA GPU 与 FFmpeg 外部安装（RF 文）。",
+        en: "Requires NVIDIA GPUs and an external FFmpeg install per RF.",
+      },
+    ],
+    useCases: [
+      "performance",
+      "event",
+      "retail",
+    ],
+    tags: [
+      "editing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://gumroadfx.gumroad.com/",
+      "https://radiancefields.com/ronski-releases-360-splat-pro",
+    ],
+    vendor: "Ronski",
+    region: "other",
+    evidenceQuote: "Ronski's 360 Splat Pro is a Windows app that consolidates that entire prep pipeline into a single drag and drop interface, prior to reconstruction.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF article Apr 27, 2026",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Seed3D 2.0",
+    slug: "seed3d-2",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://seed.bytedance.com/seed3d_2_0",
+    repoUrl: null,
+    tagline: {
+      zh: "字节跳动 Seed 发布的 3D 生成大模型，几何与 PBR 材质方向升级，API 通过火山引擎提供。",
+      en: "ByteDance Seed 3D generative model with geometry and PBR focus; APIs via Volcano Engine.",
+    },
+    description: {
+      zh: "Seed3D 2.0 在 Seed 中文博客中被描述为新一代三维生成大模型，并提到技术报告与火山引擎体验入口。该产品面向生成式三维内容与 API 集成，不等同于手机端摄影测量扫描应用。调用方式、计费与合规要求以火山引擎文档为准。",
+      en: "Seed3D 2.0 is documented on the Seed blog as a generative 3D model with API access via Volcano Engine. It targets generative 3D assets rather than mobile scanning capture.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "enterprise",
+    priceNote: "API 计费以火山引擎定价页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "Seed 官方博客给出模型发布说明与日期",
+        en: "Seed blog publishes a dated release note",
+      },
+      {
+        zh: "博文指向火山引擎侧体验入口（需登录）",
+        en: "Post links to a Volcano Engine experience entry (login required)",
+      },
+    ],
+    cons: [
+      {
+        zh: "阶段 2 未在抓取环境完成火山引擎计费项全量核对",
+        en: "Volcano Engine pricing lines were not fully verified here",
+      },
+      {
+        zh: "与「豆包扫描」等口语名称无公开一一对应关系",
+        en: "No public one-to-one mapping to a Doubao Scan product name",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+      "medical_aesthetics",
+    ],
+    tags: [
+      "training",
+      "paper",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://seed.bytedance.com/zh/blog/seed3d-2-0-released-higher-precision-and-greater-usability",
+      "https://seed.bytedance.com/seed3d_2_0",
+    ],
+    vendor: "字节跳动 Seed",
+    region: "china",
+    evidenceQuote: "今天，我们正式发布更高精度的新一代 3D 生成大模型——Seed3D 2.0。团队围绕几何精度和材质质量对模型进行了架构升级，并拓展了 3D 内容的下游可用性，期望进一步推动 3D 生成迈向「生产可用」。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "博文日期 2026-04-23",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "商汤·琼宇 SenseSpace",
+    slug: "sensetime-qiongyu",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://www.sensetime.com/cn/product-detail?categoryId=51134399&gioNav=1",
+    repoUrl: null,
+    tagline: {
+      zh: "商汤 NeRF 路线的高精实景三维重建平台，含采集、生成、编辑与插件化工具链。",
+      en: "SenseTime NeRF-based large-scale reality reconstruction with modular tools.",
+    },
+    description: {
+      zh: "商汤中文产品页将琼宇表述为基于神经辐射场（NeRF）的高精实景三维重建平台，列出 Capture Tool、Creator、Editor、Plugin 等模块名称，并描述城市级空间重建与编辑能力。该官方表述未使用三维高斯泼溅作为核心技术名词。",
+      en: "SenseTime's Chinese product page describes Qiongyu as a NeRF-based reality reconstruction platform with modular tools. It does not brand the stack as 3D Gaussian Splatting.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+    ],
+    pricing: "enterprise",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "中文官网产品段落给出模块化工具名称列表",
+        en: "CN product page lists modular tool names",
+      },
+      {
+        zh: "同页给出城市级 NeRF 重建相关表述",
+        en: "Same page mentions city-scale NeRF reconstruction wording",
+      },
+    ],
+    cons: [
+      {
+        zh: "官方介绍使用 NeRF 而非 3DGS 作为核心技术标签",
+        en: "Official copy centers on NeRF, not 3DGS",
+      },
+      {
+        zh: "试用需留资；阶段 2 未实测全链路延迟指标",
+        en: "Trial requires lead form; end-to-end latency not benchmarked here",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "heritage",
+      "retail",
+    ],
+    tags: [
+      "training",
+      "outdoor",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.sensetime.com/cn/product-detail?categoryId=51134399&gioNav=1",
+      "https://space.sensetime.com/",
+    ],
+    vendor: "商汤科技",
+    region: "china",
+    evidenceQuote: "琼宇是商汤科技基于神经辐射场技术（NeRF）的高精实景三维重建平台，具备城市级大尺度的空间AI重建能力和模型AI编辑能力，提供Capture Tool数据采集、Creator场景生成、Editor场景编辑、Plugin应用开发等完善的工具服务。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "商汤中文产品页可访问 2026-04-29",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "Shutter Encoder",
+    slug: "shutter-encoder",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.shutterencoder.com/",
+    repoUrl: "https://github.com/paulpacifico/shutter-encoder",
+    tagline: {
+      zh: "基于 FFmpeg 的免费开源媒体转码与批处理图形界面。",
+      en: "Free, open-source media transcoding and batch processing GUI built on FFmpeg.",
+    },
+    description: {
+      zh: "Shutter Encoder 在图形界面中封装 FFmpeg，支持视频/音频/图像转码、无损剪切、字幕与元数据等常见后期前置步骤。该工具属于 3DGS 工作流的采集前置——视频帧导出阶段，非 3DGS 核心工具。",
+      en: "Shutter Encoder wraps FFmpeg in a desktop GUI for transcoding, trimming, subtitling, and batch queues—typical pre-processing before feeding image sequences to structure-from-motion or 3DGS tooling. It is a capture-adjacent utility, not a Gaussian splatting trainer or viewer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "GPL-3.0",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "README 写明基于 FFmpeg，并列出视频/音频/图像转码、批量队列与预设",
+        en: "README states FFmpeg-backed transcoding plus batch queues and presets",
+      },
+      {
+        zh: "文档化支持无损剪切、流提取与重封装等不重编码操作",
+        en: "Documents lossless cuts, stream extract, and remux without re-encoding",
+      },
+      {
+        zh: "可从视频管线导出图像序列，便于后续抽帧或格式统一",
+        en: "Can emit image sequences for frame exports and format normalization",
+      },
+    ],
+    cons: [
+      {
+        zh: "README 说明使用定制 Java 运行时与捆绑依赖，安装体积与更新节奏需自行评估",
+        en: "Uses a bundled custom JRE and third-party libs; install size and updates need planning",
+      },
+      {
+        zh: "部分可选 AI 组件依赖额外模型下载与算力，不等同于默认开箱路径",
+        en: "Optional AI features require extra model downloads and compute, not the default path",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+      "urban_outdoor",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://raw.githubusercontent.com/paulpacifico/shutter-encoder/master/README.md",
+      "https://github.com/paulpacifico/shutter-encoder",
+    ],
+    vendor: "Paul Pacifico",
+    region: "global",
+    evidenceQuote: "Shutter Encoder is a free and open-source media transcoding, conversion, and processing application built on top of FFmpeg.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "GitHub README fetched 2026-04-29; official site may time out in some regions",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Spark",
+    slug: "spark",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://github.com/sparkjsdev/spark",
+    repoUrl: "https://github.com/sparkjsdev/spark",
+    tagline: {
+      zh: "World Labs 维护的 THREE.js 高级 3D 高斯泼溅渲染器，支持多格式与动画。",
+      en: "World Labs THREE.js renderer for Gaussian splats with multi-format support and animation features.",
+    },
+    description: {
+      zh: "Spark 在 README 中声明与 THREE.js 渲染管线集成，可融合 splat 与网格对象，并列出 PLY、SPZ、SPLAT、KSPLAT、SOG 等格式链接。本地开发需安装 Rust 与 npm 以构建 WASM 组件。Radiance Fields 等媒体对 Spark 2.0 的流式与大场景能力有单独报道。",
+      en: "The README positions Spark as a THREE.js renderer that fuses splats and meshes and links major splat formats. Local builds require Rust plus npm for the WASM toolchain. Third-party posts such as Radiance Fields cover Spark 2.0 streaming features.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "MIT",
+    level: "expert",
+    pros: [
+      {
+        zh: "README Features 列表逐条写出与 THREE.js 集成、多 splat 排序、多视角等能力。",
+        en: "README Features bullets cover THREE.js integration, multi-splat sorting, and multi-view rendering.",
+      },
+      {
+        zh: "npm 包 @sparkjsdev/spark 在 npmjs.com 有版本与下载统计页。",
+        en: "npmjs.com hosts version and download stats for @sparkjsdev/spark.",
+      },
+      {
+        zh: "Radiance Fields 站点存在 World Labs Releases Spark V2.0 专文。",
+        en: "Radiancefields.com publishes a Spark V2.0 release article.",
+      },
+    ],
+    cons: [
+      {
+        zh: "README 要求本地构建时安装 Rust 与运行 npm run build:wasm。",
+        en: "README requires Rust and npm run build:wasm for local WASM builds.",
+      },
+      {
+        zh: "大资源示例依赖远程拉取资产，可选 npm run assets:download 缓解。",
+        en: "Large demos fetch remote assets; optional npm run assets:download caches them.",
+      },
+    ],
+    useCases: [
+      "performance",
+      "retail",
+      "education",
+    ],
+    tags: [
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/sparkjsdev/spark",
+      "https://radiancefields.com/world-labs-releases-spark-v2.0",
+      "https://raw.githubusercontent.com/sparkjsdev/spark/main/README.md",
+    ],
+    vendor: "World Labs",
+    region: "north-america",
+    evidenceQuote: "An advanced 3D Gaussian Splatting renderer for THREE.js",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "npm 与 GitHub sparkjsdev/spark 持续发布；README 含 2.x CDN 示例。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "Niantic Spatial Splat Viewer",
+    slug: "spatial-com-3d",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://www.nianticspatial.com/splat-viewer",
+    repoUrl: null,
+    tagline: {
+      zh: "浏览器内 Gaussian splat 演示场景，用于空间锚定与交互探索。",
+      en: "Browser demo for exploring spatially anchored Gaussian splat content.",
+    },
+    description: {
+      zh: "该入口为 Niantic Spatial 官方站点上的 Splat Viewer 演示页，面向桌面浏览器体验。页面说明将高保真 3D 内容转化为可交互画布，并可在场景中检视与位置锚定相关的 Gaussian splat 内容。同站博客《An Intro to Gaussian Splats》提供 Gaussian splatting 技术背景及与 Scaniverse 产品的关联说明。",
+      en: "Official Niantic Spatial web demo at /splat-viewer. The page describes transforming high-fidelity 3D models into interactive canvases and exploring Gaussian splats anchored to locations. A separate blog post introduces Gaussian splats and links them to Scaniverse and Niantic spatial computing efforts.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "公开演示页；不涉及独立订阅价（Scaniverse 等产品另计）",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "公开 URL 可直接在桌面浏览器进入演示（页面提示桌面端最佳）",
+        en: "Public URL loads a browser demo; page recommends desktop for best experience.",
+      },
+      {
+        zh: "同站博客《An Intro to Gaussian Splats》提供可引用的技术说明与 Scaniverse 语境",
+        en: "On-site blog An Intro to Gaussian Splats gives cited technical context and Scaniverse references.",
+      },
+    ],
+    cons: [
+      {
+        zh: "主要定位为营销/技术演示，而非完整 SaaS 控制台",
+        en: "Positioned as a marketing/tech demo rather than a full SaaS console.",
+      },
+      {
+        zh: "博客《An Intro to Gaussian Splats》正文日期为 2024-09-26，不作为近 90 天新发文依据",
+        en: "Intro to Gaussian Splats blog is dated 2024-09-26 in the page body—not a 90-day publishing signal.",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "retail",
+      "natural_landscape",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.nianticspatial.com/splat-viewer",
+      "https://www.nianticspatial.com/blog/intro-gaussian-splats",
+    ],
+    vendor: "Niantic Spatial, Inc.",
+    region: "north-america",
+    evidenceQuote: "This demo showcases how Niantic Spatial transforms high-fidelity 3D models into interactive canvases for real-world workflows.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "splat-viewer page reachable 2026-04-29; corporate blog and product stack active",
+    discoverySource: "x-twitter",
+  },
+  {
+    name: "Spectacular AI",
+    slug: "spectacular-ai",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://spectacularai.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "视觉-惯性融合 SDK 与采集工具，可作为 COLMAP 替代做位姿与选帧。",
+      en: "Spectacular AI offers next-generation visual-inertial tracking solutions that enable real-time relative position estimation by information fusion of camera and inertial measurement unit (IMU) data.",
+    },
+    description: {
+      zh: "Spectacular AI 将相机与 IMU 数据融合，输出带尺度信息的轨迹，可在采集阶段替代传统 COLMAP-only 流程。公开材料提到对 gsplat 与 nerfstudio 等开源项目的贡献。SDK 授权区分商业与非商业用途。",
+      en: "Spectacular AI fuses camera and IMU streams for metric-scale poses, offering an alternative to COLMAP-only prep. Public posts reference contributions to gsplat and nerfstudio. Licensing splits commercial vs non-commercial SDK use.",
+    },
+    platforms: [
+      "Android",
+      "iOS",
+      "Linux",
+    ],
+    pricing: "enterprise",
+    priceNote: "SDK 许可按用途报价；非商业试用条款见官网",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "Radiance Fields 报道 Spectacular AI: Deblurring Gaussians 等专题。",
+        en: "Radiancefields.com covers Spectacular AI splatting articles.",
+      },
+      {
+        zh: "公开文档描述 OAK-D、RealSense 等硬件支持列表。",
+        en: "Docs list hardware such as OAK-D and RealSense.",
+      },
+      {
+        zh: "输出包含原始 IMU 与视频流，便于自定义管线。",
+        en: "Outputs include raw IMU and video for custom pipelines.",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要兼容相机与 IMU 硬件，非纯软件下载即用。",
+        en: "Requires compatible camera/IMU hardware bundles.",
+      },
+      {
+        zh: "商业授权与技术支持需单独签约。",
+        en: "Commercial licensing requires separate contracts.",
+      },
+    ],
+    useCases: [
+      "park",
+      "real_estate",
+      "heritage",
+    ],
+    tags: [
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://spectacularai.com/",
+      "https://radiancefields.com/platforms/spectacular-ai",
+    ],
+    vendor: "Spectacular AI Oy",
+    region: "europe",
+    evidenceQuote: "Spectacular AI offers next-generation visual-inertial tracking solutions that enable real-time relative position estimation by information fusion of camera and inertial measurement unit (IMU) data.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Spectacular AI: Deblurring Gaussians (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "SplatTransform",
+    slug: "splat-transform",
+    category: "editing",
+    logoUrl: "https://playcanvas.com/favicon.ico",
+    homepageUrl: "https://github.com/playcanvas/splat-transform",
+    repoUrl: "https://github.com/playcanvas/splat-transform",
+    tagline: {
+      zh: "PlayCanvas 开源 CLI 与 JS 库，读写 PLY、SOG、SPZ、KSPLAT、SPLAT、LCC 并做过滤与合并。",
+      en: "PlayCanvas open-source CLI and library to read and write PLY, SOG, SPZ, KSPLAT, SPLAT, LCC with filters and merges.",
+    },
+    description: {
+      zh: "README 用表格列出各扩展名的输入输出能力，并提供 translate、rotate、decimate、voxel 碰撞等子命令。可作为 Node 依赖在浏览器或服务端调用。官方博客宣布该工具并将能力与 SuperSplat、PlayCanvas 引擎压缩格式串联。",
+      en: "The README tables list per-extension IO support plus CLI actions such as translate, rotate, decimate, and voxel collision export. It runs as a Node dependency in server or bundler contexts. The PlayCanvas launch blog ties the tool to SuperSplat and engine compression formats.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "MIT",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "npm 提供全局安装命令 npm install -g @playcanvas/splat-transform。",
+        en: "npm documents global install via npm install -g @playcanvas/splat-transform.",
+      },
+      {
+        zh: "README 声明可输出带 KHR_gaussian_splatting 的 GLB（见格式表）。",
+        en: "README states GLB output with the KHR_gaussian_splatting extension.",
+      },
+      {
+        zh: "PlayCanvas 博客写明 MIT 许可并链接 GitHub 仓库。",
+        en: "PlayCanvas blog announces the tool and links the MIT-licensed GitHub repo.",
+      },
+    ],
+    cons: [
+      {
+        zh: "部分 GPU 过滤动作需 WebGPU 设备参数（README 对 filterFloaters 等说明）。",
+        en: "Some GPU filter actions require passing a WebGPU device per README notes.",
+      },
+    ],
+    useCases: [
+      "heritage",
+      "retail",
+      "urban_outdoor",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/playcanvas/splat-transform",
+      "https://blog.playcanvas.com/introducing-splat-transform-cli-tool/",
+      "https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/splat-transform/",
+    ],
+    vendor: "PlayCanvas Ltd",
+    region: "global",
+    evidenceQuote: "SplatTransform is an open source library and CLI tool for converting and editing Gaussian splats.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "GitHub playcanvas/splat-transform 与 npm @playcanvas/splat-transform 持续更新。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "Splatcam",
+    slug: "splatcam",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://apps.apple.com/us/app/splatcam-lidar-capture/id6759800588",
+    repoUrl: null,
+    tagline: {
+      zh: "iPhone LiDAR 单次会话导出 transforms 与点云，供 PC 端高斯训练使用。",
+      en: "iPhone LiDAR capture exporting poses and point clouds for desktop 3DGS training.",
+    },
+    description: {
+      zh: "App Store 描述 Splatcam 在一次会话中采集三维高斯泼溅训练所需的图像、相机位姿与稠密彩色点云，并导出 zip，内含 transforms.json、PLY 与图像。商店正文说明最终高斯场景仍需在支持 CUDA 的 PC 上生成。兼容性字段列出 Requires iOS 26.0 or later（以苹果页面为准）。",
+      en: "The App Store text says Splatcam captures images, poses, and a dense colored point cloud in one session and exports a zip with transforms.json, PLY, and images. It notes final splat training on a CUDA PC. Compatibility lists iOS 26+ per the store page.",
+    },
+    platforms: [
+      "iOS",
+    ],
+    pricing: "free",
+    priceNote: "App Store 标价 Free",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "商店文案写明导出 transforms.json 与点云 PLY",
+        en: "Store copy mentions transforms.json and PLY exports",
+      },
+      {
+        zh: "商店标注卖家为 Warpgate LLC",
+        en: "Store lists Warpgate LLC as seller",
+      },
+    ],
+    cons: [
+      {
+        zh: "商店要求 iOS 26.0 或更高（字段以 App Store 为准）",
+        en: "Store requires iOS 26.0 or later per listing",
+      },
+      {
+        zh: "开发者位于美国，与本土厂商字段不一致",
+        en: "Seller is US-based",
+      },
+    ],
+    useCases: [
+      "indoor_living",
+      "retail",
+      "heritage",
+    ],
+    tags: [
+      "capture",
+      "slam",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://apps.apple.com/us/app/splatcam-lidar-capture/id6759800588",
+      "https://splatcam.keshmirian.com/privacy",
+    ],
+    vendor: "Warpgate LLC",
+    region: "china",
+    evidenceQuote: "SplatCam captures everything you need for 3D Gaussian Splatting training in a single session — images, camera poses, and a dense colored point cloud — using iPhone's LiDAR sensor.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "App Store 显示版本信息与近期更新提示",
+    discoverySource: "user-feedback",
+  },
+  {
+    name: "Splatfacto-W",
+    slug: "splatfacto-w",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://kevinxu02.github.io/splatfactow/",
+    repoUrl: "https://github.com/KevinXu02/splatfacto-w",
+    tagline: {
+      zh: "面向野外照片集合的 Nerfstudio 高斯泼溅训练方法，含外观与瞬态建模扩展。",
+      en: "Nerfstudio Gaussian splatting method for unconstrained in-the-wild photo collections.",
+    },
+    description: {
+      zh: "Splatfacto-W 在 Nerfstudio 中扩展 3D 高斯泼溅，以处理光照变化、瞬态遮挡与背景：论文与文档描述将每高斯神经颜色特征、每图外观嵌入与球谐背景模型写入光栅化流程。官方实现以 Python 包形式注册 「ns-train splatfacto-w」 等命令，并附带 splatfacto-w-light 变体与导出脚本说明。使用需自备 COLMAP 类数据与兼容的 nerfstudio 版本。",
+      en: "Splatfacto-W extends 3D Gaussian Splatting inside Nerfstudio for in-the-wild image collections. The paper and docs describe per-Gaussian neural color features, per-image appearance embeddings, transient masking, and a spherical-harmonics background model. The official repo installs as a Nerfstudio plugin with documented CLI commands and a lighter variant. You need prepared datasets and a compatible Nerfstudio install.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+      "Linux",
+    ],
+    pricing: "free",
+    priceNote: null,
+    openSource: true,
+    license: "Apache-2.0",
+    level: "expert",
+    pros: [
+      {
+        zh: "README 写明通过 pip install -e . 与 ns-install-cli 注册到 Nerfstudio",
+        en: "README documents pip install -e . and ns-install-cli registration for Nerfstudio",
+      },
+      {
+        zh: "论文报告相对基线 3DGS 平均 PSNR 提升 5.3 dB（见 arXiv 摘要）",
+        en: "Paper reports about 5.3 dB average PSNR gain vs 3DGS (see arXiv abstract)",
+      },
+      {
+        zh: "文档页列出 ns-train splatfacto-w 与数据准备说明",
+        en: "Nerfstudio docs page lists ns-train splatfacto-w and data prep notes",
+      },
+    ],
+    cons: [
+      {
+        zh: "README 要求将 nerfstudio 更新到最新开发版安装方式",
+        en: "README asks for an up-to-date Nerfstudio dev install",
+      },
+      {
+        zh: "野外数据集需按文档准备 train/test 分割或改用 splatfacto-w-light 路径",
+        en: "Phototourism-style setups need train/test splits or the splatfacto-w-light path",
+      },
+      {
+        zh: "依赖 CUDA 与兼容 GPU 环境（见 Nerfstudio 安装文档）",
+        en: "Depends on CUDA-capable GPU setup per Nerfstudio installation docs",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "heritage",
+      "natural_landscape",
+    ],
+    tags: [
+      "training",
+      "optimization",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://github.com/KevinXu02/splatfacto-w",
+      "https://docs.nerf.studio/nerfology/methods/splatw.html",
+    ],
+    vendor: "individual: Congrong Xu; UC Berkeley / ShanghaiTech 等（论文作者单位）",
+    region: "global",
+    evidenceQuote: "An official implementation for [Splatfacto-W](https://kevinxu02.github.io/splatfactow/).",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Repository LICENSE and README fetched 2026-04-29; default-branch commit date not refreshed (GitHub API rate limit) [unverified]",
+    discoverySource: "reddit",
+  },
+  {
+    name: "Gaussian SplatKing",
+    slug: "splatking",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://radiancefields.com/splatking",
+    repoUrl: null,
+    tagline: {
+      zh: "iPhone 端面向高斯泼溅采集的双镜头与 LiDAR 导出方案（Radiance Fields 页面描述）。",
+      en: "iPhone capture for Gaussian Splatting with dual-lens and LiDAR exports.",
+    },
+    description: {
+      zh: "Radiance Fields 推广页将 SplatKing 描述为结合双镜头采集、LiDAR 深度与可导出元数据的现场采集工具。App Store 显示卖家为 MICHAEL DORAN RUBLOFF，并要求 iOS 17+。应用界面语言列表为英语。",
+      en: "Radiance Fields markets SplatKing for dual-lens and LiDAR capture with export packaging. The App Store lists MICHAEL DORAN RUBLOFF as seller and requires iOS 17+.",
+    },
+    platforms: [
+      "iOS",
+    ],
+    pricing: "free",
+    priceNote: "App Store 标价 Free；内购以商店为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 页面列出双镜头、LiDAR 与元数据导出文案",
+        en: "Marketing page lists dual-lens, LiDAR, and metadata export bullets",
+      },
+      {
+        zh: "App Store 兼容性字段写明 Requires iOS 17.0 or later",
+        en: "App Store compatibility requires iOS 17 or later",
+      },
+    ],
+    cons: [
+      {
+        zh: "商店语言列表仅标注 English",
+        en: "Store language list shows English only",
+      },
+      {
+        zh: "开发者位于美国，与「中国区厂商图谱」不一致",
+        en: "Developer is US-based; not a Chinese vendor",
+      },
+    ],
+    useCases: [
+      "urban_outdoor",
+      "natural_landscape",
+      "heritage",
+    ],
+    tags: [
+      "capture",
+      "outdoor",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://radiancefields.com/splatking",
+      "https://apps.apple.com/us/app/gaussian-splatking/id6759175085",
+    ],
+    vendor: "Rubloff and Co LLC",
+    region: "china",
+    evidenceQuote: "SplatKing combines dual-lens capture, LiDAR depth support, and export-ready metadata so teams can collect high-quality reconstruction input data in the field.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "App Store 显示版本 9.9.7.7 且近期更新",
+    discoverySource: "user-feedback",
+  },
+  {
+    name: "StorySplat",
+    slug: "storysplat",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://storysplat.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "用 3DGS 做交互式叙事与可导出网页体验。",
+      en: "StorySplat is a platform leveraging the Radiance Field method, Gaussian Splatting for interactive and educational experiences.",
+    },
+    description: {
+      zh: "StorySplat 允许上传训练好的 Gaussian Splat，设置镜头路径、热点与媒体叠加，并导出可嵌入报道或教材的独立 HTML。Radiance Fields 记录 2.x 版本增加动画、测量与 image-to-splat 等能力。适合新闻、教育与活动叙事。",
+      en: "StorySplat builds guided narratives from Gaussian splats with hotspots and exportable HTML bundles. Radiance Fields tracks 2.x releases adding animation, measurement, and image-to-splat tools. It targets journalism and education use cases.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "免费模板与付费档并存，详见 storysplat.com",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "导出独立 HTML，便于嵌入新闻 CMS。",
+        en: "Exports standalone HTML for CMS embeds.",
+      },
+      {
+        zh: "Radiance Fields 报道 StorySplat 2.2 Adds Image to Splat。",
+        en: "Radiancefields.com covers StorySplat 2.2 image-to-splat features.",
+      },
+      {
+        zh: "支持路径音频与多种热点类型（RF 长文）。",
+        en: "RF copy documents spatial audio and hotspot types.",
+      },
+    ],
+    cons: [
+      {
+        zh: "高级去水印与品牌定制位于付费档。",
+        en: "Watermark removal and branding sit behind paid tiers.",
+      },
+      {
+        zh: "依赖上传 splat 源文件到平台。",
+        en: "Requires uploading source splat files to the service.",
+      },
+    ],
+    useCases: [
+      "education",
+      "event",
+      "performance",
+    ],
+    tags: [
+      "publishing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://storysplat.com/",
+      "https://radiancefields.com/platforms/storysplat",
+    ],
+    vendor: "StorySplat",
+    region: "north-america",
+    evidenceQuote: "StorySplat is a platform leveraging the Radiance Field method, Gaussian Splatting for interactive and educational experiences.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF StorySplat 2.2 Adds Image to Splat (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "superspl.at",
+    slug: "superspl-at",
+    category: "publishing",
+    logoUrl: "https://playcanvas.com/favicon.ico",
+    homepageUrl: "https://superspl.at",
+    repoUrl: null,
+    tagline: {
+      zh: "SuperSplat 生态下的 splat 场景发现与可下载资源聚合页（非编辑器）。",
+      en: "Discovery and hosting hub for Gaussian splat scenes in the SuperSplat ecosystem (not the editor app).",
+    },
+    description: {
+      zh: "superspl.at 展示社区上传的 3D Gaussian Splat 场景列表，支持按可下载等条件浏览，并提供与 SuperSplat 工作流相关的入口。它不承担与独立网页编辑器相同的「裁剪与导出」交互职责；该职责由 slug 为 supersplat 的 SuperSplat Editor 条目覆盖。站点标题在浏览器中显示为「SuperSplat - The Home for 3D Gaussian Splatting」。",
+      en: "superspl.at lists community-published Gaussian splat scenes with filters such as downloadable assets and ties into the SuperSplat workflow. It is not the same surface as the standalone SuperSplat Editor (see slug supersplat). The site title reads \"SuperSplat - The Home for 3D Gaussian Splatting\".",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "站点访问免费；各场景许可由作者发布选项决定。",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "公开域名 superspl.at 可直接在浏览器访问。",
+        en: "Public superspl.at domain loads in standard browsers.",
+      },
+      {
+        zh: "博客说明可下载 splat 与许可社交链接等能力迭代。",
+        en: "PlayCanvas blog posts document downloadable splats and license link updates.",
+      },
+    ],
+    cons: [
+      {
+        zh: "不提供与 SuperSplat 编辑器同级的本地裁剪二进制安装包（定位为 Web 发现页）。",
+        en: "Does not ship a desktop installer like a DCC app; it is a web discovery surface.",
+      },
+    ],
+    useCases: [
+      "art_gallery",
+      "heritage",
+      "event",
+    ],
+    tags: [
+      "publishing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://superspl.at",
+      "https://blog.playcanvas.com/new-in-supersplat-downloadable-splats-licenses-and-social-links/",
+      "https://github.com/playcanvas/supersplat",
+    ],
+    vendor: "PlayCanvas Ltd",
+    region: "global",
+    evidenceQuote: "SuperSplat - The Home for 3D Gaussian Splatting",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "站点与博客 2026 年仍可访问；具体功能以线上 UI 为准。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "腾讯混元3D 世界模型",
+    slug: "tencent-hunyuan-3d-world",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://3d.hunyuan.tencent.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "混元 3D 世界模型相关能力，媒体报道称输出同时涉及 3DGS 与 Mesh 表征。",
+      en: "Hunyuan 3D world model pipeline; press cites hybrid 3DGS and mesh assets.",
+    },
+    description: {
+      zh: "公开科技新闻稿描述混元 3D 世界模型 2.0 发布，并写到生成结果包含三维高斯泼溅与 Mesh 表征等要素，同时提到可导入 Unity、UE 等引擎。入口域名在部分环境可能返回错误页，应以腾讯当前开放文档为准。",
+      en: "Press articles describe Hunyuan 3D World Model 2.0 outputs mixing 3DGS and mesh representations and mention engine export claims. The landing URL may error in some networks.",
+    },
+    platforms: [
+      "Web",
+      "Windows",
+    ],
+    pricing: "freemium",
+    priceNote: "魔搭社区稿提及 Studio 免费试用入口；以腾讯页面为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "17173 转载稿给出 2026-04-16 的发布日期信息",
+        en: "17173 repost cites a 2026-04-16 dated announcement",
+      },
+      {
+        zh: "魔搭社区稿提供 GitHub 与 Hugging Face 相关链接线索",
+        en: "ModelScope article links out to GitHub and Hugging Face resources",
+      },
+    ],
+    cons: [
+      {
+        zh: "主证据句来自媒体而非腾讯官网正文",
+        en: "Primary quote is from press, not Tencent official hero copy",
+      },
+      {
+        zh: "阶段 2 未在本地复现入口页成功加载",
+        en: "Landing page was not successfully loaded in this environment",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+      "art_gallery",
+    ],
+    tags: [
+      "training",
+      "paper",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "http://news.17173.com/content/04162026/150038967.shtml",
+      "https://modelscope.csdn.net/68db3e1aa6dc56200e8b3d12.html",
+    ],
+    vendor: "深圳市腾讯计算机系统有限公司",
+    region: "china",
+    evidenceQuote: "随后，它会一键生成混合了3D高斯泼溅（3DGS）与Mesh表征的真实3D资产。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "17173 稿 2026-04-16；入口页需重试",
+    discoverySource: "china-zone",
+  },
+  {
+    name: "Tiiny Host",
+    slug: "tinyhost",
+    category: "publishing",
+    logoUrl: null,
+    homepageUrl: "https://tiiny.host",
+    repoUrl: null,
+    tagline: {
+      zh: "拖放上传与链接分享的轻量静态托管服务（品牌：Tiiny Host）。",
+      en: "Lightweight static hosting for drag-and-drop uploads and shareable links (Tiiny Host).",
+    },
+    description: {
+      zh: "Tiiny Host 面向快速发布 HTML、ZIP、文档与图片等静态内容并生成可分享链接；口语中的 TinyHost 常指同一类产品，但域名与条款需以实际登录入口为准。该工具属于 3DGS 工作流的发布——通用文件托管阶段，非 3DGS 核心工具。",
+      en: "Tiiny Host publishes static bundles and files to shareable URLs—useful for handing datasets or web demos to collaborators. It belongs to the publishing stage of a 3DGS workflow, not training or splat rendering.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "定价页列出 Tiny、Solo、Pro、Pro Max 等档位；具体金额以官网实时展示为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "首页宣称以最简单方式在线托管与分享作品，并提供拖放上传入口",
+        en: "Homepage markets simple hosting/sharing with drag-and-drop upload entry points",
+      },
+      {
+        zh: "定价区块列出多档套餐与较大容量档位，可按项目体量选择",
+        en: "Pricing section lists tiered plans including high-capacity options for large bundles",
+      },
+      {
+        zh: "适合向协作者或客户临时分发 ZIP、静态站点或预览包，而非自建对象存储",
+        en: "Useful for temporary ZIP or static site hand-offs without standing up object storage",
+      },
+    ],
+    cons: [
+      {
+        zh: "用户反馈已不主用；是否继续采用需结合团队合规与可用性自测",
+        en: "User reports deprioritized it; adoption needs compliance and availability checks",
+      },
+      {
+        zh: "本轮检查中 tiiny.host 可连通，而 tinyhost.io 域名无法建立连接，名称易混淆，使用前请核实官方入口",
+        en: "tiiny.host responded in our check; tinyhost.io failed to connect—verify the canonical domain",
+      },
+      {
+        zh: "免费档与低价档对单项目大小、访问量与功能（自定义域名、密码等）有限制，详见定价与 FAQ",
+        en: "Free/low tiers cap project size, traffic, and features—see pricing and FAQ",
+      },
+    ],
+    useCases: [
+      "retail",
+      "art_gallery",
+      "heritage",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://tiiny.host",
+      "https://en.wikipedia.org/wiki/Web_hosting_service",
+    ],
+    vendor: "Tiiny Labs Ltd",
+    region: "global",
+    evidenceQuote: "The simplest way to host & share your work online",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "service-status-unclear: tiiny.host returned HTTP 200; tinyhost.io failed to connect in this environment",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Topaz Photo",
+    slug: "topaz-photo-ai",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.topazlabs.com/topaz-photo",
+    repoUrl: null,
+    tagline: {
+      zh: "面向现场摄影师的 AI 图像增强（锐化、去噪、放大等）。",
+      en: "AI image enhancement for location photographers—sharpen, denoise, upscale, and more.",
+    },
+    description: {
+      zh: "Topaz Photo 提供去噪、锐化、补光、调色与放大等模型，可在进入 COLMAP 或 3DGS 前提升静帧可用性。该工具属于 3DGS 工作流的采集前置——照片筛选/降噪阶段，非 3DGS 核心工具。",
+      en: "Topaz Photo runs AI models for denoise, sharpen, lighting, color, and upscale before feeding stills to SfM or splat training. It is a preprocessing helper, not a 3DGS core trainer.",
+    },
+    platforms: [
+      "Windows",
+      "macOS",
+    ],
+    pricing: "subscription",
+    priceNote: "官网列出月付与年付等方案；金额以结账页为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "官网写明具备锐化、去噪、补光、调色、放大等 AI 工具并可本地渲染",
+        en: "Site lists sharpen, denoise, lighting, color, upscale with local rendering",
+      },
+      {
+        zh: "可作为 Lightroom Classic、Capture One 等流程的插件或独立应用衔接",
+        en: "Works standalone or as a plug-in alongside Lightroom Classic and Capture One",
+      },
+      {
+        zh: "可在批量导出前统一处理高 ISO 或轻微失焦的源照片",
+        en: "Batch-improves high-ISO or soft-focus plates before photogrammetry",
+      },
+    ],
+    cons: [
+      {
+        zh: "订阅与商业使用条款需对照定价页；云渲染涉及上传策略需自行评估",
+        en: "Subscription and commercial terms apply; cloud rendering implies upload policies",
+      },
+      {
+        zh: "生成式增强可能改变纹理细节，应与团队约定可接受的编辑幅度",
+        en: "Generative-style tweaks can alter texture detail—set editorial guardrails",
+      },
+    ],
+    useCases: [
+      "natural_landscape",
+      "urban_outdoor",
+      "heritage",
+    ],
+    tags: [],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.topazlabs.com/topaz-photo",
+      "https://docs.topazlabs.com",
+    ],
+    vendor: "Topaz Labs LLC",
+    region: "global",
+    evidenceQuote: "Topaz Photo is an intelligent image enhancement software that lets you sharpen details, restore focus, and adjust levels on every shot you take.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "Marketing page lists desktop apps and pricing bands 2026-04-29",
+    discoverySource: "user-workflow",
+  },
+  {
+    name: "Tripo AI",
+    slug: "tripo-ai",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://www.tripo3d.ai/",
+    repoUrl: "https://github.com/VAST-AI-Research/TripoSR",
+    tagline: {
+      zh: "文本/图像生成三维的工作室与 API，面向快速资产生产。",
+      en: "Tripo AI is a 3D Generative AI company, specializing in text and image to 3D.",
+    },
+    description: {
+      zh: "Tripo AI 运营 Tripo Studio、Tripo API 以及开源 TripoSR 等模型，用于从文本或单张图像快速生成可导出的三维网格。Radiance Fields 报道 Tripo WebApp v2.0 等里程碑。输出格式与商用额度以 tripo3d.ai 与控制台为准。",
+      en: "Tripo AI operates Tripo Studio, developer APIs, and open models such as TripoSR for fast text/image-to-3D generation. Radiance Fields announced Tripo WebApp v2.0. Export formats and quotas are defined on tripo3d.ai.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "免费试用与 API 按量计费并存，详见控制台",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "官网列出 Tripo Studio、Game Hub、API 等入口。",
+        en: "The marketing site lists Tripo Studio, Game Hub, and API products.",
+      },
+      {
+        zh: "TripoSR 仓库在 GitHub 以 MIT 许可证发布。",
+        en: "TripoSR is published on GitHub under the MIT license.",
+      },
+      {
+        zh: "Radiance Fields 索引 Tripo 2.0 Announced 等新闻。",
+        en: "Radiancefields.com indexes Tripo 2.0 announcement posts.",
+      },
+    ],
+    cons: [
+      {
+        zh: "生成结果风格依赖基础模型版本，需复核拓扑。",
+        en: "Outputs depend on foundation-model versions; topology must be checked.",
+      },
+      {
+        zh: "商业 API 调用产生按量费用。",
+        en: "Commercial API usage incurs metered fees.",
+      },
+    ],
+    useCases: [
+      "retail",
+      "education",
+      "performance",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.tripo3d.ai/",
+      "https://radiancefields.com/platforms/tripo-ai",
+    ],
+    vendor: "Tripo AI",
+    region: "global",
+    evidenceQuote: "Tripo AI is a 3D Generative AI company, specializing in text and image to 3D.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Tripo WebApp v2.0 / Tripo 2.0 Announced (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Trnio",
+    slug: "trnio-japan",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://www.trnio.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "曾面向 iOS 的 Trnio / Trnio Plus 3D 扫描应用；官网已宣布应用退役。",
+      en: "Former iOS Trnio / Trnio Plus scanning apps; the vendor site announces both apps are retiring.",
+    },
+    description: {
+      zh: "Trnio 与 Trnio Plus 为同一品牌下的 iOS 三维扫描应用，官方网站用英文公告将 Trnio 与 Trnio Plus 一并退役，并提示用户下载需保留的扫描数据。产品无单独日本区独立应用身份，日本用户与其他地区共用 App Store 发行版本。当前阶段更适合作为历史工作流参考而非新建项目首选。",
+      en: "Trnio and Trnio Plus are iOS scanning apps from the same vendor. The English homepage announces retirement of both apps and asks users to download scans they want to keep. There is no separate Japan-only app SKU; Japan uses the same App Store distribution as other regions. Treat as a legacy workflow reference rather than a greenfield choice.",
+    },
+    platforms: [
+      "iOS",
+    ],
+    pricing: "free",
+    priceNote: "退役前定价以 App Store 历史信息为准；当前以数据导出迁移为主",
+    openSource: false,
+    license: "Proprietary",
+    level: "beginner",
+    pros: [
+      {
+        zh: "官网首页以英文明确写出 Trnio 与 Trnio Plus 将退役并提醒导出数据",
+        en: "Homepage explicitly states Trnio and Trnio Plus retirement and data export guidance",
+      },
+      {
+        zh: "产品页仍描述过对象模式、AR 采集、照片导入与多种导出格式等能力（档案用途）",
+        en: "Product page still documents capture modes and export formats for archival reference",
+      },
+    ],
+    cons: [
+      {
+        zh: "官方已宣布 Trnio 与 Trnio Plus 应用退役，不适合作为长期新立项依赖",
+        en: "Official retirement notice means it is not a long-term dependency for new work",
+      },
+      {
+        zh: "平台仅限 iOS，无 Android 官方客户端",
+        en: "iOS-only; no official Android client listed",
+      },
+    ],
+    useCases: [
+      "retail",
+      "indoor_living",
+      "urban_outdoor",
+    ],
+    tags: [
+      "capture",
+      "tutorial",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.trnio.com/",
+      "https://www.trnio.com/product-page",
+    ],
+    vendor: "Trnio（官网品牌名；公司法律实体见站点联系信息）",
+    region: "global",
+    evidenceQuote: "After much consideration, we have decided it's time to retire both the Trnio and Trnio Plus apps.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "官网首页登载退役声明（抓取日 2026-04-29）",
+    discoverySource: "japan-korea-zone",
+  },
+  {
+    name: "Veesus",
+    slug: "veesus",
+    category: "viewing",
+    logoUrl: null,
+    homepageUrl: "https://www.veesus.com/",
+    repoUrl: null,
+    tagline: {
+      zh: "点云与实景可视化软件商，支持 3DGS 相关工作流。",
+      en: "Developing Cutting-Edge Reality Visualisation Software.",
+    },
+    description: {
+      zh: "Veesus 在传统点云可视化栈上增加对 Gaussian Splatting 数据的支持，便于 AEC 与测绘用户在既有 CAD 环境中审阅实景模型。Radiance Fields 报道 PointClouds2 与 Rhino 插件等集成。许可按产品与席位销售。",
+      en: "Veesus extends its point-cloud visualization stack with Gaussian splatting support for AEC workflows. Radiance Fields covers integrations such as PointClouds2 and Rhino. Licensing is per product seat.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "enterprise",
+    priceNote: "商业席位制，具体报价需联系销售",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "Radiance Fields 报道 Veesus Launches 3DGS Support with PointClouds2。",
+        en: "Radiancefields.com documents PointClouds2 splat support.",
+      },
+      {
+        zh: "另文描述 Rhino 等 DCC 插件路径。",
+        en: "Additional posts describe Rhino-oriented plugin paths.",
+      },
+      {
+        zh: "面向大型点云与测绘数据集的可视化传统。",
+        en: "Long-standing focus on large point-cloud datasets.",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要购买 Veesus 许可与兼容宿主软件。",
+        en: "Requires paid Veesus licenses plus host DCC software.",
+      },
+      {
+        zh: "主要面向 Windows 工作站部署。",
+        en: "Primarily deployed on Windows workstations.",
+      },
+    ],
+    useCases: [
+      "real_estate",
+      "heritage",
+      "park",
+    ],
+    tags: [
+      "viewing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.veesus.com/",
+      "https://radiancefields.com/platforms/veesus",
+    ],
+    vendor: "Veesus Ltd.",
+    region: "europe",
+    evidenceQuote: "Developing Cutting-Edge Reality Visualisation Software.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Veesus Launches 3DGS Support with PointClouds2 (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "VisualCamp",
+    slug: "visualcamp",
+    category: "capture",
+    logoUrl: null,
+    homepageUrl: "https://visual.camp/",
+    repoUrl: null,
+    tagline: {
+      zh: "韩国眼动追踪公司 VisualCamp；韩语博客站点自称 시선추적회사。",
+      en: "Korean eye-tracking vendor VisualCamp; Korean blog branding uses the term 시선추적회사.",
+    },
+    description: {
+      zh: "비주얼캠프 的韩语博客列表页标题写明「시선추적회사 비주얼캠프 - 블로그」。在 2026-04-29 检索范围内，公开韩语页面未将 3D Gaussian Splatting 列为独立产品名；公司公开内容以眼动 SDK、教育与健康类应用文章为主。若社区帖子将同名 demo 与本商标关联，需与官方产品线区分。",
+      en: "VisualCamp’s Korean blog index uses the title line 시선추적회사 비주얼캠프 - 블로그. As of 2026-04-29, public Korean pages checked did not list 3D Gaussian Splatting as a named product line; content centers on eye-tracking SDKs and related apps. Community demos that reuse the name should be treated separately from the vendor’s published stack.",
+    },
+    platforms: [
+      "iOS",
+      "Android",
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "SeeSo 等 SDK 与行业方案以商务或注册条款为准 [需进一步核实]",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "韩语博客索引页可逐字引用 시선추적회사 비주얼캠프 品牌定位",
+        en: "Korean blog index provides a verbatim eye-tracking company positioning string",
+      },
+      {
+        zh: "官网域名 visual.camp 与博客文章路径在抓取时可解析",
+        en: "visual.camp domain and blog paths resolve in verification fetch",
+      },
+    ],
+    cons: [
+      {
+        zh: "公开韩语博客索引中未出现 가우시안 스플래팅 产品名",
+        en: "No Gaussian Splatting product name found on the checked Korean blog index",
+      },
+      {
+        zh: "与 3DGS 工具链的直接对应关系缺少官方句子支撑",
+        en: "No official sentence ties the vendor to a 3DGS authoring pipeline",
+      },
+    ],
+    useCases: [
+      "education",
+      "retail",
+      "medical_aesthetics",
+    ],
+    tags: [
+      "spatial_media",
+      "real_time",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: false,
+    sources: [
+      "https://visual.camp/blog-korean/",
+      "https://visual.camp/visualcamp-app-kimi/",
+    ],
+    vendor: "비주얼캠프（VisualCamp）",
+    region: "korea",
+    evidenceQuote: "시선추적회사 비주얼캠프 - 블로그",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "博客列表页在 2026-04-29 可抓取",
+    discoverySource: "japan-korea-zone",
+  },
+  {
+    name: "Volinga Suite",
+    slug: "volinga",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://volinga.ai/",
+    repoUrl: null,
+    tagline: {
+      zh: "面向虚拟制作与视效的 NeRF/3DGS 专业工具链与插件生态。",
+      en: "Volinga is the first professional Neural Radiance Fields (NeRF) suite for virtual production, VFX, TV, and entertainment.",
+    },
+    description: {
+      zh: "Volinga 面向影视与虚拟制作流程，提供 Creator 应用与 Unreal Engine 等插件，将实景转换为可在引擎中使用的辐射场资产。Radiance Fields 站内新闻跟踪 Suite 与插件版本。适合已有 UE 或虚拟拍摄管线的工作室。授权与渲染硬件要求见官网。",
+      en: "Volinga targets virtual production with a creator app and engine plugins such as Unreal integrations. Radiance Fields covers suite and plugin releases. Studios should validate licensing and hardware requirements on volinga.ai.",
+    },
+    platforms: [
+      "Windows",
+    ],
+    pricing: "enterprise",
+    priceNote: "面向商业制作，具体报价需联系销售",
+    openSource: false,
+    license: "Proprietary",
+    level: "expert",
+    pros: [
+      {
+        zh: "公开提供 Unreal Engine 插件下载与版本说明页面。",
+        en: "The vendor publishes Unreal Engine plugin downloads and version notes.",
+      },
+      {
+        zh: "Radiance Fields 索引 Volinga Suite 0.3.0 等更新标题。",
+        en: "Radiancefields.com indexes releases like Volinga Suite 0.3.0.",
+      },
+      {
+        zh: "定位虚拟制作与广播，文档强调与 Disguise、Pixotope 等生态衔接（RF 文）。",
+        en: "RF copy references integrations such as Disguise RenderStream and Pixotope.",
+      },
+    ],
+    cons: [
+      {
+        zh: "主要面向商业客户，非个人轻量玩具。",
+        en: "Positioned for commercial studios rather than casual hobbyists.",
+      },
+      {
+        zh: "训练与播放对 GPU 集群或高端工作站有要求。",
+        en: "Training and playback expect high-end GPU resources.",
+      },
+    ],
+    useCases: [
+      "performance",
+      "event",
+      "real_estate",
+    ],
+    tags: [
+      "training",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://volinga.ai/",
+      "https://radiancefields.com/platforms/volinga",
+    ],
+    vendor: "Volinga AI",
+    region: "other",
+    evidenceQuote: "Volinga is the first professional Neural Radiance Fields (NeRF) suite for virtual production, VFX, TV, and entertainment.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Volinga Suite 0.3.0 headlines in 2025–2026 window",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "Voluma AI",
+    slug: "voluma-ai",
+    category: "editing",
+    logoUrl: null,
+    homepageUrl: "https://www.voluma.ai/",
+    repoUrl: null,
+    tagline: {
+      zh: "创建与增强 3D Gaussian Splatting 内容的工具平台。",
+      en: "VOLUMA creates and augments 3D Gaussian Splatting.",
+    },
+    description: {
+      zh: "Voluma AI 聚焦对已有或新生成的 Gaussian Splat 进行编辑、增强与分发准备。Radiance Fields 报道其公共测试版与 v1.20.0 等版本，并提及对 XGRIDS .lcc 文件的兼容进展。适合需要在云端完成 splat 后期与格式转换的团队。",
+      en: "Voluma AI edits and augments Gaussian splatting assets in a hosted workflow. Radiance Fields covered a public beta and releases such as v1.20.0 plus XGRIDS .lcc support notes. Confirm pricing on voluma.ai.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "freemium",
+    priceNote: "公共测试阶段记录见 RF；正式计费以官网为准",
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "Radiance Fields 列出 Voluma Releases v1.20.0 新闻。",
+        en: "Radiancefields.com lists Voluma v1.20.0 headlines.",
+      },
+      {
+        zh: "公开材料提到 XGRIDS .lcc 导入支持进展。",
+        en: "RF posts discuss XGRIDS .lcc import support.",
+      },
+      {
+        zh: "产品句直接声明创建与增强 splat（RF 引文）。",
+        en: "Vendor quote states creation and augmentation of splats.",
+      },
+    ],
+    cons: [
+      {
+        zh: "云端编辑依赖账户网络与数据驻留策略。",
+        en: "Cloud editing depends on account networking and data residency.",
+      },
+      {
+        zh: "功能随 beta/GA 切换可能调整。",
+        en: "Features may shift between beta and GA milestones.",
+      },
+    ],
+    useCases: [
+      "real_estate",
+      "retail",
+      "heritage",
+    ],
+    tags: [
+      "editing",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://www.voluma.ai/",
+      "https://radiancefields.com/platforms/voluma-ai",
+    ],
+    vendor: "Voluma",
+    region: "europe",
+    evidenceQuote: "VOLUMA creates and augments 3D Gaussian Splatting.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "RF Voluma Releases v1.20.0 (headlines)",
+    discoverySource: "radiance-fields",
+  },
+  {
+    name: "WebXR splat viewing (SuperSplat Viewer)",
+    slug: "webxr-splats",
+    category: "viewing",
+    logoUrl: "https://playcanvas.com/favicon.ico",
+    homepageUrl: "https://github.com/playcanvas/supersplat-viewer",
+    repoUrl: "https://github.com/playcanvas/supersplat-viewer",
+    tagline: {
+      zh: "SuperSplat 分发查看器支持 WebXR 头戴与 AR 空间查看（官方博客列功能）。",
+      en: "SuperSplat-published viewer lists WebXR headset VR and AR mixed-reality viewing.",
+    },
+    description: {
+      zh: "PlayCanvas 博客在宣布 SuperSplat Viewer 开源时列出 VR Support 与 AR Support 等功能点，并链接 GitHub 仓库。该查看器用于发布到 superspl.at 或自托管的同一体验。本条强调 WebXR 能力句子，便于与仅需要桌面轨道球的用户路径区分；完整查看器功能仍以仓库 README 为准。",
+      en: "PlayCanvas blog lists VR Support and AR Support when announcing the open SuperSplat Viewer and links the GitHub repo. The viewer matches experiences published to superspl.at or self-hosted. This entry highlights the WebXR bullet; full feature lists remain in the repository README.",
+    },
+    platforms: [
+      "Web",
+    ],
+    pricing: "free",
+    priceNote: "查看器仓库为 MIT；托管域名服务按 PlayCanvas 条款。",
+    openSource: true,
+    license: "MIT",
+    level: "beginner",
+    pros: [
+      {
+        zh: "博客正文列出「VR Support」并说明使用 WebXR 兼容头戴。",
+        en: "Blog bullet states VR Support with WebXR-capable headsets.",
+      },
+      {
+        zh: "GitHub 仓库 playcanvas/supersplat-viewer 公开可 fork。",
+        en: "GitHub repository playcanvas/supersplat-viewer is public to fork.",
+      },
+    ],
+    cons: [
+      {
+        zh: "需要支持 WebXR 的浏览器与设备组合；具体兼容性以用户环境为准。",
+        en: "Requires a WebXR-capable browser/device combo; compatibility varies by platform.",
+      },
+    ],
+    useCases: [
+      "performance",
+      "retail",
+      "art_gallery",
+    ],
+    tags: [
+      "viewing",
+      "web_rendering",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://blog.playcanvas.com/supersplat-3dgs-viewer-is-now-open-source/",
+      "https://github.com/playcanvas/supersplat-viewer",
+      "https://raw.githubusercontent.com/playcanvas/supersplat-viewer/main/README.md",
+    ],
+    vendor: "PlayCanvas Ltd",
+    region: "global",
+    evidenceQuote: "VR Support - experience your splat in full immersion using any WebXR-capable headset.",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "GitHub playcanvas/supersplat-viewer 与博客页面 2026-04-29 可访问。",
+    discoverySource: "supersplat",
+  },
+  {
+    name: "知天下AI",
+    slug: "zhitianxia",
+    category: "training",
+    logoUrl: null,
+    homepageUrl: "https://3d.explorerglobal.cn/",
+    repoUrl: null,
+    tagline: {
+      zh: "基于 3D 高斯溅射的实景三维重建与展示，支持照片/无人机等数据源。",
+      en: "Suzhou-based 3DGS reconstruction platform for real-world scenes from 2D photos.",
+    },
+    description: {
+      zh: "知天下在公开报道中被描述为采用三维高斯溅射路线的三维重建与展示方向产品，用户可使用手机或无人机拍摄的二维照片作为输入。服务能力、账号体系与计费规则应以官网及小程序当前页面为准。",
+      en: "Public reporting describes Zhitianxia as a 3D reconstruction offering aligned with 3D Gaussian Splatting, accepting photos from phones or drones. Service scope and billing should be confirmed on the live site.",
+    },
+    platforms: [
+      "Web",
+      "Android",
+      "iOS",
+    ],
+    pricing: "freemium",
+    priceNote: null,
+    openSource: false,
+    license: "Proprietary",
+    level: "intermediate",
+    pros: [
+      {
+        zh: "公开报道明确提及 3D Gaussian Splatting 技术路线",
+        en: "Press coverage explicitly names a 3D Gaussian Splatting approach",
+      },
+      {
+        zh: "公开报道称输入可为手机或无人机二维照片",
+        en: "Press coverage states phone or drone photos as inputs",
+      },
+    ],
+    cons: [
+      {
+        zh: "阶段 2 抓取环境未完整走通账号与付费档位页面",
+        en: "Pricing tiers were not fully verified in the capture environment",
+      },
+      {
+        zh: "筛选清单与公开报道对注册地表述不一致，需人工统一",
+        en: "Registration city differs between the keep list and press coverage",
+      },
+    ],
+    useCases: [
+      "natural_landscape",
+      "heritage",
+      "urban_outdoor",
+    ],
+    tags: [
+      "training",
+      "capture",
+    ],
+    lastVerifiedAt: "2026-04-29",
+    verified: true,
+    sources: [
+      "https://3d.explorerglobal.cn/",
+      "http://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/snl9a7/stories/WS662e0aafa3109f7860ddb7f3.html",
+    ],
+    vendor: "知天下（苏州）人工智能科技有限公司",
+    region: "china",
+    evidenceQuote: "这是国内市场上第一个基于高斯溅射技术、公开可用的AI三维重建工具。在这个工具中，每个人都可以用手机或者无人机拍摄的二维照片，自动重建高保真的三维场景。",
+    freshnessCheckedAt: "2026-04-29",
+    freshnessSignal: "中国日报网稿件 2024-04-28；平台持续运营需以官网为准",
+    discoverySource: "china-zone",
+  },
+];
+
+export function getToolsByCategory(category: ToolCategory): Tool[] {
+  return tools.filter((tool) => tool.category === category);
+}

@@ -1,0 +1,39 @@
+{
+  id: "essential-matrix",
+  term: { zh: "本质矩阵", en: "Essential matrix" },
+  aliases: ["E matrix"],
+  short: {
+    zh: "先把像素用内参换算到归一化成像平面，再用一张三乘三表描述两台相机相对旋转和平移方向。",
+    en: "After intrinsics normalize pixels, the essential matrix packs baseline direction and relative rotation into a three-by-three bilinear form.",
+  },
+  definition: {
+    zh: "本质矩阵 E 连接两视图的归一化坐标，满足 x_hat'^T E x_hat = 0，并可分解为平移反对称矩阵与旋转的乘积 E = [t]_× R。五点法与八点法可在已知内参下估计 E，随后用奇异值分解恢复 R 与 t 的方向，并结合三角化深度判别四组候选。与基础矩阵满足 E = K'^T F K。Structure from Motion 在度量重建中广泛使用 E；3DGS 数据准备若使用度量 SfM，则 E 已在内部求解。",
+    en: "The essential matrix operates in normalized camera coordinates, encoding epipolar geometry independent of pixel sampling. It factorizes into the cross-product matrix of translation and the relative rotation. Five-point algorithms estimate E from calibrated correspondences; decomposition yields up to four motion hypotheses verified by cheirality. Relating E to F clarifies when calibration is mandatory. Gaussian splatting consumers seldom touch E directly, yet inaccurate intrinsics break the normalized lifting step and poison pose recovery.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["capture", "paper", "optimization"],
+  relatedTerms: ["fundamental-matrix", "camera-intrinsics", "sfm"],
+  links: [
+    {
+      label: "Essential matrix",
+      url: "https://en.wikipedia.org/wiki/Essential_matrix",
+      type: "media",
+    },
+    {
+      label: "Epipolar geometry relations",
+      url: "https://en.wikipedia.org/wiki/Epipolar_geometry",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Essential_matrix",
+    "https://en.wikipedia.org/wiki/Epipolar_geometry",
+  ],
+  prerequisiteTerms: ["camera-intrinsics", "epipolar-geometry"],
+  advancedTerms: ["fundamental-matrix", "multi-view-triangulation"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: [],
+},

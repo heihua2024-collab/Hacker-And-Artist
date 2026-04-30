@@ -1,0 +1,62 @@
+{
+  name: "SuperSplat",
+  slug: "supersplat",
+  category: "editing",
+  logoUrl: "https://playcanvas.com/favicon.ico",
+  homepageUrl: "https://playcanvas.com/supersplat/editor",
+  repoUrl: "https://github.com/playcanvas/supersplat",
+  tagline: {
+    zh: "纯网页端的高斯泼溅清理与裁切工具。",
+    en: "Pure web-based Gaussian Splatting cleanup and cropping tool.",
+  },
+  description: {
+    zh: "SuperSplat 是 PlayCanvas 提供的浏览器端 3D Gaussian Splat 编辑器：可加载 splat 数据、做区域选择与删除、裁剪与导出，并与官方文档中的 splat-transform、SOG 等工作流并列说明。适用于在发布到 Web 或与其他工具链对接之前，对原始训练输出做减噪与体积优化。与站内 engines.ts 中 PlayCanvas Engine（slug playcanvas）区分：本条是编辑器产品，该条是运行时引擎能力。",
+    en: "SuperSplat is PlayCanvas’s browser-based editor for 3D Gaussian Splats: load splat data, select and remove regions, crop, and export, documented alongside splat-transform and SOG in the official manual. Use it to clean and shrink raw training exports before web delivery. Distinct from the PlayCanvas Engine row in engines.ts (slug playcanvas): this entry is the editor product; that row is the runtime engine.",
+  },
+  platforms: ["Web"],
+  pricing: "free",
+  priceNote: "MIT 开源；无单独订阅价（以仓库与官网为准）。",
+  openSource: true,
+  license: "MIT",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "提供官方域名编辑器入口 playcanvas.com/supersplat/editor。",
+      en: "Ships a public web editor at playcanvas.com/supersplat/editor.",
+    },
+    {
+      zh: "GitHub 仓库公开且带 MIT 许可证全文。",
+      en: "GitHub repository is public and includes the MIT license text.",
+    },
+    {
+      zh: "PlayCanvas 开发者手册设有独立 SuperSplat 文档页。",
+      en: "PlayCanvas developer manual has a dedicated SuperSplat documentation page.",
+    },
+  ],
+  cons: [
+    {
+      zh: "编辑能力以删减与导出为主，不包含完整 DCC 级建模工具集。",
+      en: "Editing scope centers on deletion and export, not a full DCC modeling suite.",
+    },
+    {
+      zh: "大场景在浏览器中受单页内存上限约束（与典型 Web 应用一致）。",
+      en: "Large scenes are constrained by browser per-tab memory limits, like typical web apps.",
+    },
+  ],
+  useCases: ["heritage", "art_gallery", "retail"],
+  tags: ["editing", "web_rendering", "optimization"],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://playcanvas.com/supersplat/editor",
+    "https://github.com/playcanvas/supersplat",
+    "https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/supersplat/",
+  ],
+  vendor: "PlayCanvas Ltd",
+  region: "global",
+  evidenceQuote:
+    "The SuperSplat Editor is a free and open source tool for inspecting, editing, optimizing and publishing 3D Gaussian Splats.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "GitHub playcanvas/supersplat 仓库 commits 持续更新（以 github.com 为准）。",
+  discoverySource: "supersplat",
+},

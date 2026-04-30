@@ -1,0 +1,59 @@
+{
+  slug: "compact-3d-gaussian",
+  kind: "milestone",
+  title: {
+    zh: "紧凑三维高斯辐射场表示",
+    en: "Compact 3D Gaussian Representation for Radiance Field",
+  },
+  summary: {
+    zh: "通过掩码剪枝、网格化颜色场与几何码本量化，在保持画质的同时大幅压缩高斯数量与属性存储。",
+    en: "Combines learned masking, grid-based view-dependent color, and codebook-quantized geometry to shrink Gaussian count and attribute storage while preserving quality.",
+  },
+  description: {
+    zh: "论文针对三维高斯泼溅显存与磁盘占用随场景细节线性膨胀的问题，提出可学习体积掩码去除贡献微弱的高斯，并用哈希网格查询替代逐高斯球谐颜色，再用向量量化共享尺度与旋转模式。配合量化与熵编码，在多项指标上报告相对原始三维高斯泼溅数量级级的体积下降与更快渲染。",
+    en: "The paper tackles memory and disk growth of 3DGS as Gaussians densify. It learns a volumetric mask to drop low-impact Gaussians, replaces per-Gaussian spherical harmonics with a compact hash-grid color field, and codebooks geometric attributes where many Gaussians share similar scales and rotations. With quantization and entropy coding it reports large storage reductions and faster rendering versus vanilla 3DGS on benchmark scenes.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Joo Chan Lee", role: "researcher", link: "https://maincold2.github.io/c3dgs/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "compression", "optimization"],
+  lessons: [
+    {
+      zh: "冗余高斯剪枝与属性共享是压缩显式辐射场的两条主杠杆。",
+      en: "Pruning redundant Gaussians and sharing attributes are the two main levers for compressing explicit radiance fields.",
+    },
+    {
+      zh: "将高频颜色从逐点存储迁到连续场，可显著降低每点参数数量。",
+      en: "Moving high-frequency color from per-point storage to a continuous field cuts per-primitive parameters.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2311.13681" },
+    { label: "Project Page", url: "https://maincold2.github.io/c3dgs/" },
+    { label: "GitHub", url: "https://github.com/maincold2/Compact-3DGS" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2311.13681",
+    "https://maincold2.github.io/c3dgs/",
+    "https://github.com/maincold2/Compact-3DGS",
+  ],
+  quote: {
+    zh: null,
+    en: "Neural Radiance Fields (NeRFs) have demonstrated remarkable potential in capturing complex 3D scenes with high fidelity.",
+  },
+},

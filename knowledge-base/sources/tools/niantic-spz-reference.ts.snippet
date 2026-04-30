@@ -1,0 +1,58 @@
+{
+  name: "Niantic SPZ reference library",
+  slug: "niantic-spz-reference",
+  category: "publishing",
+  logoUrl: null,
+  homepageUrl: "https://github.com/nianticlabs/spz",
+  repoUrl: "https://github.com/nianticlabs/spz",
+  tagline: {
+    zh: "Niantic 开源的 .spz 压缩高斯格式参考实现（C++ / TS WASM / Python）。",
+    en: "Niantic open reference codecs for the compressed .spz Gaussian splat format.",
+  },
+  description: {
+    zh: "README 将 spz 扩展名格式描述为压缩三维高斯泼溅，并说明 C++ 库仅依赖 libz。同一文档给出坐标系约定、版本 4 头结构与 Python 绑定安装步骤。PlayCanvas SplatTransform 文档将 spz 列为可读取的 Niantic 压缩格式，便于与 Web 交付链互操作。",
+    en: "The README defines `.spz` as a compressed Gaussian splat format and ships a libz-only C++ core plus WASM and Python bindings. It documents coordinate conventions and header layout. PlayCanvas SplatTransform lists `.spz` as an input format, linking the codec to web delivery pipelines.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "MIT",
+  level: "expert",
+  pros: [
+    {
+      zh: "README 写明 spz 编码相对对应 ply 约 10 倍体积缩减（原文用语）。",
+      en: "README states SPZ-encoded splats are typically about 10x smaller than matching PLY files.",
+    },
+    {
+      zh: "根目录 LICENSE 为 MIT，版权方为 Niantic Labs。",
+      en: "Root LICENSE file is MIT with Niantic Labs copyright.",
+    },
+    {
+      zh: "PlayCanvas SplatTransform 手册格式表包含 spz 扩展名行。",
+      en: "PlayCanvas SplatTransform manual format table includes a `.spz` row.",
+    },
+  ],
+  cons: [
+    {
+      zh: "TypeScript WASM 路径需本机配置 Emscripten 再 cmake 构建。",
+      en: "TypeScript WASM builds require installing Emscripten before CMake builds.",
+    },
+  ],
+  useCases: ["retail", "heritage", "natural_landscape"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://github.com/nianticlabs/spz",
+    "https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/splat-transform/",
+    "https://raw.githubusercontent.com/nianticlabs/spz/main/README.md",
+  ],
+  vendor: "Niantic Labs",
+  region: "north-america",
+  evidenceQuote:
+    ".spz is a file format for compressed 3D gaussian splats. This directory contains a C++ library for saving and loading data in the .spz format.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "GitHub nianticlabs/spz 持续提交；格式版本 4 见 README。",
+  discoverySource: "supersplat",
+},

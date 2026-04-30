@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / adobe-premiere-pro
+{
+  name: "Adobe Premiere Pro",
+  slug: "adobe-premiere-pro",
+  category: "editing",
+  logoUrl: null,
+  homepageUrl: "https://www.adobe.com/products/premiere.html",
+  repoUrl: null,
+  tagline: {
+    zh: "Creative Cloud 下的行业常见非线性视频剪辑应用。",
+    en: "Industry-standard NLE distributed through Adobe Creative Cloud.",
+  },
+  description: {
+    zh: "Premiere Pro 用于时间线剪辑、生成代理、裁切与导出中间编码，便于后续抽帧或与其他工具衔接。该工具属于 3DGS 工作流的采集前置——视频清理阶段，非 3DGS 核心工具。",
+    en: "Premiere Pro edits timelines, builds proxies, trims footage, and exports mezzanine codecs before frame extraction or photogrammetry. It is an editing-stage helper, not a Gaussian splat trainer.",
+  },
+  platforms: ["Windows", "macOS"],
+  pricing: "subscription",
+  priceNote: "订阅价格与套餐以 Adobe 官网与购物车为准",
+  openSource: false,
+  license: "Proprietary",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "与 After Effects、Media Encoder 等 Adobe 组件共享 Creative Cloud 工作流",
+      en: "Integrates with After Effects and Media Encoder under Creative Cloud",
+    },
+    {
+      zh: "时间线可组织多机位与标记，便于批量导出片段或静帧",
+      en: "Timeline supports multicam and markers for batch exports or still grabs",
+    },
+    {
+      zh: "广泛使用的教程与插件生态，便于团队标准化导出预设",
+      en: "Large tutorial and plug-in ecosystem for standardized export presets",
+    },
+  ],
+  cons: [
+    {
+      zh: "订阅制长期成本需纳入制片预算；离线激活与席位管理依企业协议而定",
+      en: "Subscription pricing adds OPEX; enterprise seat management varies by contract",
+    },
+    {
+      zh: "具体可用编解码器受操作系统与 Adobe 版本影响，跨平台需验证导出设置",
+      en: "Available codecs depend on OS and build—validate export settings per platform",
+    },
+  ],
+  useCases: ["retail", "art_gallery", "urban_outdoor"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://www.adobe.com/products/premiere.html",
+    "https://en.wikipedia.org/wiki/Adobe_Premiere_Pro",
+  ],
+  vendor: "Adobe Inc.",
+  region: "global",
+  evidenceQuote:
+    "Adobe Premiere (formerly Adobe Premiere Pro) is a video editing application developed by Adobe and is distributed as part of the Adobe Creative Cloud suite.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Wikipedia lists stable release 26.0 / January 2026 as of 2026-04-29 fetch",
+  discoverySource: "user-workflow",
+},

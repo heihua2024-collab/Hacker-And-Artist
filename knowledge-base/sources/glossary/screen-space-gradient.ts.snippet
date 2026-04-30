@@ -1,0 +1,39 @@
+{
+  id: "screen-space-gradient",
+  term: { zh: "屏幕空间梯度", en: "Screen-space gradient" },
+  aliases: ["image-space gradient", "accumulated grads"],
+  short: {
+    zh: "在已经画出来的那张二维图像上算哪里误差变化最陡，用来提示该在哪里多放几颗高斯。",
+    en: "Accumulate how fast the loss changes with respect to projected splat positions on the image plane to flag where new Gaussians are needed.",
+  },
+  definition: {
+    zh: "三维高斯泼溅在自适应密度控制阶段，对每像素渲染结果关于投影中心求导并在视图上累加，得到与屏幕坐标相关的梯度统计。高梯度区域暗示尚未覆盖的几何或颜色细节，于是触发克隆或分裂。实现需可微光栅化支持反向传播到二维位置。Mip-Splatting 等工作进一步讨论屏幕空间导数与混叠的关系。该机制与纯物体空间 Hessian 策略不同，强调图像域监督驱动布点。",
+    en: "Adaptive densification tracks the magnitude of gradients of the rendering loss with respect to screen-space Gaussian centers. Large magnitudes trigger duplication or splitting of primitives. Differentiable rasterizers must propagate derivatives through projection and alpha blending. Related research analyzes aliasing via screen-space derivatives and Jacobian-aware filtering. The procedure couples photometric supervision tightly with geometric placement.",
+  },
+  category: "technique",
+  level: "expert",
+  relatedTagIds: ["optimization", "training", "paper"],
+  relatedTerms: ["adaptive-density-control", "differentiable-rasterization", "3dgs"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Mip-Splatting alias analysis",
+      url: "https://arxiv.org/abs/2311.17245",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://arxiv.org/abs/2311.17245",
+  ],
+  prerequisiteTerms: ["differentiable-rasterization"],
+  advancedTerms: ["splat-clone", "splat-split"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079", "https://arxiv.org/abs/2311.17245"],
+},

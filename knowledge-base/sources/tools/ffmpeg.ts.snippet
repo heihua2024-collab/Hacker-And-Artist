@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / ffmpeg
+{
+  name: "FFmpeg",
+  slug: "ffmpeg",
+  category: "capture",
+  logoUrl: null,
+  homepageUrl: "https://ffmpeg.org",
+  repoUrl: "https://github.com/FFmpeg/FFmpeg",
+  tagline: {
+    zh: "命令行多媒体处理套件，含 libavcodec、libavfilter 等库。",
+    en: "CLI multimedia suite with libavcodec, libavformat, libavfilter, and more.",
+  },
+  description: {
+    zh: "FFmpeg 通过 ffmpeg 可执行文件与滤镜图完成转码、缩放、裁剪、拼接与抽帧等操作，教程与脚本常以它为预处理步骤。该工具属于 3DGS 工作流的采集前置——视频帧导出阶段，非 3DGS 核心工具。",
+    en: "FFmpeg provides the `ffmpeg` CLI and libraries for transcoding, scaling, trimming, and exporting frame sequences—common in 3DGS capture prep. It is not a Gaussian splat trainer or viewer.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "LGPL-2.1-or-later / GPL-2.0-or-later (build-dependent)",
+  level: "expert",
+  pros: [
+    {
+      zh: "维基条目写明涵盖转码、裁剪拼接、缩放与后期类滤镜，可脚本化批处理",
+      en: "Encyclopedia summary lists transcoding, trim/concat, scaling, and effects via filters",
+    },
+    {
+      zh: "同一生态提供 ffprobe 用于输出容器与流技术参数，便于写死抽帧参数",
+      en: "Ships ffprobe for stream metadata, stabilizing downstream frame-export scripts",
+    },
+    {
+      zh: "可导出 PNG、JPEG 等图像序列作为 COLMAP 或 3DGS 管线输入",
+      en: "Can emit PNG/JPEG sequences as inputs to SfM or 3DGS pipelines",
+    },
+  ],
+  cons: [
+    {
+      zh: "命令行与滤镜语法需要维护文档化脚本，团队协作需约定版本与编译选项",
+      en: "CLI and filter graphs require maintained scripts; teams must pin builds/options",
+    },
+    {
+      zh: "启用特定编解码器或硬件路径时，许可与二进制分发条款因编译配置而异",
+      en: "Codec enablement and redistribution terms vary with build configuration",
+    },
+  ],
+  useCases: ["heritage", "urban_outdoor", "natural_landscape"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://ffmpeg.org",
+    "https://en.wikipedia.org/wiki/FFmpeg",
+  ],
+  vendor: "FFmpeg project",
+  region: "global",
+  evidenceQuote:
+    "FFmpeg is a free and open-source software project consisting of a suite of libraries and programs for handling video, audio, and other multimedia files and streams.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Wikipedia article fetched 2026-04-29; ffmpeg.org release cadence see official site",
+  discoverySource: "user-workflow",
+},

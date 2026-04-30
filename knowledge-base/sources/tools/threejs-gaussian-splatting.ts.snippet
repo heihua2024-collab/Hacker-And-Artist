@@ -1,0 +1,62 @@
+{
+  name: "antimatter15 splat (WebGL)",
+  slug: "threejs-gaussian-splatting",
+  category: "viewing",
+  logoUrl: null,
+  homepageUrl: "https://antimatter15.com/splat/",
+  repoUrl: "https://github.com/antimatter15/splat",
+  tagline: {
+    zh: "无外部依赖的 WebGL 实时 3DGS 网页查看器，可拖入 `.ply` 转 `.splat`。",
+    en: "Dependency-free WebGL real-time 3DGS viewer; drag `.ply` to convert to `.splat`.",
+  },
+  description: {
+    zh: "仓库自述为基于 WebGL 1.0 的 3D Gaussian Splatting 实时渲染实现，README 给出键盘、触摸与 URL 参数等操作说明，并说明当前实现不处理完整三阶球谐视角相关着色。公开托管演示在 antimatter15.com/splat。站内若已有 antimatter15-splat 条目与本仓库相同，应由 Opus 与本条 slug 合并。",
+    en: "The repo describes a WebGL 1.0 real-time renderer for 3D Gaussian Splatting with documented keyboard, touch, and URL controls, and notes limited spherical-harmonics view dependence. The hosted demo lives at antimatter15.com/splat. Merge with tools.ts slug antimatter15-splat if it points here.",
+  },
+  platforms: ["Web"],
+  pricing: "free",
+  priceNote: "MIT 许可证；无订阅价。",
+  openSource: true,
+  license: "MIT",
+  level: "expert",
+  pros: [
+    {
+      zh: "README 写明使用 JavaScript 与 WebGL 1.0 且无外部依赖。",
+      en: "README states JavaScript + WebGL 1.0 with no external dependencies.",
+    },
+    {
+      zh: "支持将页面拖入的 `.ply` 自动转换为 `.splat`（见 README other features）。",
+      en: "README documents drag-and-drop `.ply` to `.splat` conversion in the page.",
+    },
+    {
+      zh: "LICENSE 文件标注 MIT 且版权年份为 2023 Kevin Kwok。",
+      en: "LICENSE file shows MIT copyright 2023 Kevin Kwok.",
+    },
+  ],
+  cons: [
+    {
+      zh: "README 写明当前实现不支持完整球谐视角着色（为减小 `.splat` 体积）。",
+      en: "README states no full spherical-harmonics view-dependent shading to keep `.splat` small.",
+    },
+    {
+      zh: "README 将排序放在 CPU WebWorker，并讨论与 60fps 渲染不同步带来的瞬态伪影。",
+      en: "README places sorting in a CPU web worker and discusses transient artifacts when sorting lags rendering.",
+    },
+  ],
+  useCases: ["heritage", "natural_landscape", "education"],
+  tags: ["viewing", "web_rendering"],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://github.com/antimatter15/splat",
+    "https://antimatter15.com/splat/",
+    "https://raw.githubusercontent.com/antimatter15/splat/main/README.md",
+  ],
+  vendor: "individual: Kevin Kwok",
+  region: "north-america",
+  evidenceQuote:
+    "This is a WebGL implementation of a real-time renderer for 3D Gaussian Splatting for Real-Time Radiance Field Rendering, a recently developed technique for taking a set of pictures and generating a photorealistic navigable 3D scene out of it.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "以 GitHub antimatter15/splat 提交历史为准；README 指向 Spark 作为进阶替代。",
+  discoverySource: "supersplat",
+},

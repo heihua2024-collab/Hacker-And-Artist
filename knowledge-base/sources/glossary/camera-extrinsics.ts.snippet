@@ -1,0 +1,39 @@
+{
+  id: "camera-extrinsics",
+  term: { zh: "相机外参", en: "Camera extrinsics (pose)" },
+  aliases: ["pose", "R|t", "world-to-camera"],
+  short: {
+    zh: "给每张照片贴一张标签：相机当时站在场景里哪个位置、朝哪边看；内参管镜头本身，外参管机身在房间里的摆放。",
+    en: "Extrinsics are the label that says where the camera sat in the world and which way it faced for each photo; intrinsics describe the lens, extrinsics describe the rig placement.",
+  },
+  definition: {
+    zh: "外参将世界坐标系中的点变换到相机坐标系，通常分解为旋转矩阵 R 与平移向量 t，也可写作齐次形式的四乘四外参矩阵。多视图几何中，与内参共同决定投影矩阵 P=K[R|t]。Structure from Motion 在已知或联合优化内参时恢复每帧外参；3D Gaussian Splatting 依赖外参把三维高斯投影到各训练视图，外参噪声会直接转化为监督信号与几何不一致。实现上常用四元数或李代数存储旋转以降低约束复杂度。",
+    en: "Extrinsics map world coordinates into the camera reference frame via rotation R and translation t, often packaged with intrinsics into the projection matrix P = K[R|t]. SfM solvers recover per-image poses up to a similarity transform when scale is ambiguous. Gaussian splatting pipelines consume those poses for differentiable rasterization; pose errors misalign rendered splats with photographs, increasing photometric loss. Production systems frequently store rotations as unit quaternions or axis-angle vectors for optimization stability.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["capture", "optimization", "paper"],
+  relatedTerms: ["camera-intrinsics", "sfm", "quaternion-rotation"],
+  links: [
+    {
+      label: "COLMAP output formats",
+      url: "https://colmap.github.io/format.html",
+      type: "official_website",
+    },
+    {
+      label: "Camera pose overview",
+      url: "https://en.wikipedia.org/wiki/Camera_resectioning",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://colmap.github.io/format.html",
+    "https://en.wikipedia.org/wiki/Camera_resectioning",
+  ],
+  prerequisiteTerms: ["camera-intrinsics"],
+  advancedTerms: ["bundle-adjustment", "quaternion-rotation"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

@@ -1,0 +1,68 @@
+// Paste into src/lib/data/tools.ts — Track C / glassbox-rs
+// IMPORTANT: Public GitHub search returned 0 repos named glassbox-rs. This object maps slug glassbox-rs
+// to the verified open-source crate LioQing/wgpu-3dgs-viewer until Opus confirms C24 intent.
+{
+  name: "wgpu-3dgs-viewer",
+  slug: "glassbox-rs",
+  category: "viewing",
+  logoUrl: null,
+  homepageUrl: "https://github.com/LioQing/wgpu-3dgs-viewer",
+  repoUrl: "https://github.com/LioQing/wgpu-3dgs-viewer",
+  tagline: {
+    zh: "基于 wgpu 的 Rust 3D Gaussian Splatting 查看库，支持 PLY 与 SPZ。",
+    en: "A 3D Gaussian splatting viewing library written in Rust using wgpu.",
+  },
+  description: {
+    zh: "该条目对应 keep 列表 slug glassbox-rs；在公开 GitHub 搜索未找到同名仓库后，字段按 crates.io 与 GitHub 上的 wgpu-3dgs-viewer 填写。库提供可组合的渲染管线、深度排序、可选多模型与视口选择等功能，README 写明支持 PLY 与 SPZ。集成需熟悉 wgpu 与 Rust；README 警告错误使用底层 API 可能导致运行时错误。",
+    en: "This record keeps slug glassbox-rs per the keep list but documents the published LioQing/wgpu-3dgs-viewer crate because no public repo named glassbox-rs was found. The Rust library renders 3D Gaussian Splatting via wgpu, supports PLY and SPZ per README, and exposes modular viewer components. Integration requires Rust and wgpu knowledge; the README warns that misuse of low-level APIs can break at runtime.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "MIT OR Apache-2.0",
+  level: "expert",
+  pros: [
+    {
+      zh: "README 写明支持 PLY 与 SPZ 文件格式",
+      en: "README states support for PLY and SPZ file formats",
+    },
+    {
+      zh: "crates.io 元数据显示 2026-03-01 仍有版本更新时间戳",
+      en: "crates.io metadata shows a version update timestamp on 2026-03-01",
+    },
+    {
+      zh: "README 列出可选 multi-model 与 selection 等功能开关",
+      en: "README lists optional multi-model and selection feature flags",
+    },
+  ],
+  cons: [
+    {
+      zh: "README 提示直接暴露底层 WebGPU API 时运行期可能出错",
+      en: "README warns that exposing low-level WebGPU APIs can cause runtime failures",
+    },
+    {
+      zh: "面向开发者集成，非一键安装型终端用户应用",
+      en: "Developer-oriented library, not a single-click end-user application",
+    },
+    {
+      zh: "keep 列表名称 glassbox-rs 与当前仓库名不一致，合并前需人工确认",
+      en: "Keep-list slug glassbox-rs does not match this repository name; confirm before merge",
+    },
+  ],
+  useCases: ["art_gallery", "urban_outdoor", "indoor_living"],
+  tags: ["viewing", "web_rendering", "optimization"],
+  lastVerifiedAt: "2026-04-29",
+  verified: false,
+  sources: [
+    "https://github.com/LioQing/wgpu-3dgs-viewer",
+    "https://crates.io/crates/wgpu-3dgs-viewer",
+  ],
+  vendor: "individual: LioQing",
+  region: "global",
+  evidenceQuote:
+    "This library displays 3D Gaussian Splatting models with wgpu.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "crates.io crate updated_at 2026-03-01 for wgpu-3dgs-viewer (API JSON in task run)",
+  discoverySource: "reddit",
+},

@@ -1,0 +1,57 @@
+{
+  name: "PlayCanvas Engine",
+  slug: "playcanvas-engine",
+  category: "publishing",
+  logoUrl: "https://playcanvas.com/favicon.ico",
+  homepageUrl: "https://github.com/playcanvas/engine",
+  repoUrl: "https://github.com/playcanvas/engine",
+  tagline: {
+    zh: "开源 WebGL/WebGPU 运行时，手册含 GSplat 集成与发布路径。",
+    en: "Open-source WebGL/WebGPU/WebXR runtime with documented GSplat integration for web apps.",
+  },
+  description: {
+    zh: "PlayCanvas Engine 是 MIT 许可的浏览器端 3D 运行时，官方用户手册设有 Gaussian Splatting 专章（创建、查看、编辑、构建应用）。开发者将 GSplat 作为资源载入工程后可与脚本、物理与 UI 组合发布。站内 engines.ts 中已有 slug 为 playcanvas 的矩阵行描述引擎层 splat 能力；本条从工具/库视角补充与 SuperSplat、splat-transform 同一生态的接入说明，不重复引擎矩阵字段。",
+    en: "PlayCanvas Engine is the MIT-licensed browser 3D runtime; the manual includes a Gaussian Splatting section (create, view, edit, build). GSplat assets can be loaded into projects alongside scripts and physics. engines.ts already has a playcanvas row for engine-level splat support; this tool entry documents the library workflow next to SuperSplat and splat-transform without duplicating matrix fields.",
+  },
+  platforms: ["Web"],
+  pricing: "free",
+  priceNote: "引擎 MIT 开源；PlayCanvas 云服务与私有项目订阅单独计价（见 playcanvas.com）。",
+  openSource: true,
+  license: "MIT",
+  level: "expert",
+  pros: [
+    {
+      zh: "GitHub 仓库 About 文案明确列出 WebGL、WebGPU、WebXR、glTF。",
+      en: "GitHub About text lists WebGL, WebGPU, WebXR, and glTF.",
+    },
+    {
+      zh: "developer.playcanvas.com 提供独立 Gaussian Splatting 手册章节。",
+      en: "developer.playcanvas.com hosts a dedicated Gaussian Splatting manual section.",
+    },
+    {
+      zh: "releases 页面可核对引擎版本与变更说明。",
+      en: "GitHub releases list versioned engine changes.",
+    },
+  ],
+  cons: [
+    {
+      zh: "完整交互应用需编写脚本与工程结构，不单次点击即用查看器。",
+      en: "Shipping an interactive app requires project setup and scripting beyond a one-click viewer.",
+    },
+  ],
+  useCases: ["retail", "performance", "education"],
+  tags: ["publishing", "web_rendering", "real_time"],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://github.com/playcanvas/engine",
+    "https://developer.playcanvas.com/user-manual/gaussian-splatting/",
+    "https://github.com/playcanvas/engine/releases",
+  ],
+  vendor: "PlayCanvas Ltd",
+  region: "global",
+  evidenceQuote: "Powerful web graphics runtime built on WebGL, WebGPU, WebXR and glTF",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "GitHub playcanvas/engine 仓库持续发布 release（以 github.com 为准）。",
+  discoverySource: "supersplat",
+},

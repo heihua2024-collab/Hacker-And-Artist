@@ -1,0 +1,37 @@
+{
+  id: "temporal-stability-metric",
+  term: { zh: "时序稳定性指标", en: "Temporal stability metric" },
+  aliases: ["temporal flicker metric", "inter-frame consistency"],
+  short: {
+    zh: "看视频时画面不应一会儿闪一会儿跳，这类指标就在量相邻帧之间差别是不是太大。",
+    en: "Temporal metrics score how much rendered frames change from one timestep to the next when motion should be smooth.",
+  },
+  definition: {
+    zh: "在动态场景重建中，时序稳定性可通过相邻帧之间的感知距离（如 LPIPS）、光流重投影误差或显式时间正则项度量。四维高斯泼溅与动态 NeRF 变体常报告帧间一致性以抑制闪烁。静态三维高斯泼溅若用于旋转相机视频，亦可能测量视角路径上的亮度跳变。披露协议时应固定时间采样率与色调映射。该词条与静态 PSNR 单帧指标互补。",
+    en: "Dynamic reconstruction papers quantify flicker via inter-frame LPIPS, optical-flow warping error, or learned temporal discriminators. 4D Gaussian splatting methods add temporal losses to keep Gaussian parameters smooth over time. When rotating cameras traverse a static splat scene, temporal stability reduces to smoothly varying exposures. Benchmarks should specify frame rates and motion paths.",
+  },
+  category: "metric",
+  level: "expert",
+  relatedTagIds: ["paper", "real_time", "optimization"],
+  relatedTerms: ["lpips", "metrics", "4dgs"],
+  links: [
+    {
+      label: "LPIPS metric",
+      url: "https://arxiv.org/abs/1801.03924",
+      type: "arxiv",
+    },
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://arxiv.org/abs/1801.03924",
+  ],
+  prerequisiteTerms: ["metrics"],
+  advancedTerms: ["4dgs", "fps-realtime"],
+  relatedPapers: ["https://arxiv.org/abs/1801.03924"],
+},

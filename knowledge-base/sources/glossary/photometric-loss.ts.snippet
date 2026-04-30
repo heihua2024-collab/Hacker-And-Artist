@@ -1,0 +1,39 @@
+{
+  id: "photometric-loss",
+  term: { zh: "光度损失", en: "Photometric loss" },
+  aliases: ["image reconstruction loss"],
+  short: {
+    zh: "把画出来的图和相机拍的照片叠在一起，看每个像素颜色差多少，差得多就多罚一点。",
+    en: "Photometric loss compares rendered RGB to captured photos pixelwise so the optimizer penalizes visible color error.",
+  },
+  definition: {
+    zh: "在可微渲染框架中，光度损失通常定义为渲染图像与观测图像之间逐通道范数，如 L1 或 L2，也可与 D-SSIM 或感知损失加权组合。三维高斯泼溅沿射线或 splat 足迹合成图像后，对训练视图求平均。曝光变化或白平衡不一致会使纯光度项偏置，因此部分管线加入曝光补偿或颜色仿射。批大小与采样视图策略影响梯度方差。",
+    en: "Photometric supervision compares synthesized images to ground-truth photographs using norms or perceptual metrics. Gaussian splatting renders by alpha compositing splats, then applies L1, SSIM, or LPIPS terms. Robust training may mix Huber kernels on residuals. Exposure-gain parameters can be optimized jointly to handle lighting drift. The term complements geometric regularizers when poses are fixed.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["training", "optimization", "paper"],
+  relatedTerms: ["training-loss", "3dgs", "differentiable-rasterization"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Huber loss",
+      url: "https://en.wikipedia.org/wiki/Huber_loss",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://en.wikipedia.org/wiki/Huber_loss",
+  ],
+  prerequisiteTerms: ["training-loss"],
+  advancedTerms: ["l1-reconstruction-loss", "metrics"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

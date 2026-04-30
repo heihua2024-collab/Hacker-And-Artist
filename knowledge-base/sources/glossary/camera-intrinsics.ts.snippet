@@ -1,0 +1,43 @@
+{
+  id: "camera-intrinsics",
+  term: { zh: "相机内参", en: "Camera intrinsics" },
+  aliases: ["intrinsic parameters", "K matrix"],
+  short: {
+    zh: "把镜头和传感器想成带固定透视规则的小孔相机：内参就是那套规则，说明像素格子怎样和从镜头中心射出的方向对应起来。",
+    en: "Think of intrinsics as the factory calibration of a pinhole-plus-sensor combo: they map normalized rays to pixel coordinates before any world motion is applied.",
+  },
+  definition: {
+    zh: "在针孔模型下，内参通常聚合为矩阵 K，将归一化平面上的点映射到像素坐标，并配合畸变模型描述真实镜头偏离理想针孔的程度。SfM 与光束法平差在已知或未知内参条件下联合优化外参与场景结构；3DGS 的可微光栅化依赖投影链，内参偏差会导致训练图像与渲染射线不一致，从而抬高重投影误差并引入几何扭曲。实践中常在采集前用标定板或自标定估计内参，并在多机位数据中保持同一相机模型。",
+    en: "Intrinsics bundle focal lengths, principal point, skew (often zero), and distortion coefficients into a camera model that maps homogeneous 3D directions in camera space to pixels. Structure-from-motion pipelines either optimize intrinsics jointly with extrinsics and sparse geometry or freeze them after offline calibration. Gaussian splatting training assumes consistent projection; biased intrinsics distort gradients that supervise splat colors and positions, so teams either calibrate beforehand or refine K within bundle adjustment when the dataset allows.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["capture", "optimization", "paper"],
+  relatedTerms: ["camera-extrinsics", "bundle-adjustment", "sfm"],
+  links: [
+    {
+      label: "COLMAP camera models",
+      url: "https://colmap.github.io/cameras.html",
+      type: "official_website",
+    },
+    {
+      label: "Camera calibration overview",
+      url: "https://en.wikipedia.org/wiki/Camera_resectioning",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://colmap.github.io/cameras.html",
+    "https://en.wikipedia.org/wiki/Camera_resectioning",
+  ],
+  prerequisiteTerms: ["photogrammetry"],
+  advancedTerms: ["bundle-adjustment", "reprojection-error"],
+  introducedIn: undefined,
+  introducedBy: undefined,
+  introducedSourceUrl: undefined,
+  introducedQuoteEn: undefined,
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

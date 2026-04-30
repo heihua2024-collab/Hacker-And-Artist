@@ -1,0 +1,39 @@
+{
+  id: "multi-view-triangulation",
+  term: { zh: "多视图三角化", en: "Multi-view triangulation" },
+  aliases: ["triangulation", "linear triangulation"],
+  short: {
+    zh: "几束视线从不同照片里穿过同一对应点，在三维空间里交汇的位置就是该点的坐标。",
+    en: "Each matching ray from calibrated cameras should meet in 3D; triangulation finds the point that best satisfies all rays.",
+  },
+  definition: {
+    zh: "给定多幅图像上的齐次对应与投影矩阵，三角化求解三维齐次坐标 X，使代数误差或几何误差最小。两视图可用 DLT 与最优校正；多视图可堆叠约束并用 SVD。COLMAP 在增量建图中对每条轨迹执行三角化并过滤低视差或高误差点。3D Gaussian Splatting 官方实现以 COLMAP 稀疏点初始化高斯位置；三角化质量决定初始覆盖与是否出现悬浮伪影。",
+    en: "Triangulation lifts correspondences to 3D by intersecting viewing rays. Algebraic linear methods minimize a relaxed constraint, while nonlinear refinement minimizes Sampson or reprojection error. Multi-view extensions average constraints from every observing camera. SfM systems discard points with insufficient parallax. Gaussian splat pipelines inherit these points as seeds; poor triangulation yields missing geometry or floaters that splat optimization must later prune.",
+  },
+  category: "technique",
+  level: "intermediate",
+  relatedTagIds: ["capture", "optimization", "paper"],
+  relatedTerms: ["sfm", "reprojection-error", "point-cloud"],
+  links: [
+    {
+      label: "Triangulation overview",
+      url: "https://en.wikipedia.org/wiki/Triangulation_(computer_vision)",
+      type: "media",
+    },
+    {
+      label: "COLMAP documentation",
+      url: "https://colmap.github.io/",
+      type: "official_website",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Triangulation_(computer_vision)",
+    "https://colmap.github.io/",
+  ],
+  prerequisiteTerms: ["camera-extrinsics", "feature-matching"],
+  advancedTerms: ["bundle-adjustment", "sfm"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

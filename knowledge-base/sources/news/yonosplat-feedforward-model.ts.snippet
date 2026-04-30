@@ -1,0 +1,27 @@
+  {
+    id: "yonosplat-feedforward-model",
+    title: {
+      zh: "YoNoSplat：任意视角数的前馈 3D 高斯重建",
+      en: "YoNoSplat: Feedforward 3D Gaussian Splatting for Arbitrary View Counts",
+    },
+    summary: {
+      zh: "单模型同时支持有姿态与无姿态、有标定与无标定输入，并以混合式训练缓解位姿与几何耦合带来的不稳定与曝光偏差。",
+      en: "One feedforward model handles posed or unposed, calibrated or uncalibrated inputs, using a mix-forcing curriculum to stabilize joint pose and Gaussian learning.",
+    },
+    category: "paper",
+    tags: ["paper", "capture", "real_time"],
+    level: "expert",
+    source: { name: "arXiv", type: "arxiv" },
+    sourceUrl: "https://arxiv.org/abs/2511.07321",
+    coverUrl: null,
+    publishedAt: "2025-11-10",
+    editorialNote: {
+      zh: "适合关注「免逐场景优化」路线的读者：文中有无位姿与有位姿设定下的基准对比，便于判断前馈模型能否覆盖你的采集条件。",
+      en: "Useful for teams exploring feedforward 3DGS: benchmarks cover pose-free and pose-conditioned regimes so you can map results to your capture constraints.",
+    },
+    verified: true,
+    sources: [
+      "https://arxiv.org/abs/2511.07321",
+      "https://botaoye.github.io/yonosplat/",
+    ],
+  },

@@ -1,0 +1,58 @@
+{
+  name: "SplatTransform",
+  slug: "splat-transform",
+  category: "editing",
+  logoUrl: "https://playcanvas.com/favicon.ico",
+  homepageUrl: "https://github.com/playcanvas/splat-transform",
+  repoUrl: "https://github.com/playcanvas/splat-transform",
+  tagline: {
+    zh: "PlayCanvas 开源 CLI 与 JS 库，读写 PLY、SOG、SPZ、KSPLAT、SPLAT、LCC 并做过滤与合并。",
+    en: "PlayCanvas open-source CLI and library to read and write PLY, SOG, SPZ, KSPLAT, SPLAT, LCC with filters and merges.",
+  },
+  description: {
+    zh: "README 用表格列出各扩展名的输入输出能力，并提供 translate、rotate、decimate、voxel 碰撞等子命令。可作为 Node 依赖在浏览器或服务端调用。官方博客宣布该工具并将能力与 SuperSplat、PlayCanvas 引擎压缩格式串联。",
+    en: "The README tables list per-extension IO support plus CLI actions such as translate, rotate, decimate, and voxel collision export. It runs as a Node dependency in server or bundler contexts. The PlayCanvas launch blog ties the tool to SuperSplat and engine compression formats.",
+  },
+  platforms: ["Web", "Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "MIT",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "npm 提供全局安装命令 npm install -g @playcanvas/splat-transform。",
+      en: "npm documents global install via npm install -g @playcanvas/splat-transform.",
+    },
+    {
+      zh: "README 声明可输出带 KHR_gaussian_splatting 的 GLB（见格式表）。",
+      en: "README states GLB output with the KHR_gaussian_splatting extension.",
+    },
+    {
+      zh: "PlayCanvas 博客写明 MIT 许可并链接 GitHub 仓库。",
+      en: "PlayCanvas blog announces the tool and links the MIT-licensed GitHub repo.",
+    },
+  ],
+  cons: [
+    {
+      zh: "部分 GPU 过滤动作需 WebGPU 设备参数（README 对 filterFloaters 等说明）。",
+      en: "Some GPU filter actions require passing a WebGPU device per README notes.",
+    },
+  ],
+  useCases: ["heritage", "retail", "urban_outdoor"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://github.com/playcanvas/splat-transform",
+    "https://blog.playcanvas.com/introducing-splat-transform-cli-tool/",
+    "https://developer.playcanvas.com/user-manual/gaussian-splatting/editing/splat-transform/",
+  ],
+  vendor: "PlayCanvas Ltd",
+  region: "global",
+  evidenceQuote:
+    "SplatTransform is an open source library and CLI tool for converting and editing Gaussian splats.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "GitHub playcanvas/splat-transform 与 npm @playcanvas/splat-transform 持续更新。",
+  discoverySource: "supersplat",
+},

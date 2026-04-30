@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / ptgui
+{
+  name: "PTGui",
+  slug: "ptgui",
+  category: "capture",
+  logoUrl: null,
+  homepageUrl: "https://www.ptgui.com",
+  repoUrl: null,
+  tagline: {
+    zh: "商业级全景拼接，支持多行图像与球形全景。",
+    en: "Commercial panorama stitcher with multi-row and spherical workflows.",
+  },
+  description: {
+    zh: "PTGui 将多视角重叠照片对齐并融合为柱面或球形全景，可输出等距圆柱等投影，作为球面采集或预览资产的前置步骤。该工具属于 3DGS 工作流的采集前置——全景/HDR 拼接阶段，非 3DGS 核心工具。",
+    en: "PTGui aligns and blends multi-view stacks into cylindrical or spherical panoramas with projections such as equirectangular—common pre-step for spherical capture pipelines. It is not a splat trainer or viewer.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "one-time",
+  priceNote: "标准版与 Pro 功能对比见官网 Features；价格以订单页为准",
+  openSource: false,
+  license: "Proprietary",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "官网写明支持多行拼接、GPU OpenCL 加速与球形 360 全景输出",
+      en: "Site documents multi-row stitching, OpenCL acceleration, and spherical output",
+    },
+    {
+      zh: "维基条目概述支持长焦到鱼眼镜头并生成部分柱面到完整球形结果",
+      en: "Encyclopedia notes telephoto-to-fisheye coverage up to full spheres",
+    },
+    {
+      zh: "可导出高像素拼接图，为后续 HDR 或静帧采样提供单一母版",
+      en: "Can output gigapixel masters for HDR or still sampling downstream",
+    },
+  ],
+  cons: [
+    {
+      zh: "商业许可证费用与升级策略需按官网订单执行；试用版输出含水印",
+      en: "Commercial license required; trial renders include watermarks per vendor",
+    },
+    {
+      zh: "Linux 支持以官网下载矩阵为准，需与团队发行版核对依赖",
+      en: "Linux support matrix must be validated against distro dependencies",
+    },
+  ],
+  useCases: ["heritage", "natural_landscape", "urban_outdoor"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://www.ptgui.com",
+    "https://en.wikipedia.org/wiki/PTGui",
+  ],
+  vendor: "New House Internet Services B.V.",
+  region: "global",
+  evidenceQuote:
+    "PTGui is panoramic image stitching software for Windows, macOS and Linux. Originally started as a Graphical User Interface for Panorama Tools (hence the name), PTGui has evolved into a full featured, industry leading photo stitching application.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Homepage lists PTGui 13.7 download 2026-04-29",
+  discoverySource: "user-workflow",
+},

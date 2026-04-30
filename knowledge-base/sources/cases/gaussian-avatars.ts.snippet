@@ -1,0 +1,57 @@
+{
+  slug: "gaussian-avatars",
+  kind: "milestone",
+  title: {
+    zh: "GaussianAvatar：单视频可动画三维高斯化身",
+    en: "GaussianAvatar: Towards Realistic Human Avatar Modeling from a Single Video via Animatable 3D Gaussians",
+  },
+  summary: {
+    zh: "用可驱动三维高斯显式建模人体，并学习姿态相关外观与运动联合优化，提升单目视频化身真实感与效率。",
+    en: "Models humans with animatable 3D Gaussians, learns pose-dependent appearance, and jointly refines motion and look for realistic monocular avatars.",
+  },
+  description: {
+    zh: "论文将人体表示为附着在参数化模板上的可动画三维高斯，借助前向蒙皮避免部分隐式方法中的逆蒙皮歧义。动态外观网络与可优化特征张量共同刻画衣物褶皱等细节。由于运动条件可微，可在训练时同时校正外观与初始运动估计。实验在公开与自建数据上比较渲染质量与速度。",
+    en: "GaussianAvatar represents clothed humans with animatable 3D Gaussians anchored to a parametric body, using forward skinning to avoid inverse-skinning ambiguities common in NeRF avatars. A dynamic appearance network and an optimizable feature tensor capture pose-dependent detail such as wrinkles. Differentiable motion conditioning enables joint refinement of appearance and imperfect pose estimates from monocular video. Experiments report favorable quality and efficiency against prior avatar methods.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Liangxiao Hu", role: "researcher", link: "https://github.com/aipixel/GaussianAvatar" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "avatar", "reconstruction"],
+  lessons: [
+    {
+      zh: "显式高斯与可微蒙皮组合，可在单目设定下直接优化运动与外观的耦合误差。",
+      en: "Explicit Gaussians with differentiable skinning let you co-optimize motion and appearance errors in monocular setups.",
+    },
+    {
+      zh: "姿态条件外观需要额外自由度以避免在有限姿态上过拟合。",
+      en: "Pose-conditioned appearance needs extra degrees of freedom to avoid overfitting on limited poses.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2312.02134" },
+    { label: "GitHub", url: "https://github.com/aipixel/GaussianAvatar" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2312.02134",
+    "https://github.com/aipixel/GaussianAvatar",
+  ],
+  quote: {
+    zh: null,
+    en: "We present GaussianAvatar, an efficient approach to creating realistic human avatars with dynamic 3D appearances from a single video.",
+  },
+},

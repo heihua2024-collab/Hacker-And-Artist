@@ -1,0 +1,39 @@
+{
+  id: "feature-matching",
+  term: { zh: "特征匹配", en: "Feature matching" },
+  aliases: ["correspondence", "feature correspondence"],
+  short: {
+    zh: "像在两幅画里找同一扇窗、同一棵树，用小块纹理当指纹对上号，才知道两张照片之间视线怎么衔接。",
+    en: "Feature matching pairs the same windows, signs, or corners across photos so the pipeline knows how viewpoints changed between frames.",
+  },
+  definition: {
+    zh: "特征匹配在图像间建立像素或局部块对应关系，流程通常包含关键点检测、描述子提取、最近邻或比率测试匹配与几何一致性过滤。Structure from Motion 将匹配作为输入以估计本质矩阵、基础矩阵并三角化稀疏点；错误匹配会导致错误位姿。COLMAP 使用穷尽匹配与词汇树加速。深度学习匹配器在弱纹理场景提升鲁棒性。3DGS 管线若继承 COLMAP 位姿，则间接依赖匹配质量；若使用视频光流或 SLAM，则匹配角色由跟踪替代。",
+    en: "Matching associates salient patches across images via descriptors and geometric verification. SfM pipelines feed matches into relative pose estimation and incremental reconstruction; outliers break triangulation. COLMAP combines exhaustive and image-retrieval-guided pairing. Learned matchers improve challenging textures. Gaussian splatting inherits these poses—bad matches upstream propagate to bad projections even if splat optimization is sound.",
+  },
+  category: "technique",
+  level: "intermediate",
+  relatedTagIds: ["capture", "optimization", "paper"],
+  relatedTerms: ["sfm", "epipolar-geometry", "colmap"],
+  links: [
+    {
+      label: "COLMAP feature extraction",
+      url: "https://colmap.github.io/tutorial.html",
+      type: "official_website",
+    },
+    {
+      label: "Feature detection overview",
+      url: "https://en.wikipedia.org/wiki/Feature_(computer_vision)",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://colmap.github.io/tutorial.html",
+    "https://en.wikipedia.org/wiki/Feature_(computer_vision)",
+  ],
+  prerequisiteTerms: ["photogrammetry"],
+  advancedTerms: ["epipolar-geometry", "bundle-adjustment"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: [],
+},

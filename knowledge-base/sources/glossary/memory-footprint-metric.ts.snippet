@@ -1,0 +1,39 @@
+{
+  id: "memory-footprint-metric",
+  term: { zh: "显存占用指标", en: "GPU memory footprint metric" },
+  aliases: ["VRAM usage", "GPU memory budget"],
+  short: {
+    zh: "不光看画得快不快，还要看一整块场景塞进显卡要占多少显存，像行李有没有超重。",
+    en: "Memory footprint tracks how many gigabytes of GPU RAM a splat scene needs at peak training or inference time.",
+  },
+  definition: {
+    zh: "显存占用由参数张量、优化器动量、排序缓冲与中间激活共同决定。三维高斯泼溅中，高斯数量、球谐阶数、批量图像分辨率与是否存储稠密梯度均影响峰值。报告时应注明 GPU 型号、驱动、混合精度与是否梯度检查点。与 FPS 联合可绘制帕累托前沿。压缩格式与剪枝降低占用；流式加载将占用从「整场景」改为「可见分块」。",
+    en: "Footprint aggregates model parameters, optimizer states, and rasterizer scratch space. Gaussian splatting scales roughly linearly with primitive count and SH degree. Benchmarks should capture peak allocations via profiling tools rather than relying on tensor counts alone. Compression codecs shrink storage but may require decode buffers. Streaming strategies amortize memory over time by loading tiles.",
+  },
+  category: "metric",
+  level: "intermediate",
+  relatedTagIds: ["optimization", "real_time", "paper"],
+  relatedTerms: ["splat-count", "3dgs", "compressed-gs"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "gsplat README",
+      url: "https://raw.githubusercontent.com/nerfstudio-project/gsplat/main/README.md",
+      type: "github",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://raw.githubusercontent.com/nerfstudio-project/gsplat/main/README.md",
+  ],
+  prerequisiteTerms: ["splat-count"],
+  advancedTerms: ["splat-compression", "streaming-splat"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

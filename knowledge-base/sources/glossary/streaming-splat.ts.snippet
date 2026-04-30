@@ -1,0 +1,38 @@
+{
+  id: "streaming-splat",
+  term: { zh: "流式 Splat 加载", en: "Streaming splat loading" },
+  aliases: ["chunked splat loading", "progressive splats"],
+  short: {
+    zh: "像地图只加载眼前这一块瓦片，不把整座城市一次塞进内存；大场景高斯也按块下载和丢弃。",
+    en: "Streaming loads only the splat tiles you need right now, similar to map tiles that appear as you pan.",
+  },
+  definition: {
+    zh: "流式策略将高斯场景划分空间网格或层次细节，客户端依据视锥与网络条件请求压缩包，解码后注入渲染器并在离开视锥时回收。需要稳定的排序与合成语义，避免块边界出现接缝。WebGPU 与 Worker 可并行解码。与全量 PLY 加载相比降低首屏时间与显存峰值，但增加调度复杂度与潜在弹出伪影。服务端可配合 CDN 与范围请求。",
+    en: "Streaming partitions Gaussians into tiles or LOD levels, fetching compressed blobs as the camera moves. Decoders run on workers to overlap IO with GPU submission. Maintaining consistent depth ordering across tiles requires careful batching. CDNs cache splat chunks similarly to 3D Tiles. The approach pairs with splat compression codecs to minimize bytes per tile.",
+  },
+  category: "workflow",
+  level: "expert",
+  relatedTagIds: ["optimization", "real_time", "web_rendering"],
+  relatedTerms: ["splat-compression", "webgl-webgpu", "3dgs"],
+  links: [
+    {
+      label: "WebGPU API",
+      url: "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+      type: "media",
+    },
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API",
+    "https://arxiv.org/abs/2308.04079",
+  ],
+  prerequisiteTerms: ["webgl-webgpu"],
+  advancedTerms: ["memory-footprint-metric", "splat-compression"],
+  relatedEngines: ["playcanvas", "supersplat"],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

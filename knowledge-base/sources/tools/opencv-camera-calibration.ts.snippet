@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / opencv-camera-calibration
+{
+  name: "OpenCV",
+  slug: "opencv-camera-calibration",
+  category: "capture",
+  logoUrl: null,
+  homepageUrl: "https://opencv.org",
+  repoUrl: "https://github.com/opencv/opencv",
+  tagline: {
+    zh: "开源计算机视觉库，提供棋盘格检测、calibrateCamera 与去畸变等标定 API。",
+    en: "Open-source CV library with chessboard detection, calibrateCamera, and undistort APIs.",
+  },
+  description: {
+    zh: "OpenCV 的 calib3d 模块可用棋盘格角点与 calibrateCamera 估计内参与畸变系数，并用 undistort 预处理输入图像；需自行编写脚本或封装。该工具属于 3DGS 工作流的采集前置——相机几何标定阶段，非 3DGS 核心工具。",
+    en: "OpenCV calib3d finds chessboard corners, estimates intrinsics and distortion, and undistorts plates before SfM or splat training—requires custom code. It is capture-pipeline math, not a splat trainer.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "Apache-2.0",
+  level: "expert",
+  pros: [
+    {
+      zh: "官方教程列出径向/切向畸变、内参外参与 undistort 流程，并给出 Python 示例",
+      en: "Official tutorial covers distortion models, intrinsics/extrinsics, and undistort samples",
+    },
+    {
+      zh: "维基条目说明跨平台 Apache-2.0 许可与实时视觉定位",
+      en: "Encyclopedia notes Apache-2.0 licensing and real-time vision focus",
+    },
+    {
+      zh: "可与 NumPy 等库批处理多帧标定板图像并输出矩阵到 COLMAP 等工具",
+      en: "Pairs with NumPy to batch-export matrices into COLMAP-class pipelines",
+    },
+  ],
+  cons: [
+    {
+      zh: "需要采集足够数量与姿态分布的标定板图像，否则参数不稳定",
+      en: "Needs diverse calibration captures; otherwise intrinsics are unstable",
+    },
+    {
+      zh: "非开箱 GUI，工程团队需维护脚本、版本与相机型号记录",
+      en: "Not a turnkey GUI—teams must maintain scripts, versions, and camera records",
+    },
+  ],
+  useCases: ["heritage", "urban_outdoor", "indoor_living"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
+    "https://en.wikipedia.org/wiki/OpenCV",
+  ],
+  vendor: "OpenCV.org",
+  region: "global",
+  evidenceQuote:
+    "In this section, we will learn about types of distortion caused by cameras, how to find the intrinsic and extrinsic properties of a camera, how to undistort images based off these properties",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "OpenCV 4.x tutorial fetched 2026-04-29; Wikipedia stable release 4.13.0 as of fetch",
+  discoverySource: "user-workflow",
+},

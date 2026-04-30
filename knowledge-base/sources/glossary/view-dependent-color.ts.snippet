@@ -1,0 +1,39 @@
+{
+  id: "view-dependent-color",
+  term: { zh: "视相关颜色", en: "View-dependent color" },
+  aliases: ["view-dependent appearance"],
+  short: {
+    zh: "同一件东西从不同角度看颜色会跟着变，就像看玻璃高光会随你走动而跑位。",
+    en: "Some surfaces change apparent color or highlight as you walk around them—view-dependent color models that effect instead of freezing one RGB value.",
+  },
+  definition: {
+    zh: "三维高斯泼溅为每个基元存储球谐系数，将视角方向映射到 RGB，从而近似镜面与非朗伯反射。低阶球谐主要捕捉漫反射，高阶项增强高光方向性。训练时从多视图监督中恢复系数；渲染时对方向向量归一化后与基函数求值。与完全视角无关的常色相比，视相关项提高逼真度但增加参数与过拟合风险。实现需与曝光与色调管线一致。",
+    en: "Each Gaussian stores spherical harmonic coefficients that modulate RGB as a function of viewing direction, analogous to low-frequency reflectance fields. Higher SH degrees capture specular lobes but demand more data. Differentiable rasterization evaluates SH per pixel using the camera ray. Regularization sometimes limits SH order to stabilize optimization. The design trades parameter count for specular fidelity compared with constant albedo splats.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["training", "paper", "optimization"],
+  relatedTerms: ["spherical-harmonics", "3dgs", "opacity"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Spherical harmonics primer",
+      url: "https://en.wikipedia.org/wiki/Spherical_harmonics",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://en.wikipedia.org/wiki/Spherical_harmonics",
+  ],
+  prerequisiteTerms: ["splat"],
+  advancedTerms: ["spherical-harmonics", "3dgs"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

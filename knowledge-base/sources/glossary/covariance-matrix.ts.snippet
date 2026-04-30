@@ -1,0 +1,39 @@
+{
+  id: "covariance-matrix",
+  term: { zh: "协方差矩阵", en: "Covariance matrix" },
+  aliases: ["Σ", "3x3 covariance"],
+  short: {
+    zh: "一张对称的三乘三表格，说明三个方向上的伸展幅度以及它们如何一起变化，椭球扁圆全靠它决定。",
+    en: "A symmetric three-by-three table describing how variation stretches along each axis and couples axes—ellipsoids inherit their shape from it.",
+  },
+  definition: {
+    zh: "对零均值随机向量 x，协方差矩阵定义为 E[xx^T]，对称且半正定；正定当且仅当不存在退化方向。三维高斯泼溅为每个基元学习协方差以描述局部几何；实现上常存储下三角矩阵 L 使得 Σ = L L^T 或通过缩放向量与旋转矩阵组合。投影到像平面时使用雅可比与协方差的闭式传播公式。数值上需防止非正定导致渲染不稳定。词条「协方差」在术语表中从标量视角讨论；本条强调矩阵形式与优化约束。",
+    en: "For a zero-mean random vector, Cov = E[xx^T] is symmetric PSD. Gaussian splatting optimizes per-primitive covariances describing local anisotropy. Implementations factor Σ = R Λ R^T or use Cholesky factors to preserve positive definiteness. Differentiable rasterization propagates 3D covariances to 2D footprints via the Jacobian of projection. Poor conditioning yields elongated splats or NaNs during training. This entry complements the scalar-oriented covariance glossary entry by focusing on matrix algebra.",
+  },
+  category: "concept",
+  level: "expert",
+  relatedTagIds: ["optimization", "paper", "training"],
+  relatedTerms: ["covariance", "anisotropic-gaussian", "3dgs"],
+  links: [
+    {
+      label: "Covariance matrix",
+      url: "https://en.wikipedia.org/wiki/Covariance_matrix",
+      type: "media",
+    },
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Covariance_matrix",
+    "https://arxiv.org/abs/2308.04079",
+  ],
+  prerequisiteTerms: ["covariance"],
+  advancedTerms: ["anisotropic-gaussian", "quaternion-rotation"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

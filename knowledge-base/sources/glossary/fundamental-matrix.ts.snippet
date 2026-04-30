@@ -1,0 +1,39 @@
+{
+  id: "fundamental-matrix",
+  term: { zh: "基础矩阵", en: "Fundamental matrix" },
+  aliases: ["F matrix"],
+  short: {
+    zh: "两幅普通照片之间的一张小三乘三关系表，用来检查甲图一个点在乙图里是不是落在该落的那条线上。",
+    en: "The fundamental matrix is the three-by-three bilinear form that says which epipolar line a pixel must lie on in the second image.",
+  },
+  definition: {
+    zh: "对未归一化的像素齐次坐标，基础矩阵 F 满足 x'^T F x = 0，秩为二，包含两视点相对几何与两个相机内参信息。估计 F 常用八点算法加奇异值约束，再用 RANSAC 剔除外点。与本质矩阵 E 的关系为 E = K'^T F K。SfM 初始化与双视图重建依赖稳定的 F；3DGS 用户多在 COLMAP 输出阶段间接使用，不直接编辑 F。",
+    en: "The fundamental matrix encodes epipolar geometry in pixel coordinates via the bilinear constraint between homogeneous correspondences. It mixes relative rotation, translation direction, and both intrinsic matrices. Eight-point algorithms with rank enforcement recover F from matches; RANSAC handles outliers. The essential matrix relates by E = K'^T F K. Gaussian splat pipelines rarely expose F once poses export, but failed reconstructions often trace back to degenerate motion or poor F estimates.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["capture", "paper", "optimization"],
+  relatedTerms: ["essential-matrix", "epipolar-geometry", "sfm"],
+  links: [
+    {
+      label: "Fundamental matrix",
+      url: "https://en.wikipedia.org/wiki/Fundamental_matrix_(computer_vision)",
+      type: "media",
+    },
+    {
+      label: "Multiple View Geometry book",
+      url: "https://www.robots.ox.ac.uk/~vgg/hzbook/",
+      type: "paper",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Fundamental_matrix_(computer_vision)",
+    "https://www.robots.ox.ac.uk/~vgg/hzbook/",
+  ],
+  prerequisiteTerms: ["epipolar-geometry"],
+  advancedTerms: ["essential-matrix", "bundle-adjustment"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: [],
+},

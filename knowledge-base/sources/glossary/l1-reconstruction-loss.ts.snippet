@@ -1,0 +1,39 @@
+{
+  id: "l1-reconstruction-loss",
+  term: { zh: "L1 重建损失", en: "L1 reconstruction loss" },
+  aliases: ["MAE loss on images", "L1 photometric term"],
+  short: {
+    zh: "把渲染图和真图每个像素的色差取绝对值再平均，离群点不会像平方那样被过分放大。",
+    en: "Average absolute RGB differences between renders and photos so outliers matter linearly instead of quadratically.",
+  },
+  definition: {
+    zh: "L1 范数损失定义为预测图像与观测图像逐像素绝对差之和或均值，与 L2 相比对少数坏像素更鲁棒。三维高斯泼溅默认将 L1 与 D-SSIM 按权重相加作为训练目标。实现上在 sRGB 或线性空间计算需与数据集标注一致。批处理时可对有效掩膜区域归一化。与仅 L2 相比，L1 常产生略微更锐利的边缘但可能留下小残差。",
+    en: "The L1 photometric term averages absolute deviations across color channels. Gaussian splatting combines it with a differentiable SSIM term for perceptual balance. Compared with pure L2, L1 reduces oversensitivity to occasional saturated pixels or misaligned splats. Practitioners must align color spaces with camera processing. The weighting between L1 and SSIM is a hyperparameter in official code releases.",
+  },
+  category: "metric",
+  level: "intermediate",
+  relatedTagIds: ["training", "optimization", "paper"],
+  relatedTerms: ["photometric-loss", "training-loss", "3dgs"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Mean absolute error",
+      url: "https://en.wikipedia.org/wiki/Mean_absolute_error",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://en.wikipedia.org/wiki/Mean_absolute_error",
+  ],
+  prerequisiteTerms: ["photometric-loss"],
+  advancedTerms: ["metrics", "ssim"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

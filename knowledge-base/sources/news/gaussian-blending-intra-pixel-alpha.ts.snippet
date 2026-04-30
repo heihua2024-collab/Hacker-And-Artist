@@ -1,0 +1,27 @@
+  {
+    id: "gaussian-blending-intra-pixel-alpha",
+    title: {
+      zh: "Gaussian Blending：像素内分布式的 Alpha 与透射率",
+      en: "Gaussian Blending: Spatially Varying Alpha and Transmittance in 3DGS",
+    },
+    summary: {
+      zh: "将像素内 alpha 与透射率建模为空间变化分布，以缓解缩放采样率时的侵蚀模糊与膨胀台阶伪影，并可作为现有渲染核的即插即用替换。",
+      en: "Models alpha and transmittance as spatial distributions within pixels to reduce zoom-in blur and zoom-out stair artifacts at unseen sampling rates, as a drop-in rasterizer change.",
+    },
+    category: "paper",
+    tags: ["paper", "real_time", "optimization"],
+    level: "expert",
+    source: { name: "arXiv", type: "arxiv" },
+    sourceUrl: "https://arxiv.org/abs/2511.15102",
+    coverUrl: null,
+    publishedAt: "2025-11-19",
+    editorialNote: {
+      zh: "若你的工作流需要在不同分辨率或变焦下复用同一套高斯资产，该文从混合方程层面解释伪影来源，并给出可替换渲染核的实现线索。",
+      en: "If you render the same splat asset across resolutions or zoom levels, the paper isolates blending limitations and points to a kernel-level fix without retraining scenes.",
+    },
+    verified: true,
+    sources: [
+      "https://arxiv.org/abs/2511.15102",
+      "https://github.com/1207koo/gaussian_blending",
+    ],
+  },

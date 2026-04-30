@@ -1,0 +1,66 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / tinyhost
+{
+  name: "Tiiny Host",
+  slug: "tinyhost",
+  category: "publishing",
+  logoUrl: null,
+  homepageUrl: "https://tiiny.host",
+  repoUrl: null,
+  tagline: {
+    zh: "拖放上传与链接分享的轻量静态托管服务（品牌：Tiiny Host）。",
+    en: "Lightweight static hosting for drag-and-drop uploads and shareable links (Tiiny Host).",
+  },
+  description: {
+    zh: "Tiiny Host 面向快速发布 HTML、ZIP、文档与图片等静态内容并生成可分享链接；口语中的 TinyHost 常指同一类产品，但域名与条款需以实际登录入口为准。该工具属于 3DGS 工作流的发布——通用文件托管阶段，非 3DGS 核心工具。",
+    en: "Tiiny Host publishes static bundles and files to shareable URLs—useful for handing datasets or web demos to collaborators. It belongs to the publishing stage of a 3DGS workflow, not training or splat rendering.",
+  },
+  platforms: ["Web"],
+  pricing: "freemium",
+  priceNote: "定价页列出 Tiny、Solo、Pro、Pro Max 等档位；具体金额以官网实时展示为准",
+  openSource: false,
+  license: "Proprietary",
+  level: "beginner",
+  pros: [
+    {
+      zh: "首页宣称以最简单方式在线托管与分享作品，并提供拖放上传入口",
+      en: "Homepage markets simple hosting/sharing with drag-and-drop upload entry points",
+    },
+    {
+      zh: "定价区块列出多档套餐与较大容量档位，可按项目体量选择",
+      en: "Pricing section lists tiered plans including high-capacity options for large bundles",
+    },
+    {
+      zh: "适合向协作者或客户临时分发 ZIP、静态站点或预览包，而非自建对象存储",
+      en: "Useful for temporary ZIP or static site hand-offs without standing up object storage",
+    },
+  ],
+  cons: [
+    {
+      zh: "用户反馈已不主用；是否继续采用需结合团队合规与可用性自测",
+      en: "User reports deprioritized it; adoption needs compliance and availability checks",
+    },
+    {
+      zh: "本轮检查中 tiiny.host 可连通，而 tinyhost.io 域名无法建立连接，名称易混淆，使用前请核实官方入口",
+      en: "tiiny.host responded in our check; tinyhost.io failed to connect—verify the canonical domain",
+    },
+    {
+      zh: "免费档与低价档对单项目大小、访问量与功能（自定义域名、密码等）有限制，详见定价与 FAQ",
+      en: "Free/low tiers cap project size, traffic, and features—see pricing and FAQ",
+    },
+  ],
+  useCases: ["retail", "art_gallery", "heritage"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://tiiny.host",
+    "https://en.wikipedia.org/wiki/Web_hosting_service",
+  ],
+  vendor: "Tiiny Labs Ltd",
+  region: "global",
+  evidenceQuote:
+    "The simplest way to host & share your work online",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "service-status-unclear: tiiny.host returned HTTP 200; tinyhost.io failed to connect in this environment",
+  discoverySource: "user-workflow",
+},

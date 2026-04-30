@@ -1,0 +1,57 @@
+{
+  slug: "deformable-3d-gaussians",
+  kind: "milestone",
+  title: {
+    zh: "可变形三维高斯：单目动态场景高保真重建",
+    en: "Deformable 3D Gaussians for High-Fidelity Monocular Dynamic Scene Reconstruction",
+  },
+  summary: {
+    zh: "在规范空间用三维高斯加形变场建模单目动态场景，并以退火平滑抑制位姿噪声带来的时序抖动。",
+    en: "Optimizes 3D Gaussians in canonical space with a deformation field for monocular dynamics and uses annealed smoothing to reduce temporal jitter from pose noise.",
+  },
+  description: {
+    zh: "方法将静态三维高斯泼溅推广到动态设置：在规范坐标系中维护高斯参数，并用神经网络将任意时刻的点映射到规范空间以解释运动。可微高斯光栅器提供高效反传。针对真实序列位姿不准，引入无额外开销的退火平滑训练以改善时间插值平滑度。论文报告在质量与帧率上相对隐式动态神经渲染的优势。",
+    en: "The approach extends static 3DGS to monocular dynamic scenes by coupling learnable Gaussians in canonical space with an implicit deformation field over time. A custom differentiable Gaussian rasterizer supplies gradients for both components. An annealing smoothing training schedule mitigates pose inaccuracies without extra runtime cost. Experiments report improved rendering quality and real-time speed versus implicit dynamic NeRF-style baselines on standard benchmarks.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Ziyi Yang", role: "researcher", link: "https://github.com/ingra14m/Deformable-3D-Gaussians" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "dynamic", "real_time", "reconstruction"],
+  lessons: [
+    {
+      zh: "规范加形变仍是把显式点云表示推广到动态视频的主干结构。",
+      en: "Canonical plus deformation remains the backbone for extending explicit points to dynamic video.",
+    },
+    {
+      zh: "对位姿噪声敏感的损失需要与时间相关的正则或退火策略配合。",
+      en: "Pose-sensitive losses benefit temporal regularizers or annealing when cameras are imperfect.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2309.13101" },
+    { label: "GitHub", url: "https://github.com/ingra14m/Deformable-3D-Gaussians" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2309.13101",
+    "https://github.com/ingra14m/Deformable-3D-Gaussians",
+  ],
+  quote: {
+    zh: null,
+    en: "Implicit neural representation has paved the way for new approaches to dynamic scene reconstruction and rendering.",
+  },
+},

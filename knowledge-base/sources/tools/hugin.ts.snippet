@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / hugin
+{
+  name: "Hugin",
+  slug: "hugin",
+  category: "capture",
+  logoUrl: null,
+  homepageUrl: "https://hugin.sourceforge.io/",
+  repoUrl: "https://hg.code.sf.net/p/hugin/hugin",
+  tagline: {
+    zh: "基于 Panorama Tools 生态的开源全景拼接与 HDR 合成前端。",
+    en: "Open-source panorama stitcher and HDR merger built on the Panorama Tools stack.",
+  },
+  description: {
+    zh: "Hugin 通过控制点匹配与优化将多张照片对齐，输出多种投影（含等距圆柱），可作为球面或广角采集的前置拼接步骤。该工具属于 3DGS 工作流的采集前置——全景/HDR 拼接阶段，非 3DGS 核心工具。",
+    en: "Hugin matches control points, optimizes transforms, and exports projections including equirectangular—useful prep for spherical capture plates. It is not a Gaussian splat trainer or viewer.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "GPL-2.0+",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "维基条目写明跨平台开源，并支持控制点、优化预览与多种地图投影输出",
+      en: "Encyclopedia notes cross-platform OSS with control points, preview, and projections",
+    },
+    {
+      zh: "与 Enblend、Enfuse 等工具链衔接，可处理 HDR 与曝光包围",
+      en: "Pairs with Enblend/Enfuse for HDR and exposure-bracketed stacks",
+    },
+    {
+      zh: "可自建批处理与脚本化输出，适合需要可重复参数集的研究流程",
+      en: "Supports scripted batches for reproducible research workflows",
+    },
+  ],
+  cons: [
+    {
+      zh: "交互与术语门槛高于一键商用拼接器，需要理解控制点与镜头模型",
+      en: "Steeper learning curve than turnkey stitchers; needs lens model literacy",
+    },
+    {
+      zh: "GUI 与文档以英文为主，中文资料分散",
+      en: "Primary docs are English-first; localized guides vary in quality",
+    },
+  ],
+  useCases: ["heritage", "natural_landscape", "urban_outdoor"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://hugin.sourceforge.io/",
+    "https://en.wikipedia.org/wiki/Hugin_(software)",
+  ],
+  vendor: "Hugin project",
+  region: "global",
+  evidenceQuote:
+    "Hugin is a cross-platform open source panorama photo stitching and HDR merging program developed by Pablo d'Angelo and others.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Wikipedia lists stable release 2025.0.1 / 13 December 2025 as of 2026-04-29",
+  discoverySource: "user-workflow",
+},

@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / adobe-lightroom
+{
+  name: "Adobe Lightroom",
+  slug: "adobe-lightroom",
+  category: "editing",
+  logoUrl: null,
+  homepageUrl: "https://www.adobe.com/products/photoshop-lightroom.html",
+  repoUrl: null,
+  tagline: {
+    zh: "面向桌面、网页与移动端的照片编辑与整理。",
+    en: "Photo editing and organizing for desktop, web, and mobile.",
+  },
+  description: {
+    zh: "Lightroom 提供星标、色标、筛选与批量调整，可将子集导出到磁盘文件夹，供 COLMAP 或 3DGS 管线读取。该工具属于 3DGS 工作流的采集前置——照片筛选/降噪阶段，非 3DGS 核心工具。",
+    en: "Lightroom rates, filters, and batch-adjusts stills, then exports subsets to disk folders for photogrammetry or splat training prep. It is a capture/editing helper, not a 3DGS optimizer.",
+  },
+  platforms: ["Windows", "macOS", "Web", "iOS", "Android"],
+  pricing: "subscription",
+  priceNote: "摄影计划与存储档位以 Adobe 定价页为准",
+  openSource: false,
+  license: "Proprietary",
+  level: "beginner",
+  pros: [
+    {
+      zh: "Adobe 页面标题写明照片编辑与整理，并覆盖桌面、网页与移动端",
+      en: "Adobe positioning covers editing plus organizing across desktop, web, and mobile",
+    },
+    {
+      zh: "支持元数据与旗标筛选，可将入选照片导出到目标目录结构",
+      en: "Metadata and pick flags help export curated folders for downstream tools",
+    },
+    {
+      zh: "批量同步编辑可减少同场景曝光不一致带来的匹配噪声",
+      en: "Synced edits reduce exposure mismatch across bursts for feature matching",
+    },
+  ],
+  cons: [
+    {
+      zh: "订阅与云存储策略需与团队数据驻留要求对齐",
+      en: "Subscription and cloud storage policies must fit data residency needs",
+    },
+    {
+      zh: "复杂合成与逐像素修图通常仍需 Photoshop 等工具补充",
+      en: "Heavy compositing or pixel work often still needs Photoshop-class tools",
+    },
+  ],
+  useCases: ["art_gallery", "retail", "indoor_living"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://www.adobe.com/products/photoshop-lightroom.html",
+    "https://en.wikipedia.org/wiki/Adobe_Lightroom",
+  ],
+  vendor: "Adobe Inc.",
+  region: "global",
+  evidenceQuote:
+    "Get Lightroom - Photo editing and organizing for desktop, web, and mobile",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Adobe marketing page fetched 2026-04-29",
+  discoverySource: "user-workflow",
+},

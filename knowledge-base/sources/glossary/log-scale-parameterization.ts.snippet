@@ -1,0 +1,39 @@
+{
+  id: "log-scale-parameterization",
+  term: { zh: "对数尺度参数化", en: "Log-scale parameterization" },
+  aliases: ["log scaling", "exponential scales"],
+  short: {
+    zh: "把椭球三根轴的长度先记在指数里再取幂，像用对数刻度拧旋钮，保证尺寸始终是正的。",
+    en: "Store unconstrained logs for axis lengths and exponentiate during forward evaluation so scales stay strictly positive.",
+  },
+  definition: {
+    zh: "三维高斯泼溅参考实现对对角尺度向量 s 使用 exp 映射，使优化变量位于全实数空间而几何尺度保持正。该技巧与图形学中常用的对数空间参数化一致，可减少优化过程中触碰零尺度导致的奇异性。与四元数旋转组合后重建协方差。自适应密度控制调节尺度时同样依赖该参数化以保持可微性。",
+    en: "Official Gaussian splatting code optimizes log-scale vectors and exponentiates before forming covariance matrices, guaranteeing positive axis lengths. This reparameterization stabilizes gradient descent compared with directly optimizing nonnegative scales. Densification routines that split or clone splats update log scales coherently. Libraries such as the reference Inria release document the convention explicitly.",
+  },
+  category: "technique",
+  level: "intermediate",
+  relatedTagIds: ["optimization", "training", "paper"],
+  relatedTerms: ["anisotropic-gaussian", "covariance-matrix", "3dgs"],
+  links: [
+    {
+      label: "Reference implementation",
+      url: "https://github.com/graphdeco-inria/gaussian-splatting",
+      type: "github",
+    },
+    {
+      label: "3D Gaussian Splatting paper",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://github.com/graphdeco-inria/gaussian-splatting",
+    "https://arxiv.org/abs/2308.04079",
+  ],
+  prerequisiteTerms: ["splat"],
+  advancedTerms: ["covariance-matrix", "adaptive-density-control"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

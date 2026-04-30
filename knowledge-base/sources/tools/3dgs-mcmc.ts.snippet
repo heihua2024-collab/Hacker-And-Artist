@@ -1,0 +1,61 @@
+{
+  name: "3DGS-MCMC",
+  slug: "3dgs-mcmc",
+  category: "training",
+  logoUrl: null,
+  homepageUrl: "https://github.com/ubc-vision/3dgs-mcmc",
+  repoUrl: "https://github.com/ubc-vision/3dgs-mcmc",
+  tagline: {
+    zh: "将 3DGS 优化表述为 MCMC 的官方论文实现（NeurIPS 2024 Spotlight）。",
+    en: "Official code for the NeurIPS 2024 Spotlight paper on 3D Gaussian Splatting as MCMC.",
+  },
+  description: {
+    zh: "仓库在 README 中声明基于原始 3D Gaussian Splatting 代码库扩展，并提供 `train.py` 等脚本与 `cap_max`、`scale_reg`、`opacity_reg`、`noise_lr` 等命令行参数说明。许可证文件沿用 Gaussian-Splatting 的非商业研究条款。阶段 2 keep 文件写「中科大」与公开 GitHub 组织 ubc-vision 不符；应以 UBC 视觉组维护的仓库为准。适合需要复现 MCMC 训练流程的研究者。",
+    en: "The README states the project extends the original 3DGS codebase and documents CLI flags such as `cap_max`, `scale_reg`, `opacity_reg`, and `noise_lr`. Licensing follows the bundled Gaussian-Splatting non-commercial research license. The keep note mentioning USTC mismatches the public ubc-vision organization. Intended for researchers reproducing the MCMC training recipe.",
+  },
+  platforms: ["Linux", "Windows"],
+  pricing: "free",
+  priceNote: "源代码可获取；许可证限制商业用途（见 LICENSE.md）。",
+  openSource: true,
+  license: "Inria Non-Commercial",
+  level: "expert",
+  pros: [
+    {
+      zh: "README 提供逐步 Conda 安装与子模块安装命令。",
+      en: "README documents conda setup and submodule install commands.",
+    },
+    {
+      zh: "README 列出与原版训练脚本差异所需的额外 CLI 参数名称。",
+      en: "README lists additional CLI flags compared with the original 3DGS training script.",
+    },
+    {
+      zh: "论文 arXiv:2404.09591 与项目页 ubc-vision.github.io/3dgs-mcmc 可交叉验证主题。",
+      en: "Paper arXiv:2404.09591 and ubc-vision.github.io/3dgs-mcmc document the method.",
+    },
+  ],
+  cons: [
+    {
+      zh: "LICENSE.md 沿用 Inria 非商业条款，商业用途需单独取得许可方同意。",
+      en: "LICENSE.md retains Inria non-commercial terms; commercial use needs explicit permission.",
+    },
+    {
+      zh: "README 写明仅在 Ubuntu 20.04 测试，其它系统需自行对照原始 3DGS 安装说明。",
+      en: "README states testing on Ubuntu 20.04 only; other OS paths follow the base 3DGS docs.",
+    },
+  ],
+  useCases: ["education", "heritage"],
+  tags: ["training", "optimization", "paper"],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://github.com/ubc-vision/3dgs-mcmc",
+    "https://raw.githubusercontent.com/ubc-vision/3dgs-mcmc/main/README.md",
+    "https://arxiv.org/abs/2404.09591",
+  ],
+  vendor: "UBC Vision Lab",
+  region: "north-america",
+  evidenceQuote: "3D Gaussian Splatting as Markov Chain Monte Carlo",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "README 含 2024-12-05 更新段落；提交历史以 GitHub 为准。",
+  discoverySource: "supersplat",
+},

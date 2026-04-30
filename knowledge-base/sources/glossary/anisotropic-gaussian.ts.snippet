@@ -1,0 +1,39 @@
+{
+  id: "anisotropic-gaussian",
+  term: { zh: "各向异性高斯", en: "Anisotropic Gaussian" },
+  aliases: ["anisotropic Gaussian kernel"],
+  short: {
+    zh: "像一滴颜料可以被拉成长条或压扁，不同方向上扩散得快慢不一样，而不是永远正圆形。",
+    en: "An anisotropic Gaussian stretches or squashes like an elliptical ink blot instead of staying a perfect round spot.",
+  },
+  definition: {
+    zh: "多元高斯当协方差矩阵不是单位阵的倍数时，等概率密度面为椭球，主轴长度与方向由特征值与特征向量决定。三维高斯泼溅将每个基元参数化为均值、正定协方差或等价地由缩放与旋转导出，以拟合薄表面与细长结构。可微光栅化把椭球投影到像平面形成二维高斯足迹。与词条「各向异性」在 3DGS 语境下紧密相关；实现上需保证协方差正定，常用 Cholesky 或对角缩放加四元数旋转。",
+    en: "An anisotropic multivariate Gaussian has a full covariance matrix inducing ellipsoidal isosurfaces. 3DGS represents scene elements as millions of such Gaussians with learned covariance, opacity, and spherical-harmonic color. Differentiable rasterization projects 3D covariances to 2D footprints for alpha blending. Parameterizations include symmetric matrices with Cholesky enforcement or factoring into scale and quaternion rotation. Training adjusts covariances to align with surface normals and avoid needle artifacts.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["training", "paper", "optimization"],
+  relatedTerms: ["covariance", "covariance-matrix", "3dgs"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Multivariate normal",
+      url: "https://en.wikipedia.org/wiki/Multivariate_normal_distribution",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://en.wikipedia.org/wiki/Multivariate_normal_distribution",
+  ],
+  prerequisiteTerms: ["splat"],
+  advancedTerms: ["covariance-matrix", "differentiable-rasterization"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

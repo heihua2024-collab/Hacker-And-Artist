@@ -1,0 +1,57 @@
+{
+  slug: "hugs",
+  kind: "milestone",
+  title: {
+    zh: "HUGS：人体高斯泼溅",
+    en: "HUGS: Human Gaussian Splats",
+  },
+  summary: {
+    zh: "在单目短序列上联合学习静态场景与可动画人体高斯，通过优化蒙皮权重抑制关节动画伪影并实现高帧率渲染。",
+    en: "Jointly learns static scene and animatable human Gaussians from a short monocular clip, optimizing skinning weights to reduce articulation artifacts at high FPS.",
+  },
+  description: {
+    zh: "论文将人体与背景统一表示为三维高斯，在人体区域用 SMPL 初始化并允许高斯偏离模板以刻画衣物与头发。针对关节驱动时高斯撕裂或空洞，提出联合优化线性混合蒙皮权重，使个体高斯在姿态变化下保持连贯。系统在数十分钟内完成训练并报告相对隐式神经化身方法的数量级加速，同时支持新姿态与新视角合成。",
+    en: "HUGS represents both the person and the scene with 3D Gaussians, initializing human Gaussians from SMPL while allowing deviations for clothing and hair. Articulation can tear point-based avatars; the method co-optimizes linear blend skinning weights alongside Gaussians to keep the ensemble coherent under novel poses. Training finishes in tens of minutes on short monocular clips and renders at interactive rates, reporting large speedups over implicit neural human models while enabling novel-pose and novel-view synthesis.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Muhammed Kocabas", role: "researcher", link: "https://github.com/apple/ml-hugs" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "avatar", "real_time", "optimization"],
+  lessons: [
+    {
+      zh: "显式高斯化身仍需共享的骨架先验，否则单目视频下的姿态与外观会高度欠定。",
+      en: "Explicit Gaussian avatars still need a skeletal prior; otherwise pose and appearance remain under-determined from monocular video.",
+    },
+    {
+      zh: "联合优化蒙皮权重是缓解点云式表示在关节处断裂的直接手段。",
+      en: "Co-optimizing skinning weights is a direct fix for tearing in point-based avatars near joints.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2311.17910" },
+    { label: "GitHub", url: "https://github.com/apple/ml-hugs" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2311.17910",
+    "https://github.com/apple/ml-hugs",
+  ],
+  quote: {
+    zh: null,
+    en: "Recent advances in neural rendering have improved both training and rendering times by orders of magnitude.",
+  },
+},

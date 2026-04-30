@@ -1,0 +1,59 @@
+{
+  slug: "4d-gaussian-splatting",
+  kind: "milestone",
+  title: {
+    zh: "4D 高斯泼溅：实时动态场景渲染",
+    en: "4D Gaussian Splatting for Real-Time Dynamic Scene Rendering",
+  },
+  summary: {
+    zh: "以 4D 神经体素与可学习形变在单套规范高斯上建模动态场景，兼顾实时帧率与训练存储效率。",
+    en: "Models dynamic scenes with 4D neural voxels and a deformation field over a single canonical Gaussian set for real-time training and storage efficiency.",
+  },
+  description: {
+    zh: "论文将动态场景表示为共享的规范三维高斯，并通过分解式神经体素编码与轻量网络预测时间戳上的高斯形变，避免逐帧复制大量高斯带来的存储膨胀。渲染沿用可微泼溅，在多种分辨率下报告较高帧率。项目提供演示与开源实现，便于与静态 3DGS 工作流对照。",
+    en: "The method maintains one set of canonical 3D Gaussians and predicts their deformation over time using features built from 4D neural voxels and a compact MLP, avoiding per-frame Gaussian duplication. Rendering stays in the differentiable splatting regime, with reported real-time performance on dynamic benchmarks. The project page and code release support reproduction and comparison with static 3DGS pipelines.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Guanjun Wu", role: "researcher", link: "https://guanjunwu.github.io/4dgs/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "dynamic", "real_time", "optimization"],
+  lessons: [
+    {
+      zh: "动态高斯的关键是用紧凑的时序结构编码替代逐帧点云爆炸。",
+      en: "The key for dynamic Gaussians is a compact temporal encoding instead of per-frame point blow-up.",
+    },
+    {
+      zh: "规范空间加形变场仍是衔接动态 NeRF 与显式泼溅的实用折中。",
+      en: "Canonical space plus a deformation field remains a practical bridge between dynamic NeRFs and explicit splatting.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2310.08528" },
+    { label: "Project Page", url: "https://guanjunwu.github.io/4dgs/" },
+    { label: "GitHub", url: "https://github.com/hustvl/4DGaussians" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2310.08528",
+    "https://guanjunwu.github.io/4dgs/",
+    "https://github.com/hustvl/4DGaussians",
+  ],
+  quote: {
+    zh: null,
+    en: "Representing and rendering dynamic scenes has been an important but challenging task.",
+  },
+},

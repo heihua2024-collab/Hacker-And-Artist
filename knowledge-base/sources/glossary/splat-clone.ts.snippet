@@ -1,0 +1,39 @@
+{
+  id: "splat-clone",
+  term: { zh: "Splat 克隆", en: "Splat clone" },
+  aliases: ["clone densification"],
+  short: {
+    zh: "发现某块地方老是对不齐，就把那里的一颗高斯复印一份放到旁边，让优化多一个帮手。",
+    en: "When a region keeps misfitting, duplicate an existing Gaussian nearby so optimization gains another degree of freedom.",
+  },
+  definition: {
+    zh: "在三维高斯泼溅参考实现中，当屏幕空间位置梯度超过阈值且高斯尺度低于场景尺度时，执行克隆：复制参数并做小位移，使总协方差近似不变而增加基元数量。该步骤属于自适应密度控制的一部分，与分裂互补。实现需维护优化器状态副本。克隆频率过高会增加显存与排序成本，因此常与剪枝与学习率调度配合。",
+    en: "The official Gaussian splatting densification pass clones small Gaussians with large view-space gradient magnitudes by duplicating parameters with a positional offset. Cloning increases primitive count while preserving approximate covariance volume. It pairs with splitting for large Gaussians and pruning for low-opacity particles. Production forks tune thresholds per dataset to control memory.",
+  },
+  category: "technique",
+  level: "expert",
+  relatedTagIds: ["optimization", "training", "paper"],
+  relatedTerms: ["adaptive-density-control", "splat-split", "3dgs"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Reference repository",
+      url: "https://github.com/graphdeco-inria/gaussian-splatting",
+      type: "github",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://github.com/graphdeco-inria/gaussian-splatting",
+  ],
+  prerequisiteTerms: ["screen-space-gradient"],
+  advancedTerms: ["splat-split", "densification"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

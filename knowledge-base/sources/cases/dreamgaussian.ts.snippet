@@ -1,0 +1,59 @@
+{
+  slug: "dreamgaussian",
+  kind: "milestone",
+  title: {
+    zh: "DreamGaussian：高效生成式高斯泼溅三维内容",
+    en: "DreamGaussian: Generative Gaussian Splatting for Efficient 3D Content Creation",
+  },
+  summary: {
+    zh: "以三维高斯为可微载体结合 SDS，并辅以网格提取与 UV 精修，显著缩短单样本三维生成时间。",
+    en: "Combines 3D Gaussians with score distillation and mesh or UV refinement to cut per-asset 3D generation time sharply.",
+  },
+  description: {
+    zh: "工作面向图像或文本驱动的三维资产生成，指出基于 NeRF 的 SDS 管线因体渲染代价高而迭代缓慢。作者将表示换为三维高斯泼溅，利用渐进加密更快填充形状，再在第二阶段从高密度高斯提取网格并在 UV 空间细化纹理。实验强调与此前方法相比的训练时间数量级缩短，同时保持有竞争力的生成质量。",
+    en: "Targeting image- and text-conditioned 3D asset creation, the paper argues that NeRF-based SDS optimization is slow due to volume rendering cost. It instead optimizes 3D Gaussians with SDS, using progressive densification suited to generative optimization, then extracts a mesh and refines textures in UV space. Experiments highlight large wall-clock speedups over prior lifting methods while reporting competitive quality for common text- and image-to-3D setups.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Jiaxiang Tang", role: "researcher", link: "https://dreamgaussian.github.io/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "generation", "training", "optimization"],
+  lessons: [
+    {
+      zh: "生成设定下显式高斯的优化景观可与重建设定不同，需重新匹配加密与损失调度。",
+      en: "Generative optimization landscapes differ from reconstruction; densification and loss schedules must be re-matched.",
+    },
+    {
+      zh: "网格与 UV 后处理仍是把可微辐射场导出到 DCC 工具链的务实路径。",
+      en: "Mesh and UV post-processing remains the pragmatic path from differentiable fields into DCC pipelines.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2309.16653" },
+    { label: "Project Page", url: "https://dreamgaussian.github.io/" },
+    { label: "GitHub", url: "https://github.com/dreamgaussian/dreamgaussian" },
+  ],
+  publishedAt: "2024-ICLR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2309.16653",
+    "https://dreamgaussian.github.io/",
+    "https://github.com/dreamgaussian/dreamgaussian",
+  ],
+  quote: {
+    zh: null,
+    en: "Recent advances in 3D content creation mostly leverage optimization-based 3D generation via score distillation sampling (SDS).",
+  },
+},

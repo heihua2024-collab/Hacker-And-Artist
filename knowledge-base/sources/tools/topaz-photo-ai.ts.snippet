@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / topaz-photo-ai
+{
+  name: "Topaz Photo",
+  slug: "topaz-photo-ai",
+  category: "editing",
+  logoUrl: null,
+  homepageUrl: "https://www.topazlabs.com/topaz-photo",
+  repoUrl: null,
+  tagline: {
+    zh: "面向现场摄影师的 AI 图像增强（锐化、去噪、放大等）。",
+    en: "AI image enhancement for location photographers—sharpen, denoise, upscale, and more.",
+  },
+  description: {
+    zh: "Topaz Photo 提供去噪、锐化、补光、调色与放大等模型，可在进入 COLMAP 或 3DGS 前提升静帧可用性。该工具属于 3DGS 工作流的采集前置——照片筛选/降噪阶段，非 3DGS 核心工具。",
+    en: "Topaz Photo runs AI models for denoise, sharpen, lighting, color, and upscale before feeding stills to SfM or splat training. It is a preprocessing helper, not a 3DGS core trainer.",
+  },
+  platforms: ["Windows", "macOS"],
+  pricing: "subscription",
+  priceNote: "官网列出月付与年付等方案；金额以结账页为准",
+  openSource: false,
+  license: "Proprietary",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "官网写明具备锐化、去噪、补光、调色、放大等 AI 工具并可本地渲染",
+      en: "Site lists sharpen, denoise, lighting, color, upscale with local rendering",
+    },
+    {
+      zh: "可作为 Lightroom Classic、Capture One 等流程的插件或独立应用衔接",
+      en: "Works standalone or as a plug-in alongside Lightroom Classic and Capture One",
+    },
+    {
+      zh: "可在批量导出前统一处理高 ISO 或轻微失焦的源照片",
+      en: "Batch-improves high-ISO or soft-focus plates before photogrammetry",
+    },
+  ],
+  cons: [
+    {
+      zh: "订阅与商业使用条款需对照定价页；云渲染涉及上传策略需自行评估",
+      en: "Subscription and commercial terms apply; cloud rendering implies upload policies",
+    },
+    {
+      zh: "生成式增强可能改变纹理细节，应与团队约定可接受的编辑幅度",
+      en: "Generative-style tweaks can alter texture detail—set editorial guardrails",
+    },
+  ],
+  useCases: ["natural_landscape", "urban_outdoor", "heritage"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://www.topazlabs.com/topaz-photo",
+    "https://docs.topazlabs.com",
+  ],
+  vendor: "Topaz Labs LLC",
+  region: "global",
+  evidenceQuote:
+    "Topaz Photo is an intelligent image enhancement software that lets you sharpen details, restore focus, and adjust levels on every shot you take.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Marketing page lists desktop apps and pricing bands 2026-04-29",
+  discoverySource: "user-workflow",
+},

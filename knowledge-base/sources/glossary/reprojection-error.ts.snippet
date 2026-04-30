@@ -1,0 +1,39 @@
+{
+  id: "reprojection-error",
+  term: { zh: "重投影误差", en: "Reprojection error" },
+  aliases: ["reprojection residual"],
+  short: {
+    zh: "把算出来的三维点按相机规则再投回照片，看和原来标出的位置差几个像素；差越小说明模型越可信。",
+    en: "Reproject a triangulated 3D landmark into an image and measure how far it lands from the detected feature—small residuals mean consistent geometry.",
+  },
+  definition: {
+    zh: "对给定相机参数与三维点 X，重投影误差为观测像素与投影 x 之间的向量范数，常写作 d(x, π(K,R,t,X))。光束法平差以加权平方和为目标函数，并可用 Huber 或 Cauchy 核抑制外点。COLMAP 日志输出每幅图与全局平均重投影误差。3DGS 若冻结 COLMAP 位姿，则训练损失不再直接优化该量，但若联合微调相机，重投影项可重新出现。报告数值时应说明是否包含畸变模型与鲁棒核。",
+    en: "Given a projection π, the residual compares measured pixels to π(K,T,X). Bundle adjustment minimizes robustified sums of these residuals across views. SfM tools expose mean and max reprojection errors for sanity checks. Gaussian splatting typically optimizes photometric loss instead, yet pose-refinement literature couples photometric terms with reprojection when calibration drifts. Always disclose units (pixels) and whether radial distortion is modeled.",
+  },
+  category: "metric",
+  level: "intermediate",
+  relatedTagIds: ["optimization", "capture", "paper"],
+  relatedTerms: ["bundle-adjustment", "sfm", "camera-extrinsics"],
+  links: [
+    {
+      label: "Reprojection error",
+      url: "https://en.wikipedia.org/wiki/Reprojection_error",
+      type: "media",
+    },
+    {
+      label: "COLMAP statistics",
+      url: "https://colmap.github.io/tutorial.html",
+      type: "official_website",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Reprojection_error",
+    "https://colmap.github.io/tutorial.html",
+  ],
+  prerequisiteTerms: ["camera-intrinsics"],
+  advancedTerms: ["bundle-adjustment", "sfm"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

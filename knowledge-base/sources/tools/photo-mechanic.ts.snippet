@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / photo-mechanic
+{
+  name: "Photo Mechanic",
+  slug: "photo-mechanic",
+  category: "editing",
+  logoUrl: null,
+  homepageUrl: "https://www.camerabits.com",
+  repoUrl: null,
+  tagline: {
+    zh: "高速浏览、筛选与 IPTC 元数据写入的照片前端工具。",
+    en: "Fast ingest, culling, and IPTC metadata tagging for photo workflows.",
+  },
+  description: {
+    zh: "Photo Mechanic 在导入后快速预览与打标，并批量写入说明、关键词与版权等 IPTC 字段，再将选定照片导出到目标路径供重建管线读取。该工具属于 3DGS 工作流的采集前置——照片筛选/降噪阶段，非 3DGS 核心工具。",
+    en: "Photo Mechanic ingests cards, previews frames, applies IPTC metadata, and exports picks to target folders before photogrammetry. It is a culling/editing helper, not a splat trainer.",
+  },
+  platforms: ["Windows", "macOS"],
+  pricing: "one-time",
+  priceNote: "许可证与升级政策以 Camera Bits 订单页为准",
+  openSource: false,
+  license: "Proprietary",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "官网强调从存储卡到筛选赢家的高速流程，并支持导出交付",
+      en: "Vendor copy stresses fast ingest-to-pick workflows plus export/delivery",
+    },
+    {
+      zh: "维基条目写明支持 IPTC 元数据标注，可与 Lightroom 等后续工具衔接",
+      en: "Encyclopedia notes IPTC tagging alongside dedicated editors like Lightroom",
+    },
+    {
+      zh: "适合在大量连拍中快速筛图，再仅对入选帧运行重建",
+      en: "Speeds culling on large bursts before running reconstruction on winners",
+    },
+  ],
+  cons: [
+    {
+      zh: "维基稳定版字段可能滞后，购买前应以厂商下载页版本号为准",
+      en: "Wikipedia release infobox may lag vendor download pages",
+    },
+    {
+      zh: "深度像素编辑仍需配合 Photoshop 或其他编辑器",
+      en: "Pixel-level retouching still needs Photoshop-class tools",
+    },
+  ],
+  useCases: ["heritage", "urban_outdoor", "retail"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://www.camerabits.com",
+    "https://en.wikipedia.org/wiki/Photo_Mechanic",
+  ],
+  vendor: "Camera Bits, Inc.",
+  region: "global",
+  evidenceQuote:
+    "Photo Mechanic supports the initial capture of photos from the camera, previewing and making selections, and tagging each photo with various types of IPTC metadata such as captions, keywords, and copyright notices.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Camera Bits homepage marketing copy fetched 2026-04-29",
+  discoverySource: "user-workflow",
+},

@@ -1,0 +1,59 @@
+{
+  slug: "sugar",
+  kind: "milestone",
+  title: {
+    zh: "SuGaR：表面对齐高斯与网格重建",
+    en: "SuGaR: Surface-Aligned Gaussian Splatting for Efficient 3D Mesh Reconstruction and High-Quality Mesh Rendering",
+  },
+  summary: {
+    zh: "通过表面对齐正则与泊松重建从三维高斯快速提取可编辑三角网格，并可选择将高斯绑定到网格做联合细化。",
+    en: "Aligns Gaussians to surfaces, extracts meshes via Poisson reconstruction, and optionally binds Gaussians to meshes for joint refinement.",
+  },
+  description: {
+    zh: "标准三维高斯泼溅优化后高斯往往无序堆叠，难以直接获得干净多边形。SuGaR 加入鼓励与场景表面对齐的正则项，使高斯分布更贴近薄层几何，再用泊松等方法提取网格；进一步可将高斯锚定在网格上联合优化，以便在 DCC 软件中编辑网格同时保持高斯渲染外观。论文强调相较神经 SDF 提取管线在时间与质量上的权衡。",
+    en: "After vanilla 3DGS optimization, millions of Gaussians are poorly organized for meshing. SuGaR introduces a regularizer that encourages Gaussians to align with the underlying surface, enabling fast Poisson reconstruction instead of marching cubes on neural SDFs. An optional refinement binds Gaussians to the extracted mesh and co-optimizes them for high-fidelity splatting while enabling standard mesh editing. The authors highlight minute-scale mesh recovery versus hour-scale neural implicit pipelines.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Antoine Guédon", role: "researcher", link: "https://anttwo.github.io/sugar/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "surface", "reconstruction", "optimization"],
+  lessons: [
+    {
+      zh: "若目标是可编辑网格，应在优化阶段显式偏向表面而非纯体渲染拟合。",
+      en: "If the deliverable is an editable mesh, optimization should bias toward surfaces rather than volumetric overfitting.",
+    },
+    {
+      zh: "泊松重建在规则化点云密度后仍是快速可扩展的网格提取工具。",
+      en: "Poisson reconstruction remains a fast, scalable mesher once point distributions are regularized.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2311.12775" },
+    { label: "Project Page", url: "https://anttwo.github.io/sugar/" },
+    { label: "GitHub", url: "https://github.com/Anttwo/SuGaR" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2311.12775",
+    "https://anttwo.github.io/sugar/",
+    "https://github.com/Anttwo/SuGaR",
+  ],
+  quote: {
+    zh: null,
+    en: "We propose a method to allow precise and extremely fast mesh extraction from 3D Gaussian Splatting.",
+  },
+},

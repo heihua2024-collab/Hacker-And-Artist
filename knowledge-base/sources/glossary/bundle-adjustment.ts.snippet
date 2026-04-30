@@ -1,0 +1,39 @@
+{
+  id: "bundle-adjustment",
+  term: { zh: "光束法平差", en: "Bundle adjustment" },
+  aliases: ["BA", "joint nonlinear refinement"],
+  short: {
+    zh: "像同时拧动一整本相册里每张照片的站位和场景里每个路标点的位置，让同一个角落在不同照片里尽量对齐。",
+    en: "Bundle adjustment twists every camera pose and every 3D tie point together so the same features line up across photos as tightly as the model allows.",
+  },
+  definition: {
+    zh: "光束法平差以非线性最小二乘形式最小化所有观测上的重投影误差，变量通常包括三维点坐标、各帧外参以及可选的内参与畸变参数。Levenberg-Marquardt 与稀疏舒尔补结构使大规模问题可解。COLMAP 等 SfM 系统在增量建图与全局对齐阶段反复调用 BA。3D Gaussian Splatting 工作流往往继承 COLMAP 输出作为固定相机参数，也有工作在微调阶段对位姿做小规模联合优化；理解 BA 有助于判断何时需要重新跑 SfM 或放松位姿假设。",
+    en: "Bundle adjustment jointly refines 3D points and camera parameters by minimizing the sum of squared reprojection residuals, exploiting sparse structure in the normal equations. Incremental SfM systems interleave triangulation with global or local BA passes. Gaussian splatting pipelines typically ingest COLMAP poses; some research relaxes poses during splat optimization when capture noise is high. Knowing BA explains why noisy calibration or rolling shutter can invalidate frozen poses.",
+  },
+  category: "technique",
+  level: "expert",
+  relatedTagIds: ["optimization", "capture", "paper"],
+  relatedTerms: ["reprojection-error", "sfm", "camera-extrinsics"],
+  links: [
+    {
+      label: "COLMAP bundle adjustment",
+      url: "https://colmap.github.io/tutorial.html",
+      type: "official_website",
+    },
+    {
+      label: "Bundle adjustment survey context",
+      url: "https://en.wikipedia.org/wiki/Bundle_adjustment",
+      type: "media",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Bundle_adjustment",
+    "https://colmap.github.io/tutorial.html",
+  ],
+  prerequisiteTerms: ["camera-intrinsics", "reprojection-error"],
+  advancedTerms: ["sfm", "mvs"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

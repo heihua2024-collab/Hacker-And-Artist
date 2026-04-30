@@ -1,0 +1,38 @@
+{
+  id: "fps-realtime",
+  term: { zh: "实时帧率阈值", en: "Realtime FPS threshold" },
+  aliases: ["interactive FPS target", "RT threshold"],
+  short: {
+    zh: "除了平均一秒能画几帧，还要约定「至少跑到多少帧才算顺手」，像给流畅度划一条及格线。",
+    en: "Beyond average frames per second, teams set a minimum interactive FPS budget so experiences feel responsive on target hardware.",
+  },
+  definition: {
+    zh: "实时渲染语境下，帧率阈值表示在指定分辨率、抗锯齿与排序开销下需维持的最低刷新频率，常见交互目标为每秒三十至六十帧。三维高斯泼溅查看器受 splat 数量、排序算法与 WebGPU 路径影响；评测应披露硬件型号、驱动、浏览器与是否使用 LOD 或压缩。与词条「fps」侧重计数不同，本条强调阈值与体验 SLA。论文表格中的 FPS 多为离线测评，与交互阈值不可直接等同。",
+    en: "Realtime thresholds specify the minimum sustainable FPS under agreed workloads. Gaussian splat viewers must account for per-frame sort cost, alpha blending, and memory bandwidth. Benchmarks should report percentile FPS, not only means. Mobile WebGL targets differ from desktop WebGPU targets. This entry complements the generic FPS glossary entry by focusing on contractual performance budgets rather than definition alone.",
+  },
+  category: "metric",
+  level: "intermediate",
+  relatedTagIds: ["real_time", "optimization", "paper"],
+  relatedTerms: ["fps", "real-time-rendering", "3dgs"],
+  links: [
+    {
+      label: "Frame rate guidance",
+      url: "https://en.wikipedia.org/wiki/Frame_rate",
+      type: "media",
+    },
+    {
+      label: "3D Gaussian Splatting performance discussion",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Frame_rate",
+    "https://arxiv.org/abs/2308.04079",
+  ],
+  prerequisiteTerms: ["fps"],
+  advancedTerms: ["webgl-webgpu", "memory-footprint-metric"],
+  relatedEngines: ["supersplat", "playcanvas"],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

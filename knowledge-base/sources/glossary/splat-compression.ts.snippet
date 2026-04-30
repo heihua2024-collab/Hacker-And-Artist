@@ -1,0 +1,39 @@
+{
+  id: "splat-compression",
+  term: { zh: "Splat 压缩", en: "Splat compression" },
+  aliases: ["Gaussian splat compression", "compressed splats"],
+  short: {
+    zh: "把几百万颗高斯的参数压成更小的包，像把厚棉被抽真空再寄快递，上传下载都省带宽。",
+    en: "Compression packs millions of Gaussian parameters into smaller files or bitstreams so uploads and downloads cost less bandwidth.",
+  },
+  definition: {
+    zh: "Splat 压缩在位置、协方差、球谐系数与不透明度上应用量化、矢量量化或结构化网格化，并可结合熵编码。工业界有 SPZ、KSplat 等格式；Khronos 正在推进 glTF 高斯扩展以便互操作。压缩引入解码开销与精度损失，需在体积、解码时间与渲染质量间权衡。SuperSplat 等工具提供导出压缩选项。与通用网格压缩不同，splat 压缩需保留排序与 alpha 合成语义。",
+    en: "Compression schemes quantize per-primitive attributes, sometimes clustering similar Gaussians or using spherical harmonics in lower precision. Standardization efforts align with glTF extensions for interoperability. Runtime decoders must feed rasterizers without reintroducing popping artifacts. Benchmarks report size versus PSNR or LPIPS degradation. The topic complements the compressed-gs glossary entry by emphasizing codec-level practice.",
+  },
+  category: "technique",
+  level: "intermediate",
+  relatedTagIds: ["optimization", "paper", "dataset"],
+  relatedTerms: ["compressed-gs", "spz", "ksplat"],
+  links: [
+    {
+      label: "KHR Gaussian Splatting glTF extension",
+      url: "https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_gaussian_splatting",
+      type: "github",
+    },
+    {
+      label: "SuperSplat exporter",
+      url: "https://github.com/playcanvas/supersplat",
+      type: "github",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://github.com/KhronosGroup/glTF/tree/main/extensions/2.0/Khronos/KHR_gaussian_splatting",
+    "https://github.com/playcanvas/supersplat",
+  ],
+  prerequisiteTerms: ["compressed-gs"],
+  advancedTerms: ["streaming-splat", "ksplat"],
+  relatedTools: ["supersplat"],
+  relatedEngines: ["supersplat"],
+  relatedPapers: [],
+},

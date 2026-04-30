@@ -1,0 +1,39 @@
+{
+  id: "epipolar-geometry",
+  term: { zh: "对极几何", en: "Epipolar geometry" },
+  aliases: ["epipolar constraint"],
+  short: {
+    zh: "两台相机看同一场景时，甲图里一个点在乙图里只会落在一条线上，这条线帮你缩小找对应点的范围。",
+    en: "With two cameras, a point in the left image must lie on a specific line in the right image—that line shrinks the search for correspondences.",
+  },
+  definition: {
+    zh: "对极几何刻画两幅图像之间的射影关系：存在极点与对极线族，使得一图中像点对应另一图中一条直线。该结构由相对位姿与内参决定，可用本质矩阵（归一化坐标）或基础矩阵（像素坐标）代数表达。RANSAC 结合对极约束估计 F 或 E 并剔除外点；三角化依赖正确的相对姿态。多视图扩展为广义图像与核线网络。3DGS 预处理若使用 COLMAP，对极几何已在 SfM 内部使用；理解其有助于调试匹配失败或宽基线采集。",
+    en: "Epipolar geometry encodes the fact that corresponding rays lie in a pencil of planes through the baseline. Algebraically, x'^T F x = 0 links homogeneous pixels, while the essential matrix operates in normalized coordinates. Robust estimation uses RANSAC on Sampson distance. Multi-view pipelines generalize via trifocal tensors. Gaussian splat practitioners rarely manipulate epipolar constraints directly once poses export, but failures in SfM stem from violated epipolar assumptions when intrinsics drift or rolling shutter warps rows.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["capture", "paper", "optimization"],
+  relatedTerms: ["fundamental-matrix", "essential-matrix", "sfm"],
+  links: [
+    {
+      label: "Epipolar geometry",
+      url: "https://en.wikipedia.org/wiki/Epipolar_geometry",
+      type: "media",
+    },
+    {
+      label: "Hartley and Zisserman reference text",
+      url: "https://www.robots.ox.ac.uk/~vgg/hzbook/",
+      type: "paper",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Epipolar_geometry",
+    "https://www.robots.ox.ac.uk/~vgg/hzbook/",
+  ],
+  prerequisiteTerms: ["feature-matching"],
+  advancedTerms: ["fundamental-matrix", "essential-matrix"],
+  relatedTools: ["colmap"],
+  relatedEngines: [],
+  relatedPapers: [],
+},

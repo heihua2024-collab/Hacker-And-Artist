@@ -1,0 +1,59 @@
+{
+  slug: "2d-gaussian-splatting",
+  kind: "milestone",
+  title: {
+    zh: "二维高斯泼溅：几何精确的辐射场",
+    en: "2D Gaussian Splatting for Geometrically Accurate Radiance Fields",
+  },
+  summary: {
+    zh: "将体积高斯压成与表面对齐的二维盘，配合透视正确泼溅与深度法线正则，显著改善几何重建。",
+    en: "Flattens volumetric Gaussians into surface-aligned 2D disks with perspective-correct splatting and depth or normal cues for cleaner geometry.",
+  },
+  description: {
+    zh: "论文指出标准三维高斯在多视图间对薄表面与深度不一致敏感。二维高斯泼溅用射线与椭圆盘求交定义透视正确的贡献，并引入深度畸变与法线一致性正则，在保持实时渲染与较快训练的同时改善网格提取。官方页面提供代码与几何对比示例。",
+    en: "The work argues that 3D Gaussians are multi-view inconsistent for thin surfaces. 2DGS represents oriented planar Gaussian disks and uses ray-splat intersection for perspective-correct rendering, augmented by depth distortion and normal consistency losses. It targets noise-free meshes and stable normals while keeping competitive appearance and real-time splatting. The project site and repository ship reference code and geometry comparisons.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Binbin Huang", role: "researcher", link: "https://surfsplatting.github.io/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "surface", "reconstruction", "real_time"],
+  lessons: [
+    {
+      zh: "显式表面基元与射线求交能直接缓解多视图深度不一致。",
+      en: "Explicit surface primitives with ray intersection directly reduce multi-view depth inconsistency.",
+    },
+    {
+      zh: "几何正则与外观损失并用，是神经辐射场走向可导出网格的常用组合。",
+      en: "Pairing geometric regularizers with photometric losses is a recurring recipe for exportable meshes from neural fields.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2403.17888" },
+    { label: "Project Page", url: "https://surfsplatting.github.io/" },
+    { label: "GitHub", url: "https://github.com/hbb1/2d-gaussian-splatting" },
+  ],
+  publishedAt: "2024-SIGGRAPH",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2403.17888",
+    "https://surfsplatting.github.io/",
+    "https://github.com/hbb1/2d-gaussian-splatting",
+  ],
+  quote: {
+    zh: null,
+    en: "3D Gaussian Splatting (3DGS) has recently revolutionized radiance field reconstruction, achieving high quality novel view synthesis and fast rendering speed without baking.",
+  },
+},

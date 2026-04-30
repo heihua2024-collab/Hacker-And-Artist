@@ -1,0 +1,39 @@
+{
+  id: "quaternion-rotation",
+  term: { zh: "四元数旋转", en: "Quaternion rotation" },
+  aliases: ["unit quaternion", "orientation quaternion"],
+  short: {
+    zh: "用四个数记录物体在三维空间里怎么转，比九个数的大矩阵省地方，做插值也不容易卡死。",
+    en: "Quaternions pack a 3D orientation into four numbers with smooth interpolation paths and fewer parameters than a full matrix.",
+  },
+  definition: {
+    zh: "单位四元数 q = w + xi + yj + zk 满足 |q|=1 时对应 SO(3) 中的旋转，映射到旋转矩阵可用罗德里格斯型公式。三维高斯泼溅常以四元数与对数尺度向量一起参数化协方差，再通过 Σ = R S S^T R^T 重建。优化时对四元数做归一化投影以保持流形约束。与欧拉角相比避免万向节锁；与轴角相比存储紧凑。代码库如 gsplat 暴露四元数接口以对接图形学惯例。",
+    en: "Unit quaternions represent rotations with fewer redundant degrees than matrices and enable stable spherical linear interpolation. Gaussian splatting code frequently stores orientation as a normalized quaternion paired with per-axis scales, then rebuilds covariance matrices. Optimizers renormalize after each step to stay on S^3. This parameterization pairs cleanly with log-scale anisotropic scaling used in official implementations.",
+  },
+  category: "concept",
+  level: "intermediate",
+  relatedTagIds: ["optimization", "paper", "training"],
+  relatedTerms: ["covariance-matrix", "anisotropic-gaussian", "3dgs"],
+  links: [
+    {
+      label: "Quaternions and spatial rotation",
+      url: "https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation",
+      type: "media",
+    },
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation",
+    "https://arxiv.org/abs/2308.04079",
+  ],
+  prerequisiteTerms: ["splat"],
+  advancedTerms: ["covariance-matrix", "anisotropic-gaussian"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

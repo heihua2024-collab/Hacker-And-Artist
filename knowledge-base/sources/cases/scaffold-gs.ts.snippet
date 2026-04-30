@@ -1,0 +1,59 @@
+{
+  slug: "scaffold-gs",
+  kind: "milestone",
+  title: {
+    zh: "Scaffold-GS：面向视图自适应的结构化高斯",
+    en: "Scaffold-GS: Structured 3D Gaussians for View-Adaptive Rendering",
+  },
+  summary: {
+    zh: "以锚点网格组织局部神经高斯并按视点预测属性，抑制冗余高斯并提升复杂场景泛化。",
+    en: "Organizes neural Gaussians on anchors and predicts attributes from the viewpoint to cut redundancy and improve generalization on complex scenes.",
+  },
+  description: {
+    zh: "原始三维高斯泼溅易为拟合训练视图而堆叠大量各向异性高斯。Scaffold-GS 自稀疏锚点生长局部高斯，由网络在给定观察方向与距离下生成不透明度、颜色与几何参数，并配套锚点增删策略。推理时仅在视锥内激活锚点，在相近渲染速度下压缩存储并改善反射、弱纹理等区域。",
+    en: "Vanilla 3DGS can sprawl redundant Gaussians to overfit training views. Scaffold-GS places anchors on a sparse scaffold, spawns local neural Gaussians, and predicts their attributes from viewing direction and distance inside the frustum, with growing and pruning on anchors. At inference it activates anchors in view and filters trivial Gaussians, reporting compact storage and better behavior on specular, textureless, or wide-baseline settings at comparable FPS.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Tao Lu", role: "researcher", link: "https://city-super.github.io/scaffold-gs/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "optimization", "reconstruction"],
+  lessons: [
+    {
+      zh: "显式结构锚点可以把无约束高斯生长重新拉回场景几何先验上。",
+      en: "Explicit structural anchors pull unconstrained Gaussian growth back toward geometric priors.",
+    },
+    {
+      zh: "视角条件预测是压缩视角相关外观并减少逐点存储的一条路。",
+      en: "View-conditioned prediction helps encode view-dependent effects without storing them per Gaussian.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2312.00109" },
+    { label: "Project Page", url: "https://city-super.github.io/scaffold-gs/" },
+    { label: "GitHub", url: "https://github.com/city-super/Scaffold-GS" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2312.00109",
+    "https://city-super.github.io/scaffold-gs/",
+    "https://github.com/city-super/Scaffold-GS",
+  ],
+  quote: {
+    zh: null,
+    en: "Neural rendering methods have significantly advanced photo-realistic 3D scene rendering in various academic and industrial applications.",
+  },
+},

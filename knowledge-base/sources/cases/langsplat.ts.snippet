@@ -1,0 +1,59 @@
+{
+  slug: "langsplat",
+  kind: "milestone",
+  title: {
+    zh: "LangSplat：三维语言高斯泼溅",
+    en: "LangSplat: 3D Language Gaussian Splatting",
+  },
+  summary: {
+    zh: "以高斯为载体存储蒸馏后的语言特征并用泼溅渲染，相较基于 NeRF 的体积积分显著加速开放词汇三维定位。",
+    en: "Stores distilled language features on Gaussians and splats them for open-vocabulary 3D grounding, avoiding costly NeRF volume rendering.",
+  },
+  description: {
+    zh: "工作面向三维开放词汇查询：将 CLIP 等模型的语言信号编码到每个三维高斯上，通过类似 RGB 泼溅的瓦片渲染聚合语言特征。为降低显式存储开销，先训练场景级语言自编码再在潜空间学习特征，并借助 SAM 等信号学习层次语义以得到更清晰物体边界。论文报告相对 LERF 等方法在速度与精度上的提升。",
+    en: "LangSplat targets open-vocabulary querying in 3D by attaching language features to 3D Gaussians and rendering them with a tile-based splatter analogous to RGB splatting, avoiding ray marching through a NeRF. A scene-wise language autoencoder reduces memory versus storing full CLIP embeddings, and hierarchical semantics derived from segmentation priors sharpen object boundaries. Experiments report large speedups over prior NeRF-grounded language fields at high resolution with improved grounding quality.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Minghan Qin", role: "researcher", link: "https://langsplat.github.io/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "semantic", "optimization", "real_time"],
+  lessons: [
+    {
+      zh: "显式基元上的特征泼溅可把语言场推理成本降到与 RGB 泼溅同量级。",
+      en: "Splatting language features on explicit primitives brings inference closer to RGB splatting cost.",
+    },
+    {
+      zh: "场景专用潜空间与分割先验可缓解 CLIP 特征模糊边界问题。",
+      en: "Scene-specific latents and segmentation priors mitigate the fuzzy boundaries of CLIP features in 3D.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2312.16084" },
+    { label: "Project Page", url: "https://langsplat.github.io/" },
+    { label: "GitHub", url: "https://github.com/Minghanqin/LangSplat" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2312.16084",
+    "https://langsplat.github.io/",
+    "https://github.com/Minghanqin/LangSplat",
+  ],
+  quote: {
+    zh: null,
+    en: "Humans live in a 3D world and commonly use natural language to interact with a 3D scene.",
+  },
+},

@@ -1,0 +1,53 @@
+{
+  name: "PLY (3DGS interchange)",
+  slug: "ply-format",
+  category: "publishing",
+  logoUrl: null,
+  homepageUrl: "https://developer.playcanvas.com/user-manual/gaussian-splatting/formats/ply/",
+  repoUrl: null,
+  tagline: {
+    zh: "PlayCanvas 文档定义的 3DGS 高斯数据标准容器与互换格式（PLY）。",
+    en: "PLY container for 3D Gaussian Splat data as documented by PlayCanvas.",
+  },
+  description: {
+    zh: "PlayCanvas 手册将 PLY 描述为存储 3D Gaussian Splat 数据的标准文件格式，并说明与常规网格 PLY 在属性集、无显式连通关系以及体量上的差异。手册进一步将 PLY 定位为 3DGS 生态的通用互换格式，可与训练软件、SuperSplat、SplatTransform、多种查看器对接。本条描述格式角色而非某个可执行程序；是否迁入 glossary 由 Opus 决定。",
+    en: "The PlayCanvas manual calls PLY the standard format for 3D Gaussian Splat data and explains how those PLYs differ from typical mesh PLYs (properties, no connectivity, large counts). It also positions PLY as the lingua franca for interchange among trainers, SuperSplat, SplatTransform, and viewers. This entry documents the format role, not a single executable; Opus may move it to glossary.",
+  },
+  platforms: ["Web", "Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: "格式规范公开；不涉及单独订阅。",
+  openSource: false,
+  license: null,
+  level: "intermediate",
+  pros: [
+    {
+      zh: "官方手册列出 3DGS PLY 头中 scale_*、rot_*、f_dc_*、f_rest_* 等属性名示例。",
+      en: "Manual shows example header properties like `scale_*`, `rot_*`, `f_dc_*`, and `f_rest_*`.",
+    },
+    {
+      zh: "手册将 PLY 描述为与多种训练与转换工具互操作的互换层。",
+      en: "Manual states PLY interoperates across trainers and conversion tools.",
+    },
+  ],
+  cons: [
+    {
+      zh: "手册写明未压缩 PLY 体积可达数十 MB 至数 GB，不利于直接作为 Web 交付格式。",
+      en: "Manual notes uncompressed PLY sizes from tens of MB to several GB, poor for direct web delivery.",
+    },
+  ],
+  useCases: ["heritage", "retail", "education"],
+  tags: ["publishing", "optimization"],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://developer.playcanvas.com/user-manual/gaussian-splatting/formats/ply/",
+    "https://en.wikipedia.org/wiki/PLY_(file_format)",
+    "https://github.com/graphdeco-inria/gaussian-splatting",
+  ],
+  vendor: null,
+  region: "global",
+  evidenceQuote: "PLY is the standard file format for storing 3D Gaussian Splat data.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "PlayCanvas 手册页面 2026-04-29 可访问。",
+  discoverySource: "supersplat",
+},

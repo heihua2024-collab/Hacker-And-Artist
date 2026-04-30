@@ -1,0 +1,1439 @@
+[
+  {
+    "file": "3dgs-mcmc.ts.snippet",
+    "slug": "3dgs-mcmc",
+    "dupStatus": "NEW",
+    "miscat": "MISCATEGORIZED_TO_GLOSSARY",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": [
+      {
+        "char": "backtick",
+        "offset": 51,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 60,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 67,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 75,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 77,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 87,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 89,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 101,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 103,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 112,
+        "line": 13
+      }
+    ]
+  },
+  {
+    "file": "adobe-lightroom.ts.snippet",
+    "slug": "adobe-lightroom",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "adobe-premiere-pro.ts.snippet",
+    "slug": "adobe-premiere-pro",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "agisoft-metashape.ts.snippet",
+    "slug": "agisoft-metashape",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"park\",\"real_estate\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "annx-studio.ts.snippet",
+    "slug": "annx-studio",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "arrival-space.ts.snippet",
+    "slug": "arrival-space",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"freemium\",\"commercial\"]",
+      "useCases invalid: [\"event\",\"education\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "blurry.ts.snippet",
+    "slug": "blurry",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "brush.ts.snippet",
+    "slug": "brush",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"web\",\"opensource\"]",
+      "useCases invalid: [\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "bsd-studio.ts.snippet",
+    "slug": "bsd-studio",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "cesium.ts.snippet",
+    "slug": "cesium",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"opensource\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"park\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "chaos-v-ray.ts.snippet",
+    "slug": "chaos-v-ray",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "colmap.ts.snippet",
+    "slug": "colmap",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"opensource\"]",
+      "useCases invalid: [\"real_estate\",\"park\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "davinci-resolve.ts.snippet",
+    "slug": "davinci-resolve",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "dioramix.ts.snippet",
+    "slug": "dioramix",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"freemium\"]",
+      "useCases invalid: [\"education\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "divshot.ts.snippet",
+    "slug": "divshot",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"opensource\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "dji-terra.ts.snippet",
+    "slug": "dji-terra",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "ffmpeg.ts.snippet",
+    "slug": "ffmpeg",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "gaussiansplatting-app.ts.snippet",
+    "slug": "gaussiansplatting-app",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "gauzilla.ts.snippet",
+    "slug": "gauzilla",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"opensource\",\"freemium\"]",
+      "useCases invalid: [\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "glassbox-rs.ts.snippet",
+    "slug": "glassbox-rs",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "DROP_CANDIDATE",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "gracia-3d-flow.ts.snippet",
+    "slug": "gracia-3d-flow",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "gracia.ts.snippet",
+    "slug": "gracia",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"commercial\"]",
+      "useCases invalid: [\"performance\",\"event\",\"park\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "graswald.ts.snippet",
+    "slug": "graswald",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"commercial\"]",
+      "useCases invalid: [\"event\",\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "gsplat-js.ts.snippet",
+    "slug": "gsplat-js",
+    "dupStatus": "SUSPECT_DUPLICATE(gsplat)",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": [
+      {
+        "char": "backtick",
+        "offset": 37,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 42,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 44,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 51,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 61,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 69,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 15,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 20,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 22,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 29,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 31,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 39,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 5,
+        "line": 32
+      },
+      {
+        "char": "backtick",
+        "offset": 10,
+        "line": 32
+      },
+      {
+        "char": "backtick",
+        "offset": 24,
+        "line": 32
+      },
+      {
+        "char": "backtick",
+        "offset": 32,
+        "line": 32
+      }
+    ]
+  },
+  {
+    "file": "handbrake.ts.snippet",
+    "slug": "handbrake",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "huawei-cyberverse.ts.snippet",
+    "slug": "huawei-cyberverse",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "hugin.ts.snippet",
+    "slug": "hugin",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "insta360.ts.snippet",
+    "slug": "insta360",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "izutsuya.ts.snippet",
+    "slug": "izutsuya",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "kiri-engine.ts.snippet",
+    "slug": "kiri-engine",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"mobile\",\"web\",\"commercial\"]",
+      "useCases invalid: [\"education\",\"real_estate\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "kiri-remy.ts.snippet",
+    "slug": "kiri-remy",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "lichtfeld-studio.ts.snippet",
+    "slug": "lichtfeld-studio",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"opensource\"]",
+      "useCases invalid: [\"education\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "lifecast-volurama.ts.snippet",
+    "slug": "lifecast-volurama",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"education\",\"performance\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "luma-ai.ts.snippet",
+    "slug": "luma-ai",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"mobile\",\"commercial\",\"freemium\"]",
+      "useCases invalid: [\"real_estate\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "lumina3d.ts.snippet",
+    "slug": "lumina3d",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "mapmost-3dgs.ts.snippet",
+    "slug": "mapmost-3dgs",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "metalsplatter.ts.snippet",
+    "slug": "metalsplatter",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"mobile\",\"opensource\"]",
+      "useCases invalid: [\"performance\",\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "mipmap.ts.snippet",
+    "slug": "mipmap",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "monogram-japan.ts.snippet",
+    "slug": "monogram-japan",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "nerfstudio.ts.snippet",
+    "slug": "nerfstudio",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"opensource\"]",
+      "useCases invalid: [\"education\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "netease-yaotai.ts.snippet",
+    "slug": "netease-yaotai",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "niantic-scaniverse-pro.ts.snippet",
+    "slug": "niantic-scaniverse-pro",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"real_estate\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "niantic-spz-reference.ts.snippet",
+    "slug": "niantic-spz-reference",
+    "dupStatus": "NEW",
+    "miscat": "MISCATEGORIZED_TO_GLOSSARY",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "nubigon.ts.snippet",
+    "slug": "nubigon",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"park\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "octobits-splat-viewer.ts.snippet",
+    "slug": "octobits-splat-viewer",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"event\",\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "opencv-camera-calibration.ts.snippet",
+    "slug": "opencv-camera-calibration",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "parallax-3d.ts.snippet",
+    "slug": "parallax-3d",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "photo-mechanic.ts.snippet",
+    "slug": "photo-mechanic",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "playcanvas-engine.ts.snippet",
+    "slug": "playcanvas-engine",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"performance\",\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "ply-format.ts.snippet",
+    "slug": "ply-format",
+    "dupStatus": "NEW",
+    "miscat": "MISCATEGORIZED_TO_GLOSSARY",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "pointcosm.ts.snippet",
+    "slug": "pointcosm",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "polycam.ts.snippet",
+    "slug": "polycam",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"mobile\",\"commercial\",\"freemium\"]",
+      "useCases invalid: [\"real_estate\",\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "portality.ts.snippet",
+    "slug": "portality",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"commercial\"]",
+      "useCases invalid: [\"education\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "postshot.ts.snippet",
+    "slug": "postshot",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\",\"freemium\"]",
+      "useCases invalid: [\"performance\",\"real_estate\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "ptgui.ts.snippet",
+    "slug": "ptgui",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "realitycapture.ts.snippet",
+    "slug": "realitycapture",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\",\"freemium\"]",
+      "useCases invalid: [\"real_estate\",\"park\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "realsee.ts.snippet",
+    "slug": "realsee",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "reflct.ts.snippet",
+    "slug": "reflct",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"freemium\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "ronski-360-splat-pro.ts.snippet",
+    "slug": "ronski-360-splat-pro",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"performance\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "scaniverse.ts.snippet",
+    "slug": "scaniverse",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"mobile\",\"commercial\"]",
+      "useCases invalid: [\"park\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "seed3d-2.ts.snippet",
+    "slug": "seed3d-2",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "sensetime-qiongyu.ts.snippet",
+    "slug": "sensetime-qiongyu",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "shutter-encoder.ts.snippet",
+    "slug": "shutter-encoder",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "spark.ts.snippet",
+    "slug": "spark",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"performance\",\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "spatial-com-3d.ts.snippet",
+    "slug": "spatial-com-3d",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "spatialux.ts.snippet",
+    "slug": "spatialux",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "DROP_CANDIDATE",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "spectacular-ai.ts.snippet",
+    "slug": "spectacular-ai",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"mobile\",\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"park\",\"real_estate\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "splat-transform.ts.snippet",
+    "slug": "splat-transform",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "splatcam.ts.snippet",
+    "slug": "splatcam",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "splatfacto-w.ts.snippet",
+    "slug": "splatfacto-w",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": [
+      {
+        "char": "backtick",
+        "offset": 112,
+        "line": 14
+      },
+      {
+        "char": "backtick",
+        "offset": 134,
+        "line": 14
+      }
+    ]
+  },
+  {
+    "file": "splatical.ts.snippet",
+    "slug": "splatical",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "DROP_CANDIDATE",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "splatking.ts.snippet",
+    "slug": "splatking",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "spline.ts.snippet",
+    "slug": "spline",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"freemium\",\"commercial\"]",
+      "useCases invalid: [\"education\",\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "spz-format.ts.snippet",
+    "slug": "spz-format",
+    "dupStatus": "NEW",
+    "miscat": "MISCATEGORIZED_TO_GLOSSARY",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": [
+      {
+        "char": "backtick",
+        "offset": 0,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 5,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 113,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 118,
+        "line": 13
+      },
+      {
+        "char": "backtick",
+        "offset": 10,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 15,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 26,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 31,
+        "line": 24
+      },
+      {
+        "char": "backtick",
+        "offset": 33,
+        "line": 32
+      },
+      {
+        "char": "backtick",
+        "offset": 38,
+        "line": 32
+      }
+    ]
+  },
+  {
+    "file": "storysplat.ts.snippet",
+    "slug": "storysplat",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"freemium\",\"commercial\"]",
+      "useCases invalid: [\"education\",\"event\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "superspl-at.ts.snippet",
+    "slug": "superspl-at",
+    "dupStatus": "SUSPECT_DUPLICATE(supersplat)",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"event\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "supersplat.ts.snippet",
+    "slug": "supersplat",
+    "dupStatus": "DUPLICATE_OVERWRITE",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "tencent-hunyuan-3d-world.ts.snippet",
+    "slug": "tencent-hunyuan-3d-world",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "threejs-gaussian-splatting.ts.snippet",
+    "slug": "threejs-gaussian-splatting",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": [
+      {
+        "char": "backtick",
+        "offset": 31,
+        "line": 9
+      },
+      {
+        "char": "backtick",
+        "offset": 36,
+        "line": 9
+      },
+      {
+        "char": "backtick",
+        "offset": 40,
+        "line": 9
+      },
+      {
+        "char": "backtick",
+        "offset": 47,
+        "line": 9
+      },
+      {
+        "char": "backtick",
+        "offset": 9,
+        "line": 28
+      },
+      {
+        "char": "backtick",
+        "offset": 14,
+        "line": 28
+      },
+      {
+        "char": "backtick",
+        "offset": 22,
+        "line": 28
+      },
+      {
+        "char": "backtick",
+        "offset": 29,
+        "line": 28
+      },
+      {
+        "char": "backtick",
+        "offset": 29,
+        "line": 38
+      },
+      {
+        "char": "backtick",
+        "offset": 36,
+        "line": 38
+      }
+    ]
+  },
+  {
+    "file": "tinyhost.ts.snippet",
+    "slug": "tinyhost",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "topaz-photo-ai.ts.snippet",
+    "slug": "topaz-photo-ai",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "tripo-ai.ts.snippet",
+    "slug": "tripo-ai",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"freemium\",\"commercial\"]",
+      "useCases invalid: [\"education\",\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "trnio-japan.ts.snippet",
+    "slug": "trnio-japan",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "veesus.ts.snippet",
+    "slug": "veesus",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"real_estate\",\"park\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "visualcamp.ts.snippet",
+    "slug": "visualcamp",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"education\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "volinga.ts.snippet",
+    "slug": "volinga",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"desktop\",\"commercial\"]",
+      "useCases invalid: [\"performance\",\"event\",\"real_estate\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "voluma-ai.ts.snippet",
+    "slug": "voluma-ai",
+    "dupStatus": "SUSPECT_DUPLICATE(luma-ai)",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "tags invalid: [\"web\",\"commercial\",\"freemium\"]",
+      "useCases invalid: [\"real_estate\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "webxr-splats.ts.snippet",
+    "slug": "webxr-splats",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [
+      "useCases invalid: [\"performance\"]"
+    ],
+    "weakSrc": false,
+    "srcCount": 3,
+    "hasEvidence": true,
+    "strViol": []
+  },
+  {
+    "file": "zhitianxia.ts.snippet",
+    "slug": "zhitianxia",
+    "dupStatus": "NEW",
+    "miscat": "",
+    "drop": "",
+    "fieldIssues": [],
+    "weakSrc": false,
+    "srcCount": 2,
+    "hasEvidence": true,
+    "strViol": []
+  }
+]

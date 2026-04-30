@@ -1,0 +1,66 @@
+// Paste into src/lib/data/tools.ts — Track C / Splatfacto-W (Nerfstudio method)
+{
+  name: "Splatfacto-W",
+  slug: "splatfacto-w",
+  category: "training",
+  logoUrl: null,
+  homepageUrl: "https://kevinxu02.github.io/splatfactow/",
+  repoUrl: "https://github.com/KevinXu02/splatfacto-w",
+  tagline: {
+    zh: "面向野外照片集合的 Nerfstudio 高斯泼溅训练方法，含外观与瞬态建模扩展。",
+    en: "Nerfstudio Gaussian splatting method for unconstrained in-the-wild photo collections.",
+  },
+  description: {
+    zh: "Splatfacto-W 在 Nerfstudio 中扩展 3D 高斯泼溅，以处理光照变化、瞬态遮挡与背景：论文与文档描述将每高斯神经颜色特征、每图外观嵌入与球谐背景模型写入光栅化流程。官方实现以 Python 包形式注册 `ns-train splatfacto-w` 等命令，并附带 splatfacto-w-light 变体与导出脚本说明。使用需自备 COLMAP 类数据与兼容的 nerfstudio 版本。",
+    en: "Splatfacto-W extends 3D Gaussian Splatting inside Nerfstudio for in-the-wild image collections. The paper and docs describe per-Gaussian neural color features, per-image appearance embeddings, transient masking, and a spherical-harmonics background model. The official repo installs as a Nerfstudio plugin with documented CLI commands and a lighter variant. You need prepared datasets and a compatible Nerfstudio install.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "Apache-2.0",
+  level: "expert",
+  pros: [
+    {
+      zh: "README 写明通过 pip install -e . 与 ns-install-cli 注册到 Nerfstudio",
+      en: "README documents pip install -e . and ns-install-cli registration for Nerfstudio",
+    },
+    {
+      zh: "论文报告相对基线 3DGS 平均 PSNR 提升 5.3 dB（见 arXiv 摘要）",
+      en: "Paper reports about 5.3 dB average PSNR gain vs 3DGS (see arXiv abstract)",
+    },
+    {
+      zh: "文档页列出 ns-train splatfacto-w 与数据准备说明",
+      en: "Nerfstudio docs page lists ns-train splatfacto-w and data prep notes",
+    },
+  ],
+  cons: [
+    {
+      zh: "README 要求将 nerfstudio 更新到最新开发版安装方式",
+      en: "README asks for an up-to-date Nerfstudio dev install",
+    },
+    {
+      zh: "野外数据集需按文档准备 train/test 分割或改用 splatfacto-w-light 路径",
+      en: "Phototourism-style setups need train/test splits or the splatfacto-w-light path",
+    },
+    {
+      zh: "依赖 CUDA 与兼容 GPU 环境（见 Nerfstudio 安装文档）",
+      en: "Depends on CUDA-capable GPU setup per Nerfstudio installation docs",
+    },
+  ],
+  useCases: ["urban_outdoor", "heritage", "natural_landscape"],
+  tags: ["training", "optimization"],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://github.com/KevinXu02/splatfacto-w",
+    "https://docs.nerf.studio/nerfology/methods/splatw.html",
+  ],
+  vendor: "individual: Congrong Xu; UC Berkeley / ShanghaiTech 等（论文作者单位）",
+  region: "global",
+  evidenceQuote:
+    "An official implementation for [Splatfacto-W](https://kevinxu02.github.io/splatfactow/).",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Repository LICENSE and README fetched 2026-04-29; default-branch commit date not refreshed (GitHub API rate limit) [unverified]",
+  discoverySource: "reddit",
+},

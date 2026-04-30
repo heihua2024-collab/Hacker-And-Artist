@@ -1,0 +1,27 @@
+  {
+    id: "ibgs-image-based-gaussian-splatting",
+    title: {
+      zh: "IBGS：用训练图像残差补全高斯渲染细节",
+      en: "IBGS: Image-Based Gaussian Splatting with View-Specific Residuals",
+    },
+    summary: {
+      zh: "在标准球谐颜色之外，从邻近训练视图预测颜色残差以恢复高频与镜面项，并引入曝光校正以缓解多视图曝光不一致。",
+      en: "Adds a learned residual from neighboring training views on top of SH colors for high-frequency and specular detail, plus exposure correction for inconsistent captures.",
+    },
+    category: "paper",
+    tags: ["paper", "optimization", "viewing"],
+    level: "expert",
+    source: { name: "arXiv", type: "arxiv" },
+    sourceUrl: "https://arxiv.org/abs/2511.14357",
+    coverUrl: null,
+    publishedAt: "2025-11-18",
+    editorialNote: {
+      zh: "当场景镜面与高亮细节难以用低阶 SH 表达时，该文给出在不大增存储的前提下借用源视图像素的路线，可与压缩或剪枝工作正交叠加。",
+      en: "For shiny scenes where SH struggle, the paper borrows pixels from training views via residuals without exploding storage, complementing compression-focused splat pipelines.",
+    },
+    verified: true,
+    sources: [
+      "https://arxiv.org/abs/2511.14357",
+      "https://hoangchuongnguyen.github.io/ibgs/",
+    ],
+  },

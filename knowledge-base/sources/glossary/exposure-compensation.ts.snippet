@@ -1,0 +1,39 @@
+{
+  id: "exposure-compensation",
+  term: { zh: "曝光补偿", en: "Exposure compensation (per view)" },
+  aliases: ["per-image gain", "exposure tensor"],
+  short: {
+    zh: "有的照片偏亮有的偏暗，就给每张图配一个小增益旋钮，先把亮度拉到同一尺度再比像素。",
+    en: "Assign a learnable brightness knob per training photo so photometric loss compares images after undoing exposure drift.",
+  },
+  definition: {
+    zh: "三维高斯泼溅参考实现允许为每个训练图像估计曝光乘子，将渲染结果与观测按增益对齐后再计算 L1 或组合损失。该做法缓解采集时自动曝光或 ISO 变化带来的颜色偏移。增益与 splat 参数共享优化器或分阶段更新；推断时通常固定为单位增益或重新标定。类似思想亦见于 NeRF 变体。实现需注意增益与非负颜色、色调映射的交互。",
+    en: "Gaussian splatting optionally learns scalar exposure multipliers per training image to account for auto-exposure variability. The rendered image is scaled before comparing to photographs. Joint optimization prevents splats from absorbing lighting drift into albedo incorrectly. At inference, gains default to unity unless relighting. The technique parallels latent brightness parameters in NeRF pipelines.",
+  },
+  category: "technique",
+  level: "intermediate",
+  relatedTagIds: ["training", "optimization", "paper"],
+  relatedTerms: ["photometric-loss", "3dgs", "training-loss"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Project page",
+      url: "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
+      type: "official_website",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/",
+  ],
+  prerequisiteTerms: ["photometric-loss"],
+  advancedTerms: ["training-loss", "bundle-adjustment"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

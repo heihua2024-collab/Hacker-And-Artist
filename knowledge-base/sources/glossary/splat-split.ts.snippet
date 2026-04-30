@@ -1,0 +1,39 @@
+{
+  id: "splat-split",
+  term: { zh: "Splat 分裂", en: "Splat split" },
+  aliases: ["split densification"],
+  short: {
+    zh: "一颗椭球太大又总对不齐，就把它掰成两颗更小的椭球，让细节各自慢慢磨。",
+    en: "If a Gaussian is huge and still misaligned, split it into two smaller ellipsoids that can refine detail independently.",
+  },
+  definition: {
+    zh: "自适应密度控制中，当屏幕空间梯度高且尺度超过场景尺度阈值时，按给定采样模式将单颗高斯替换为两颗较小高斯，并重新初始化优化器动量。分裂与克隆互补：大尺度走分裂，小尺度走克隆。分裂后需重新估计不透明度与球谐系数。错误阈值会导致过度分裂与显存膨胀，因此常与最大 splat 数与学习率衰减联用。",
+    en: "The densification routine replaces large high-gradient Gaussians with two offspring sampled around the parent mean with scaled covariances. Splitting increases detail where footprints cover many pixels. Implementations reset optimizer statistics for new primitives. Tuning split scales balances fidelity against VRAM. The mechanism is documented in the original Gaussian splatting repository alongside clone logic.",
+  },
+  category: "technique",
+  level: "expert",
+  relatedTagIds: ["optimization", "training", "paper"],
+  relatedTerms: ["adaptive-density-control", "splat-clone", "3dgs"],
+  links: [
+    {
+      label: "3D Gaussian Splatting",
+      url: "https://arxiv.org/abs/2308.04079",
+      type: "arxiv",
+    },
+    {
+      label: "Reference repository",
+      url: "https://github.com/graphdeco-inria/gaussian-splatting",
+      type: "github",
+    },
+  ],
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2308.04079",
+    "https://github.com/graphdeco-inria/gaussian-splatting",
+  ],
+  prerequisiteTerms: ["screen-space-gradient"],
+  advancedTerms: ["splat-clone", "densification"],
+  relatedTools: ["gsplat"],
+  relatedEngines: [],
+  relatedPapers: ["https://arxiv.org/abs/2308.04079"],
+},

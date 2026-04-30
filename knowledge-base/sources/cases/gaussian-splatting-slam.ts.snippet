@@ -1,0 +1,60 @@
+{
+  slug: "gaussian-splatting-slam",
+  kind: "milestone",
+  title: {
+    zh: "高斯泼溅 SLAM",
+    en: "Gaussian Splatting SLAM",
+  },
+  summary: {
+    zh: "以三维高斯为统一地图表示，在单目序列上联合跟踪与建图，实现实时增量重建与新视角合成。",
+    en: "Uses Gaussians as the sole map representation for monocular SLAM, jointly optimizing poses and primitives for incremental reconstruction and NVS.",
+  },
+  description: {
+    zh: "论文将三维高斯泼溅引入在线 SLAM：不再依赖离线 SfM 的精确位姿，而是直接对高斯进行基于光度一致性的相机跟踪，并利用显式高斯进行几何校验与正则以应对增量稠密重建中的模糊性。系统可在单目实时运行并扩展到 RGB-D。公开实现以 MonoGS 仓库为载体，配套项目页与演示视频。",
+    en: "The work brings 3DGS into online SLAM: instead of assuming offline SfM poses, it formulates direct photometric camera tracking against the evolving Gaussian map and adds geometric verification leveraging explicit primitives for incremental dense mapping. It targets monocular live operation at interactive rates and extends to RGB-D when depth is available. The MonoGS codebase, project page, and video provide reproducibility and qualitative demos on challenging indoor sequences.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Hidenobu Matsuki", role: "researcher", link: "https://rmurai.co.uk/projects/GaussianSplattingSLAM/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: "https://youtu.be/x604ghp9R_Q",
+  coverUrl: null,
+  tags: ["paper", "slam", "real_time", "reconstruction"],
+  lessons: [
+    {
+      zh: "把跟踪与地图统一在同一显式表示上，可减少多模块 SLAM 之间的表示不一致。",
+      en: "Unifying tracking and mapping in one explicit representation reduces cross-module representation mismatch.",
+    },
+    {
+      zh: "增量式稠密重建仍需要几何校验，单靠颜色一致性不足以消除单目尺度歧义。",
+      en: "Incremental dense mapping still needs geometric checks; photometric consistency alone does not remove monocular ambiguities.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2312.06741" },
+    { label: "Project Page", url: "https://rmurai.co.uk/projects/GaussianSplattingSLAM/" },
+    { label: "GitHub", url: "https://github.com/muskie82/MonoGS" },
+    { label: "Video", url: "https://youtu.be/x604ghp9R_Q" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2312.06741",
+    "https://rmurai.co.uk/projects/GaussianSplattingSLAM/",
+    "https://github.com/muskie82/MonoGS",
+  ],
+  quote: {
+    zh: null,
+    en: "We present the first application of 3D Gaussian Splatting in monocular SLAM, the most fundamental but the hardest setup for Visual SLAM.",
+  },
+},

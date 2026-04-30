@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / shutter-encoder
+{
+  name: "Shutter Encoder",
+  slug: "shutter-encoder",
+  category: "capture",
+  logoUrl: null,
+  homepageUrl: "https://www.shutterencoder.com/",
+  repoUrl: "https://github.com/paulpacifico/shutter-encoder",
+  tagline: {
+    zh: "基于 FFmpeg 的免费开源媒体转码与批处理图形界面。",
+    en: "Free, open-source media transcoding and batch processing GUI built on FFmpeg.",
+  },
+  description: {
+    zh: "Shutter Encoder 在图形界面中封装 FFmpeg，支持视频/音频/图像转码、无损剪切、字幕与元数据等常见后期前置步骤。该工具属于 3DGS 工作流的采集前置——视频帧导出阶段，非 3DGS 核心工具。",
+    en: "Shutter Encoder wraps FFmpeg in a desktop GUI for transcoding, trimming, subtitling, and batch queues—typical pre-processing before feeding image sequences to structure-from-motion or 3DGS tooling. It is a capture-adjacent utility, not a Gaussian splatting trainer or viewer.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "GPL-3.0",
+  level: "intermediate",
+  pros: [
+    {
+      zh: "README 写明基于 FFmpeg，并列出视频/音频/图像转码、批量队列与预设",
+      en: "README states FFmpeg-backed transcoding plus batch queues and presets",
+    },
+    {
+      zh: "文档化支持无损剪切、流提取与重封装等不重编码操作",
+      en: "Documents lossless cuts, stream extract, and remux without re-encoding",
+    },
+    {
+      zh: "可从视频管线导出图像序列，便于后续抽帧或格式统一",
+      en: "Can emit image sequences for frame exports and format normalization",
+    },
+  ],
+  cons: [
+    {
+      zh: "README 说明使用定制 Java 运行时与捆绑依赖，安装体积与更新节奏需自行评估",
+      en: "Uses a bundled custom JRE and third-party libs; install size and updates need planning",
+    },
+    {
+      zh: "部分可选 AI 组件依赖额外模型下载与算力，不等同于默认开箱路径",
+      en: "Optional AI features require extra model downloads and compute, not the default path",
+    },
+  ],
+  useCases: ["retail", "indoor_living", "urban_outdoor"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://raw.githubusercontent.com/paulpacifico/shutter-encoder/master/README.md",
+    "https://github.com/paulpacifico/shutter-encoder",
+  ],
+  vendor: "Paul Pacifico",
+  region: "global",
+  evidenceQuote:
+    "Shutter Encoder is a free and open-source media transcoding, conversion, and processing application built on top of FFmpeg.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "GitHub README fetched 2026-04-29; official site may time out in some regions",
+  discoverySource: "user-workflow",
+},

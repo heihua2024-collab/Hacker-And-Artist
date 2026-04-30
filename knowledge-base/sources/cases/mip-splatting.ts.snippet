@@ -1,0 +1,59 @@
+{
+  slug: "mip-splatting",
+  kind: "milestone",
+  title: {
+    zh: "Mip-Splatting：无混叠三维高斯泼溅",
+    en: "Mip-Splatting: Alias-free 3D Gaussian Splatting",
+  },
+  summary: {
+    zh: "用三维频率约束与二维 Mip 滤波缓解采样率变化时的锯齿与膨胀，实现跨尺度稳定渲染。",
+    en: "Uses 3D frequency constraints and a 2D Mip filter to reduce aliasing and dilation when the sampling rate changes.",
+  },
+  description: {
+    zh: "该工作指出原始 3D 高斯泼溅在改变焦距或相机距离时易出现高频伪影，原因包括缺少三维频率约束与二维膨胀滤波。作者依据输入视图的采样极限约束高斯原语尺度，并以近似二维盒式滤波的 Mip 滤波替代膨胀，从而在单尺度训练、多尺度测试等设定下改善画质。实现上对原始 3DGS 改动较小，可与现有管线结合。",
+    en: "The paper attributes zoom-related artifacts in 3D Gaussian Splatting to missing 3D frequency limits and the use of a 2D dilation filter. It introduces a 3D smoothing filter tied to the Nyquist limit implied by training views and replaces dilation with a 2D Mip filter that mimics a box filter, reducing aliasing and dilation when focal length or distance changes. The method keeps the explicit Gaussian representation while targeting out-of-distribution sampling rates, with modest code changes over vanilla 3DGS.",
+  },
+  spaceType: null,
+  location: { country: null, city: null, site: null },
+  year: 2024,
+  creators: [
+    { name: "Zehao Yu", role: "researcher", link: "https://niujinshuchong.github.io/mip-splatting/" },
+  ],
+  client: null,
+  captureDevice: null,
+  captureMethod: null,
+  trainingPipeline: null,
+  trainingTime: null,
+  splatCount: null,
+  viewerStack: null,
+  splatViewerUrl: null,
+  videoUrl: null,
+  coverUrl: null,
+  tags: ["paper", "optimization", "real_time"],
+  lessons: [
+    {
+      zh: "采样定理视角下的三维频率上限，是抑制缩放时伪影的可解释抓手。",
+      en: "A sampling-theoretic bound on 3D frequency content gives a principled lever against scale-change artifacts.",
+    },
+    {
+      zh: "屏幕空间滤波器设计需同时考虑物理成像与光栅化近似，Mip 思路可迁移到显式高斯。",
+      en: "Screen-space filtering must align both with the imaging model and the rasterizer; Mip-style prefiltering transfers to explicit Gaussians.",
+    },
+  ],
+  links: [
+    { label: "arXiv", url: "https://arxiv.org/abs/2311.16493" },
+    { label: "Project Page", url: "https://niujinshuchong.github.io/mip-splatting/" },
+    { label: "GitHub", url: "https://github.com/autonomousvision/mip-splatting" },
+  ],
+  publishedAt: "2024-CVPR",
+  verified: true,
+  sources: [
+    "https://arxiv.org/abs/2311.16493",
+    "https://niujinshuchong.github.io/mip-splatting/",
+    "https://github.com/autonomousvision/mip-splatting",
+  ],
+  quote: {
+    zh: null,
+    en: "Recently, 3D Gaussian Splatting has demonstrated impressive novel view synthesis results, reaching high fidelity and efficiency.",
+  },
+},

@@ -1,0 +1,62 @@
+// Paste into src/lib/data/tools.ts — TASK-07 workflow tools / handbrake
+{
+  name: "HandBrake",
+  slug: "handbrake",
+  category: "capture",
+  logoUrl: null,
+  homepageUrl: "https://handbrake.fr",
+  repoUrl: "https://github.com/HandBrake/HandBrake",
+  tagline: {
+    zh: "志愿者维护的开源视频转码器，面向常见分发编码。",
+    en: "Volunteer-built open-source transcoder targeting modern, widely supported codecs.",
+  },
+  description: {
+    zh: "HandBrake 将多种来源视频转为 H.264/H.265 等常见编码，便于在统一编码后再做抽帧或下游处理。该工具属于 3DGS 工作流的采集前置——视频帧导出阶段，非 3DGS 核心工具。",
+    en: "HandBrake transcodes camera or edit exports into common delivery codecs before frame extraction or photogrammetry prep. It is capture-adjacent, not a 3DGS training or splat renderer.",
+  },
+  platforms: ["Windows", "macOS", "Linux"],
+  pricing: "free",
+  priceNote: null,
+  openSource: true,
+  license: "GPL-2.0",
+  level: "beginner",
+  pros: [
+    {
+      zh: "官网写明可将几乎任意格式转为多种现代、广泛支持的编码",
+      en: "Marketing site states conversion from nearly any format to modern codecs",
+    },
+    {
+      zh: "提供 Windows、macOS、Linux 构建与固定版本号下载入口",
+      en: "Ships official builds for Windows, macOS, and Linux with versioned downloads",
+    },
+    {
+      zh: "适合在抽帧前统一容器与编码，减少播放器或脚本端兼容问题",
+      en: "Useful to normalize containers/codecs before scripted frame exports",
+    },
+  ],
+  cons: [
+    {
+      zh: "预设偏向分发与归档场景，专业中间片（如某些 RAW/EXR 管线）需其他工具衔接",
+      en: "Presets target delivery; specialist mezzanine or EXR pipelines need other apps",
+    },
+    {
+      zh: "复杂滤镜链仍可能需要改用命令行 FFmpeg 以获得逐参数控制",
+      en: "Complex filter graphs may still require CLI FFmpeg for full control",
+    },
+  ],
+  useCases: ["retail", "urban_outdoor", "natural_landscape"],
+  tags: [],
+  lastVerifiedAt: "2026-04-29",
+  verified: true,
+  sources: [
+    "https://handbrake.fr",
+    "https://en.wikipedia.org/wiki/HandBrake",
+  ],
+  vendor: "HandBrake community",
+  region: "global",
+  evidenceQuote:
+    "HandBrake is a open-source tool, built by volunteers, for converting video from nearly any format to a selection of modern, widely supported codecs.",
+  freshnessCheckedAt: "2026-04-29",
+  freshnessSignal: "Site lists HandBrake 1.11.1 macOS download 2026-04-29 fetch",
+  discoverySource: "user-workflow",
+},
