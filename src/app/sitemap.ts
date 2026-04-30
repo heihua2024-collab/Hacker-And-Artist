@@ -6,6 +6,8 @@ import { learningArticles } from "@/lib/data/learning-articles";
 import { learningPaths } from "@/lib/data/learning-paths";
 import { SITE_URL } from "@/lib/seo-metadata";
 
+export const dynamic = "force-static";
+
 const staticRoutes = [
   "",
   "/about",
