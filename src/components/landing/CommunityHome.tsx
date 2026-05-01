@@ -11,7 +11,16 @@ import {
   featuredHero,
   trendingPicks,
 } from "@/lib/data/news";
-import { featuredSplatWork, splatWorks } from "@/lib/data/gallery";
+import {
+  featuredSplats,
+  featuredSplatsHero,
+  featuredCategoriesById,
+} from "@/lib/data/featured-splats";
+import {
+  featuredStudioWork,
+  studioWorks,
+} from "@/lib/data/studio-works";
+import { EMBED_PLATFORM_LABEL } from "@/lib/data/splat-embed";
 import { learningPathStubs } from "@/lib/data/learning-paths";
 import {
   toolCategories,
@@ -69,11 +78,16 @@ const copy = {
     tools: "工具索引",
     toolsAction: "查看工具",
     toolCount: (n: number) => `${n} 个工具`,
-    cases: "画廊：印刻万物拍的高斯泼溅",
-    galleryHint: "进入画廊 · 浏览器内 360° 把玩",
+    cases: "画廊：创作者精选的高斯泼溅",
+    galleryHint: "进入画廊 · 浏览器内直接交互",
     galleryAll: "查看全部",
-    galleryStat: "20 件作品 · 8 家画廊 · 10 场展览",
-    galleryPreview: "本期作品节选",
+    galleryStat: `${featuredSplats.length} 件精选 · 建筑 / 室内 / 自然 / 物件 / 学术 / 互动`,
+    galleryPreview: "本期精选",
+    mediaEyebrow: "Media",
+    mediaTitle: "媒体：印刻万物自家的展览与视频",
+    mediaDesc: "20 件工作室采集的展览空间，另含筹备中的视频、访谈与讲座。",
+    mediaAction: "进入媒体",
+    mediaStat: `${studioWorks.length} 件展览作品 · 视频内容筹备中`,
     footer: "高斯泼溅内容社区框架",
     menu: "菜单",
     close: "关闭",
@@ -103,11 +117,16 @@ const copy = {
     tools: "Tool Index",
     toolsAction: "View tools",
     toolCount: (n: number) => `${n} tools`,
-    cases: "Gallery: Splats Captured In-House",
-    galleryHint: "Enter the gallery · spin them in-browser",
+    cases: "Gallery: Creator-Picked Gaussian Splats",
+    galleryHint: "Enter the gallery · interact in-browser",
     galleryAll: "View all",
-    galleryStat: "20 pieces · 8 galleries · 10 exhibitions",
-    galleryPreview: "Featured selection",
+    galleryStat: `${featuredSplats.length} picks · Architecture / Interior / Nature / Objects / Academic / Interactive`,
+    galleryPreview: "Featured pick",
+    mediaEyebrow: "Media",
+    mediaTitle: "Media: TOP3DGS' Own Exhibitions & Videos",
+    mediaDesc: "Twenty exhibition spaces captured in-house, plus upcoming videos, interviews, and talks.",
+    mediaAction: "Open media",
+    mediaStat: `${studioWorks.length} exhibition captures · Video content in progress`,
     footer: "Gaussian Splatting Community Framework",
     menu: "Menu",
     close: "Close",
@@ -211,6 +230,9 @@ export function CommunityHome() {
     <main className="min-h-screen overflow-hidden bg-[#050505] text-[#f7f4ed]">
       <section className="relative border-b border-white/10 px-5 pb-14 pt-24 sm:px-10 sm:pt-28 lg:px-16 lg:pt-32">
         <div className="pointer-events-none absolute left-1/2 top-6 z-0 h-[38rem] w-[150vw] -translate-x-1/2 touch-none opacity-100 sm:top-0 sm:h-[48rem] sm:w-[124vw] sm:opacity-95 lg:top-4 lg:h-[54rem]">
+          <div aria-hidden className="particle-bridge-fallback">
+            <span className="particle-bridge-dot" />
+          </div>
           <BridgeScene />
         </div>
         <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_54%_36%,rgba(255,255,255,0.1),transparent_42%),linear-gradient(180deg,rgba(5,5,5,0.04)_0%,rgba(5,5,5,0.48)_64%,#050505_94%)] sm:bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.09),transparent_38%),linear-gradient(180deg,rgba(5,5,5,0.04)_0%,rgba(5,5,5,0.42)_68%,#050505_94%)]" />
@@ -435,25 +457,28 @@ export function CommunityHome() {
           action={t.galleryAll}
           actionHref="/gallery"
         />
-        {featuredSplatWork && (
+        {featuredSplatsHero && (
           <Link
-            href="/gallery"
+            href={`/gallery/${featuredSplatsHero.slug}`}
             className="group relative block overflow-hidden rounded-[2.25rem] border border-white/10"
           >
             <div className="relative aspect-[21/9] w-full bg-black sm:aspect-[16/7]">
-              <SplatPoster slug={featuredSplatWork.slug} dense />
+              <SplatPoster
+                slug={featuredSplatsHero.slug}
+                thumbnailUrl={featuredSplatsHero.thumbnailUrl}
+                dense
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30" />
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
-                {featuredSplatWork.exhibition && (
-                  <p className="text-[0.62rem] uppercase tracking-[0.32em] text-white/52">
-                    {featuredSplatWork.exhibition.gallery[language]} ·{" "}
-                    {t.galleryPreview}
-                  </p>
-                )}
-                <h3 className="mt-4 max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.05em] text-white sm:text-5xl lg:text-6xl">
-                  {featuredSplatWork.exhibition
-                    ? featuredSplatWork.exhibition.name[language]
-                    : featuredSplatWork.title[language]}
+                <p className="text-[0.62rem] uppercase tracking-[0.32em] text-white/52">
+                  {featuredCategoriesById[featuredSplatsHero.category].label[language]}
+                  {" · "}
+                  {EMBED_PLATFORM_LABEL[featuredSplatsHero.platform][language]}
+                  {" · "}
+                  {t.galleryPreview}
+                </p>
+                <h3 className="mt-4 max-w-3xl break-words text-3xl font-semibold leading-tight tracking-[-0.05em] text-white [overflow-wrap:anywhere] sm:text-5xl lg:text-6xl">
+                  {featuredSplatsHero.title[language]}
                 </h3>
                 <p className="mt-5 text-xs uppercase tracking-[0.36em] text-white/60 sm:text-sm">
                   {t.galleryStat}
@@ -466,29 +491,72 @@ export function CommunityHome() {
           </Link>
         )}
         <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {splatWorks.slice(1, 5).map((work) => (
-            <Link
-              key={work.slug}
-              href={`/gallery/${work.slug}`}
-              className="group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black transition hover:border-white/30"
-            >
-              <SplatPoster slug={work.slug} />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
-              <div className="absolute inset-x-3 bottom-3">
-                {work.exhibition && (
+          {featuredSplats
+            .filter((w) => w.slug !== featuredSplatsHero?.slug)
+            .slice(0, 4)
+            .map((work) => (
+              <Link
+                key={work.slug}
+                href={`/gallery/${work.slug}`}
+                className="group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black transition hover:border-white/30"
+              >
+                <SplatPoster slug={work.slug} thumbnailUrl={work.thumbnailUrl} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+                <div className="absolute inset-x-3 bottom-3 min-w-0">
                   <p className="text-[0.55rem] uppercase tracking-[0.28em] text-white/48">
-                    {work.exhibition.gallery[language]}
+                    {featuredCategoriesById[work.category].label[language]}
+                    {" · "}
+                    {EMBED_PLATFORM_LABEL[work.platform][language]}
+                  </p>
+                  <p className="mt-1 break-words text-xs font-medium tracking-[-0.02em] text-white [overflow-wrap:anywhere] sm:text-sm">
+                    {work.title[language]}
+                  </p>
+                </div>
+              </Link>
+            ))}
+        </div>
+      </section>
+
+      <section id="media" className="px-5 py-16 sm:px-10 lg:px-16">
+        <SectionHeader
+          eyebrow={t.mediaEyebrow}
+          title={t.mediaTitle}
+          action={t.mediaAction}
+          actionHref="/media"
+        />
+        {featuredStudioWork && (
+          <Link
+            href={`/media/${featuredStudioWork.slug}`}
+            className="group relative block overflow-hidden rounded-[2.25rem] border border-white/10"
+          >
+            <div className="relative aspect-[21/9] w-full bg-black sm:aspect-[16/7]">
+              <SplatPoster
+                slug={featuredStudioWork.slug}
+                thumbnailUrl={featuredStudioWork.thumbnailUrl}
+                dense
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-14">
+                {featuredStudioWork.exhibition && (
+                  <p className="text-[0.62rem] uppercase tracking-[0.32em] text-white/52">
+                    {featuredStudioWork.exhibition.gallery[language]}
                   </p>
                 )}
-                <p className="mt-1 text-xs font-medium tracking-[-0.02em] text-white sm:text-sm">
-                  {work.exhibition
-                    ? `${work.exhibition.name[language]}${work.exhibition.part ? ` · ${work.exhibition.part}` : ""}`
-                    : work.title[language]}
+                <h3 className="mt-4 max-w-3xl break-words text-3xl font-semibold leading-tight tracking-[-0.05em] text-white [overflow-wrap:anywhere] sm:text-5xl lg:text-6xl">
+                  {featuredStudioWork.exhibition
+                    ? featuredStudioWork.exhibition.name[language]
+                    : featuredStudioWork.title[language]}
+                </h3>
+                <p className="mt-5 max-w-2xl break-words text-sm leading-7 text-white/60 [overflow-wrap:anywhere]">
+                  {t.mediaDesc}
+                </p>
+                <p className="mt-3 text-xs uppercase tracking-[0.36em] text-white/48 sm:text-sm">
+                  {t.mediaStat}
                 </p>
               </div>
-            </Link>
-          ))}
-        </div>
+            </div>
+          </Link>
+        )}
       </section>
 
       <footer className="border-t border-white/10 px-5 py-10 text-sm text-white/38 sm:px-10 lg:px-16">

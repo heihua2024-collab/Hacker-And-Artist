@@ -1,19 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/components/shared/LanguageProvider";
-import { toSplatEmbedSrc } from "@/lib/data/gallery";
+import { toSplatEmbedSrc } from "@/lib/data/splat-embed";
 
 const copy = {
   zh: {
     clickToLoad: "点击载入交互场景",
     sizeNote: "约 30–80 MB · 浏览器内 360°",
     loading: "正在加载场景…",
+    fallback: "如果窗口没有载入，可打开原页面",
+    openSource: "打开原页面",
   },
   en: {
     clickToLoad: "Click to load interactive scene",
     sizeNote: "~30–80 MB · 360° in browser",
     loading: "Loading scene…",
+    fallback: "If the embed does not load, open the source page",
+    openSource: "Open source",
   },
 } as const;
 
@@ -29,21 +33,33 @@ const copy = {
  */
 export function SplatEmbed({
   url,
+  sourceUrl,
   title,
   slug,
+  thumbnailUrl,
   mode = "click-to-load",
 }: {
   url: string;
+  sourceUrl?: string;
   title: string;
   slug: string;
+  thumbnailUrl?: string;
   mode?: "click-to-load" | "auto";
 }) {
   const { language } = useLanguage();
   const t = copy[language];
   const [loaded, setLoaded] = useState(mode === "auto");
   const [iframeReady, setIframeReady] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
 
   const embedSrc = toSplatEmbedSrc(url);
+  const openUrl = sourceUrl ?? url;
+
+  useEffect(() => {
+    if (!loaded || iframeReady) return;
+    const timer = window.setTimeout(() => setShowFallback(true), 12000);
+    return () => window.clearTimeout(timer);
+  }, [iframeReady, loaded]);
 
   if (mode === "click-to-load" && !loaded) {
     return (
@@ -53,7 +69,7 @@ export function SplatEmbed({
         className="group relative h-full w-full cursor-pointer overflow-hidden bg-black"
         aria-label={t.clickToLoad}
       >
-        <SplatPoster slug={slug} dense />
+        <SplatPoster slug={slug} thumbnailUrl={thumbnailUrl} dense />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/30 transition group-hover:bg-black/22">
           <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/35 bg-black/55 backdrop-blur-md transition group-hover:border-white/65 group-hover:bg-black/35 sm:h-20 sm:w-20">
             <svg
@@ -88,7 +104,7 @@ export function SplatEmbed({
     <div className="relative h-full w-full bg-black">
       {!iframeReady && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black">
-          <SplatPoster slug={slug} dense />
+          <SplatPoster slug={slug} thumbnailUrl={thumbnailUrl} dense />
           <div className="absolute inset-0 flex items-center justify-center bg-black/55">
             <div className="flex flex-col items-center gap-3">
               <div className="h-9 w-9 animate-spin rounded-full border-2 border-white/14 border-t-white/72" />
@@ -97,6 +113,21 @@ export function SplatEmbed({
               </p>
             </div>
           </div>
+        </div>
+      )}
+      {showFallback && !iframeReady && (
+        <div className="absolute inset-x-4 bottom-4 z-10 rounded-2xl border border-white/14 bg-black/70 p-3 text-center text-white shadow-2xl backdrop-blur-xl sm:inset-x-auto sm:right-4 sm:max-w-sm">
+          <p className="text-[0.62rem] uppercase tracking-[0.24em] text-white/58">
+            {t.fallback}
+          </p>
+          <a
+            href={openUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex rounded-full bg-white px-4 py-2 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-black"
+          >
+            {t.openSource} ↗
+          </a>
         </div>
       )}
       <iframe
@@ -115,9 +146,11 @@ export function SplatEmbed({
 /** 用 slug hash 派生稳定渐变 + splat 散点，作为 iframe 加载前的占位 */
 export function SplatPoster({
   slug,
+  thumbnailUrl,
   dense = false,
 }: {
   slug: string;
+  thumbnailUrl?: string;
   dense?: boolean;
 }) {
   let hash = 0;
@@ -141,6 +174,17 @@ export function SplatPoster({
         background: `radial-gradient(circle at 30% 25%, hsl(${hue} 50% 26% / 0.85), hsl(${(hue + 38) % 360} 30% 6%))`,
       }}
     >
+      {thumbnailUrl && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={thumbnailUrl}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          aria-hidden="true"
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/10" />
       {dots.map((d) => (
         <span
           key={d.key}

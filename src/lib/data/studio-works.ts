@@ -1,50 +1,51 @@
 /**
- * 印刻万物画廊（Inktoys Splat Gallery）
+ * 印刻万物 · 工作室作品（Studio Works）
  *
- * 这里是工作室自有 3DGS 作品库 —— 类似影视飓风的素材库形态。
- * 模型托管在 superspl.at（PlayCanvas 维护的官方 3DGS viewer），
- * 通过 iframe 嵌入展示。已确认该域无 X-Frame-Options / CSP frame-ancestors 限制。
+ * 位于 /media 下的"工作室作品"子栏目 —— 这是印刻万物自己采集、训练、
+ * 通过 SuperSplat 公开发布的高斯泼溅空间记录。
  *
- * 关于 SuperSplat 的两种 URL：
- *   /s?id=<id>      纯嵌入 viewer（无 UI chrome，用作 iframe src）
- *   /scene/<id>     带 UI 的分享页（用作"在 SuperSplat 打开"的外链）
- * 数据里 embedUrl 字段两种都接受，由下方 helper 自动归一化。
+ * 历史上这部分内容曾位于 /gallery，从 2026-05 起迁移至 /media，
+ * 以便 /gallery 用于展示社区/创作者精选案例。
  */
 
 const SUPERSPLAT_HOST = "https://superspl.at";
 
-function extractSplatId(url: string): string | null {
-  const m =
-    url.match(/superspl\.at\/s\?id=([^&]+)/i) ||
-    url.match(/superspl\.at\/scene\/([^/?#]+)/i);
-  return m ? m[1] : null;
-}
+const STUDIO_THUMBNAILS: Record<string, string> = {
+  c3e918ce: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/c3e918ce/v1/xl.webp",
+  ef23324f: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/ef23324f/v1/xl.webp",
+  "2da3a7f2": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/2da3a7f2/v1/xl.webp",
+  "013e52ae": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/013e52ae/v1/xl.webp",
+  "11d36034": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/11d36034/v1/xl.webp",
+  "45650cb6": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/45650cb6/v1/xl.webp",
+  "7699b306": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/7699b306/v1/xl.webp",
+  "369ccea8": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/369ccea8/v1/xl.webp",
+  bf43db88: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/bf43db88/v1/xl.webp",
+  "194b7971": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/194b7971/v1/xl.webp",
+  "053dcc54": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/053dcc54/v1/xl.webp",
+  "8d84374b": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/8d84374b/v1/xl.webp",
+  d592fc44: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/d592fc44/v1/xl.webp",
+  "9dbb1ec7": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/9dbb1ec7/v1/xl.webp",
+  bcd1597f: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/bcd1597f/v1/xl.webp",
+  ab7d0085: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/ab7d0085/v1/xl.webp",
+  "4a211213": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/4a211213/v1/xl.webp",
+  a4d1a4b7: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/a4d1a4b7/v1/xl.webp",
+  "3ed75459": "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/3ed75459/v1/xl.webp",
+  ff251d7c: "https://s3-eu-west-1.amazonaws.com/images.playcanvas.com/splat/ff251d7c/v1/xl.webp",
+};
 
-/** 用于 iframe src — 纯 viewer，无 UI chrome */
-export function toSplatEmbedSrc(url: string): string {
-  const id = extractSplatId(url);
-  return id ? `${SUPERSPLAT_HOST}/s?id=${id}` : url;
-}
-
-/** 用于"在 SuperSplat 打开"外链 — 带完整 UI */
-export function toSplatSceneUrl(url: string): string {
-  const id = extractSplatId(url);
-  return id ? `${SUPERSPLAT_HOST}/scene/${id}` : url;
-}
-
-export type SplatCategoryId =
+export type StudioCategoryId =
   | "object"
   | "interior"
   | "exterior"
   | "heritage"
   | "experimental";
 
-export type SplatCategory = {
-  id: SplatCategoryId;
+export type StudioCategory = {
+  id: StudioCategoryId;
   label: { zh: string; en: string };
 };
 
-export const splatCategories: SplatCategory[] = [
+export const studioCategories: StudioCategory[] = [
   { id: "object", label: { zh: "物件", en: "Object" } },
   { id: "interior", label: { zh: "室内", en: "Interior" } },
   { id: "exterior", label: { zh: "室外", en: "Exterior" } },
@@ -52,48 +53,41 @@ export const splatCategories: SplatCategory[] = [
   { id: "experimental", label: { zh: "实验", en: "Experimental" } },
 ];
 
-export const splatCategoriesById: Record<SplatCategoryId, SplatCategory> =
-  Object.fromEntries(splatCategories.map((c) => [c.id, c])) as Record<
-    SplatCategoryId,
-    SplatCategory
+export const studioCategoriesById: Record<StudioCategoryId, StudioCategory> =
+  Object.fromEntries(studioCategories.map((c) => [c.id, c])) as Record<
+    StudioCategoryId,
+    StudioCategory
   >;
 
-export type SplatLocation = {
+export type StudioLocation = {
   country?: string;
   city?: string;
   site?: string;
 };
 
-/** 展览/画廊元数据 —— 把"画廊·展览·分集"这个层级带进来 */
-export type Exhibition = {
+export type StudioExhibition = {
   gallery: { zh: string; en: string };
   name: { zh: string; en: string };
   part?: string;
 };
 
-export type SplatWork = {
+export type StudioWork = {
   slug: string;
   title: { zh: string; en: string };
   description: { zh: string; en: string };
   embedUrl: string;
   thumbnailUrl?: string;
-  category: SplatCategoryId;
+  category: StudioCategoryId;
   capturedAt?: string;
-  location?: SplatLocation;
+  location?: StudioLocation;
   device?: string;
   splatCount?: string;
   trainingTime?: string;
   trainingPipeline?: string;
-  exhibition?: Exhibition;
+  exhibition?: StudioExhibition;
   featured?: boolean;
 };
 
-/**
- * 工厂函数：基于"画廊·展览·分集"自动展开 title + description + embedUrl，
- * 让 20 件数据写得紧凑、类型安全。
- *
- * 等作者后续给具体描述时，可以直接覆盖 description 字段。
- */
 function exhibitionWork(args: {
   slug: string;
   splatId: string;
@@ -101,9 +95,9 @@ function exhibitionWork(args: {
   exhibition: { zh: string; en: string };
   part?: string;
   city?: string;
-  category?: SplatCategoryId;
+  category?: StudioCategoryId;
   featured?: boolean;
-}): SplatWork {
+}): StudioWork {
   const titleZh = args.part ? `${args.exhibition.zh} PART ${args.part}` : args.exhibition.zh;
   const titleEn = args.part
     ? `${args.exhibition.en} · Part ${args.part}`
@@ -129,6 +123,7 @@ function exhibitionWork(args: {
     title: { zh: titleZh, en: titleEn },
     description: { zh: descZh, en: descEn },
     embedUrl: `${SUPERSPLAT_HOST}/s?id=${args.splatId}`,
+    thumbnailUrl: STUDIO_THUMBNAILS[args.splatId],
     category: args.category ?? "interior",
     location: args.city ? { city: args.city } : undefined,
     exhibition: {
@@ -151,11 +146,7 @@ const KENNAXU_FUTIAN = {
 const KCCA = { zh: "科纳艺术中心 KCCA", en: "KCCA — Kena Center" };
 const SUMMIT = { zh: "登顶计划", en: "Summit Project" };
 
-/**
- * 首批 20 件作品 —— 来自 8 家画廊的 10 场展览，
- * 全部由作者本人采集、训练并通过 SuperSplat 公开发布。
- */
-export const splatWorks: SplatWork[] = [
+export const studioWorks: StudioWork[] = [
   exhibitionWork({
     slug: "wanyi-wanli-tiyi",
     splatId: "c3e918ce",
@@ -306,20 +297,16 @@ export const splatWorks: SplatWork[] = [
   }),
 ];
 
-export const splatWorksBySlug: Record<string, SplatWork> = Object.fromEntries(
-  splatWorks.map((w) => [w.slug, w]),
+export const studioWorksBySlug: Record<string, StudioWork> = Object.fromEntries(
+  studioWorks.map((w) => [w.slug, w]),
 );
 
-export const featuredSplatWork =
-  splatWorks.find((w) => w.featured) ?? splatWorks[0];
+export const featuredStudioWork =
+  studioWorks.find((w) => w.featured) ?? studioWorks[0];
 
-/**
- * 用于按"画廊"筛选 —— 返回去重后的画廊名（中文优先），
- * 同名画廊可能会有多场展览/多个分馆。
- */
-export function listGalleries(): { zh: string; en: string; count: number }[] {
+export function listStudioGalleries(): { zh: string; en: string; count: number }[] {
   const map = new Map<string, { zh: string; en: string; count: number }>();
-  for (const w of splatWorks) {
+  for (const w of studioWorks) {
     if (!w.exhibition) continue;
     const key = w.exhibition.gallery.zh;
     const existing = map.get(key);

@@ -1,32 +1,29 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { GalleryDetail } from "@/components/landing/GalleryDetail";
-import {
-  featuredSplats,
-  featuredSplatsBySlug,
-} from "@/lib/data/featured-splats";
+import { MediaDetail } from "@/components/landing/MediaDetail";
+import { studioWorks, studioWorksBySlug } from "@/lib/data/studio-works";
 import { dynamicPageMetadata, notFoundMetadata } from "@/lib/seo-metadata";
 
 type Params = { slug: string };
 
 export function generateStaticParams(): Params[] {
-  return featuredSplats.map((w) => ({ slug: w.slug }));
+  return studioWorks.map((w) => ({ slug: w.slug }));
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<Params> },
 ): Promise<Metadata> {
   const { slug } = await params;
-  const work = featuredSplatsBySlug[slug];
+  const work = studioWorksBySlug[slug];
   if (!work) return notFoundMetadata;
   return dynamicPageMetadata(work.title.zh, work.description.zh);
 }
 
-export default async function GalleryWorkPage(
+export default async function MediaWorkPage(
   { params }: { params: Promise<Params> },
 ) {
   const { slug } = await params;
-  const work = featuredSplatsBySlug[slug];
+  const work = studioWorksBySlug[slug];
   if (!work) notFound();
-  return <GalleryDetail work={work} />;
+  return <MediaDetail work={work} />;
 }

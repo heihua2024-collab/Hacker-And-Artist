@@ -68,6 +68,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.svg?v=top3dgs-20260501", type: "image/svg+xml" },
+      { url: "/icon-192.png?v=top3dgs-20260501", sizes: "192x192", type: "image/png" },
+      { url: "/icon.svg?v=top3dgs-20260501", type: "image/svg+xml" },
+    ],
+    shortcut: [{ url: "/favicon.svg?v=top3dgs-20260501" }],
+    apple: [
+      { url: "/apple-touch-icon.png?v=top3dgs-20260501", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.svg?v=top3dgs-20260501", type: "image/svg+xml" },
+    ],
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
     title: `首页 - ${SITE}`,
     description:

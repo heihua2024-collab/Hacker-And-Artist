@@ -32,6 +32,64 @@ body {
   overflow-x: hidden;
 }
 
+.particle-bridge-fallback {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.08), transparent 34%),
+    radial-gradient(circle at 28% 52%, rgba(30, 136, 229, 0.14), transparent 28%),
+    radial-gradient(circle at 70% 45%, rgba(255, 77, 90, 0.14), transparent 30%),
+    radial-gradient(circle at 58% 58%, rgba(255, 201, 74, 0.12), transparent 30%);
+}
+
+.particle-bridge-fallback::before,
+.particle-bridge-fallback::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  width: 115%;
+  height: 58%;
+  border-radius: 50% 50% 0 0;
+  transform: translateX(-50%);
+  border-top: 1px solid rgba(247, 244, 237, 0.22);
+  border-left: 1px solid rgba(30, 136, 229, 0.1);
+  border-right: 1px solid rgba(255, 77, 90, 0.1);
+  filter: blur(0.2px);
+}
+
+.particle-bridge-fallback::after {
+  top: 18%;
+  width: 94%;
+  height: 46%;
+  border-top-color: rgba(255, 201, 74, 0.2);
+  opacity: 0.72;
+}
+
+.particle-bridge-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(247, 244, 237, 0.75);
+  box-shadow:
+    18vw 18vh 0 rgba(30, 136, 229, 0.55),
+    31vw 12vh 0 rgba(255, 77, 90, 0.52),
+    44vw 24vh 0 rgba(255, 201, 74, 0.5),
+    56vw 15vh 0 rgba(247, 244, 237, 0.46),
+    68vw 27vh 0 rgba(30, 136, 229, 0.46),
+    79vw 16vh 0 rgba(255, 77, 90, 0.44),
+    86vw 34vh 0 rgba(255, 201, 74, 0.42),
+    12vw 36vh 0 rgba(247, 244, 237, 0.38),
+    35vw 41vh 0 rgba(30, 136, 229, 0.36),
+    52vw 37vh 0 rgba(255, 77, 90, 0.35),
+    73vw 43vh 0 rgba(255, 201, 74, 0.34);
+  left: 6%;
+  top: 18%;
+  opacity: 0.78;
+}
+
 ::selection {
   background: rgba(255, 201, 74, 0.32);
   color: #fff;

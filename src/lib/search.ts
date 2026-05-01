@@ -11,7 +11,8 @@ import { insights } from "@/lib/data/insights";
 import { cases } from "@/lib/data/cases";
 import { learningPaths, learningPathStubs } from "@/lib/data/learning-paths";
 import { learningArticles } from "@/lib/data/learning-articles";
-import { splatWorks } from "@/lib/data/gallery";
+import { featuredSplats } from "@/lib/data/featured-splats";
+import { studioWorks } from "@/lib/data/studio-works";
 
 export type SearchEntryType =
   | "tool"
@@ -22,6 +23,7 @@ export type SearchEntryType =
   | "learning-path"
   | "learning-article"
   | "gallery"
+  | "media"
   | "page";
 
 export type SearchEntry = {
@@ -47,6 +49,7 @@ export const searchTypeLabels: Record<SearchEntryType, Bilingual> = {
   "learning-path": { zh: "学习路径", en: "Path" },
   "learning-article": { zh: "学习笔记", en: "Article" },
   gallery: { zh: "画廊", en: "Gallery" },
+  media: { zh: "媒体", en: "Media" },
   page: { zh: "页面", en: "Page" },
 };
 
@@ -236,12 +239,31 @@ const learningArticleEntries: SearchEntry[] = learningArticles.map((a) => ({
   badge: { zh: "学习笔记", en: "Article" },
 }));
 
-const galleryEntries: SearchEntry[] = splatWorks.map((work) => ({
+const galleryEntries: SearchEntry[] = featuredSplats.map((work) => ({
   id: `gallery:${work.slug}`,
   type: "gallery",
   title: work.title,
   summary: work.description,
   href: `/gallery/${work.slug}`,
+  keywords: [
+    work.title.zh,
+    work.title.en,
+    work.description.zh,
+    work.description.en,
+    work.category,
+    work.platform,
+    work.author?.name ?? "",
+    work.sourceUrl,
+  ],
+  badge: { zh: "画廊", en: "Gallery" },
+}));
+
+const mediaEntries: SearchEntry[] = studioWorks.map((work) => ({
+  id: `media:${work.slug}`,
+  type: "media",
+  title: work.title,
+  summary: work.description,
+  href: `/media/${work.slug}`,
   keywords: [
     work.title.zh,
     work.title.en,
@@ -255,7 +277,7 @@ const galleryEntries: SearchEntry[] = splatWorks.map((work) => ({
     work.location?.city ?? "",
     work.device ?? "",
   ],
-  badge: { zh: "画廊", en: "Gallery" },
+  badge: { zh: "媒体", en: "Media" },
 }));
 
 const pageEntries: SearchEntry[] = [
@@ -317,13 +339,13 @@ const pageEntries: SearchEntry[] = [
   {
     id: "page:gallery",
     type: "page",
-    title: { zh: "画廊", en: "Gallery" },
+    title: { zh: "画廊 · 创作者精选", en: "Gallery · Creator Picks" },
     summary: {
-      zh: "印刻万物自家拍的高斯泼溅作品。",
-      en: "Gaussian splats captured in-house at TOP3DGS.",
+      zh: "社区与研究团队的高斯泼溅精选案例合集，按建筑、室内、自然、物件、学术 Demo 和互动查看器分组。",
+      en: "Curated community and research Gaussian Splatting scenes, grouped by architecture, interior, nature, objects, academic demos, and interactive viewers.",
     },
     href: "/gallery",
-    keywords: ["gallery", "画廊", "splat"],
+    keywords: ["gallery", "画廊", "splat", "featured", "creator picks"],
   },
   {
     id: "page:news",
@@ -374,11 +396,11 @@ const pageEntries: SearchEntry[] = [
     type: "page",
     title: { zh: "媒体", en: "Media" },
     summary: {
-      zh: "印刻万物媒体合集（建设中）。",
-      en: "TOP3DGS media collection (in progress).",
+      zh: "印刻万物自己采集的展览作品，未来将加入视频、访谈与讲座等原创内容。",
+      en: "TOP3DGS' own exhibition captures, plus upcoming videos, interviews, and talks.",
     },
     href: "/media",
-    keywords: ["media", "媒体"],
+    keywords: ["media", "媒体", "studio", "工作室"],
   },
 ];
 
@@ -391,6 +413,7 @@ export const searchIndex: SearchEntry[] = [
   ...learningPathEntries,
   ...learningArticleEntries,
   ...galleryEntries,
+  ...mediaEntries,
   ...pageEntries,
 ];
 

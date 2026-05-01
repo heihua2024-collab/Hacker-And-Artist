@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 type BridgeElementProps = {
@@ -216,24 +216,41 @@ function BridgeWorld({ mode }: Required<SceneCanvasProps>) {
 
 export function SceneCanvas({ mode = "full" }: SceneCanvasProps) {
   const isAmbient = mode === "ambient";
+  const [isReady, setIsReady] = useState(false);
 
   return (
-    <Canvas
-      camera={{ position: [0, 1.08, 6.65], fov: 42 }}
-      dpr={isAmbient ? [1, 1.15] : [1, 1.25]}
-      gl={{ antialias: true, alpha: true, powerPreference: "default" }}
-    >
-      <Suspense fallback={null}>
-        <ambientLight intensity={isAmbient ? 0.8 : 0.42} />
-        {!isAmbient && (
-          <>
-            <directionalLight position={[4, 4, 4]} intensity={0.8} />
-            <pointLight position={[-4, -1, 3]} color="#ffc94a" intensity={0.8} />
-          </>
-        )}
-        <BridgeWorld mode={mode} />
-        {!isAmbient && <Environment preset="city" />}
-      </Suspense>
-    </Canvas>
+    <div className="relative h-full w-full">
+      <div
+        aria-hidden
+        className={`particle-bridge-fallback transition-opacity duration-700 ${
+          isReady ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        <span className="particle-bridge-dot" />
+      </div>
+      <Canvas
+        camera={{ position: [0, 1.08, 6.65], fov: 42 }}
+        dpr={isAmbient ? [1, 1.1] : [1, 1.15]}
+        gl={{
+          antialias: false,
+          alpha: true,
+          failIfMajorPerformanceCaveat: false,
+          powerPreference: "low-power",
+        }}
+        onCreated={() => setIsReady(true)}
+      >
+        <Suspense fallback={null}>
+          <ambientLight intensity={isAmbient ? 0.8 : 0.42} />
+          {!isAmbient && (
+            <>
+              <directionalLight position={[4, 4, 4]} intensity={0.8} />
+              <pointLight position={[-4, -1, 3]} color="#ffc94a" intensity={0.8} />
+            </>
+          )}
+          <BridgeWorld mode={mode} />
+          {!isAmbient && <Environment preset="city" />}
+        </Suspense>
+      </Canvas>
+    </div>
   );
 }

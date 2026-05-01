@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { cases } from "@/lib/data/cases";
-import { splatWorks } from "@/lib/data/gallery";
+import { featuredSplats } from "@/lib/data/featured-splats";
+import { studioWorks } from "@/lib/data/studio-works";
 import { insights } from "@/lib/data/insights";
 import { learningArticles } from "@/lib/data/learning-articles";
 import { learningPaths } from "@/lib/data/learning-paths";
@@ -52,8 +53,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.55,
     })),
-    ...splatWorks.map((item) => ({
+    ...featuredSplats.map((item) => ({
       url: toUrl(`/gallery/${item.slug}`),
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
+    ...studioWorks.map((item) => ({
+      url: toUrl(`/media/${item.slug}`),
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.45,
